@@ -1,4 +1,4 @@
-package ru.gamesforkids.gamesforkinds;
+package ru.gamesforkids.gamesforkids;
 
 import org.junit.Test;
 
