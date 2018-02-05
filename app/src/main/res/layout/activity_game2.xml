@@ -1,10 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ru.gamesforkids.gamesforkids.Game2Activity"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     >
+
+    <RelativeLayout
+        android:id="@+id/rainbow"
+        android:layout_width="450dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/arc1iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/arc1" />
+
+        <ImageView
+            android:id="@+id/arc2iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/arc2" />
+
+        <ImageView
+            android:id="@+id/arc3iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/arc3" />
+
+        <ImageView
+            android:id="@+id/arc4iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/arc4" />
+
+        <ImageView
+            android:id="@+id/arc5iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/arc5" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/colors"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/color1iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/color2iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/circle" />
+
+        <ImageView
+            android:id="@+id/color3iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/circle" />
+    </LinearLayout>
 
 </LinearLayout>

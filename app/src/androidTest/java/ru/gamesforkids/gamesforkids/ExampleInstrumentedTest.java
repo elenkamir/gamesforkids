@@ -1,4 +1,4 @@
-package ru.gamesforkids.gamesforkinds;
+package ru.gamesforkids.gamesforkids;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
