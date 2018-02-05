@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">GamesForKinds</string>
+
+    <!--    Game 1-->
+    <string name="g1_purple">Фиолетовый</string>
+    <string name="g1_orange">Оранжевый</string>
+    <string name="g1_pink">Розовый</string>
+    <string name="g1_lightblue">Голубой</string>
+    <string name="g1_green">Зеленый</string>
+
 </resources>
