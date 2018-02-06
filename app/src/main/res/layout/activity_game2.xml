@@ -10,8 +10,10 @@
 
     <RelativeLayout
         android:id="@+id/rainbow"
-        android:layout_width="450dp"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp">
 
         <ImageView
             android:id="@+id/arc1iv"
@@ -49,34 +51,44 @@
         android:id="@+id/colors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="3"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/color1iv"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/color1ib"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="4dp"
             android:layout_weight="1"
+            android:background="@null"
+            android:elevation="5dp"
+            android:scaleType="fitCenter"
+            android:translationZ="4dp"
             app:srcCompat="@drawable/circle" />
 
-        <ImageView
-            android:id="@+id/color2iv"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/color2ib"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/circle" />
 
-        <ImageView
-            android:id="@+id/color3iv"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/color3ib"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/circle" />
+
     </LinearLayout>
 
 </LinearLayout>
