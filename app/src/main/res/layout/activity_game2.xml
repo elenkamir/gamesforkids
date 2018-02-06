@@ -4,46 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.gamesforkids.gamesforkids.Game2Activity"
+    android:background="@color/g2Sky"
     android:orientation="horizontal"
-    >
+    tools:context="ru.gamesforkids.gamesforkids.Game2Activity">
 
     <RelativeLayout
         android:id="@+id/rainbow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginLeft="20dp">
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/arc1iv"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/arc1" />
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="-60dp">
+
+            <ImageView
+                android:id="@+id/arc2iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc2" />
+
+            <ImageView
+                android:id="@+id/arc1iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc1" />
+
+            <ImageView
+                android:id="@+id/arc4iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc4" />
+
+            <ImageView
+                android:id="@+id/arc3iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc3" />
+
+            <ImageView
+                android:id="@+id/arc5iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc5" />
+        </FrameLayout>
 
         <ImageView
-            android:id="@+id/arc2iv"
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/arc2" />
-
-        <ImageView
-            android:id="@+id/arc3iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/arc3" />
-
-        <ImageView
-            android:id="@+id/arc4iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/arc4" />
-
-        <ImageView
-            android:id="@+id/arc5iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/arc5" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-90dp"
+            app:srcCompat="@drawable/cloud" />
 
     </RelativeLayout>
 
@@ -51,9 +65,9 @@
         android:id="@+id/colors"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="4"
         android:orientation="vertical">
 
         <ImageButton
