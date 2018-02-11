@@ -166,10 +166,12 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorImageView.setImageDrawable(b1White.getDrawable());
                                 color1 = 1;
                                 firstColorTextView.setText("Белый");
+                                firstColorTextView.setTextColor(getResources().getColor(R.color.white));
                                 isFirstClick = false;
                             } else {
                                 secondColorImageView.setImageDrawable(b1White.getDrawable());
                                 secondColorTextView.setText("Белый");
+                                secondColorTextView.setTextColor(getResources().getColor(R.color.white));
                                 color2 = 1;
                                 if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                                     i++;
@@ -215,9 +217,11 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorImageView.setImageDrawable(b2Yellow.getDrawable());
                                 color1 = 2;
                                 firstColorTextView.setText("Жёлтый");
+                                firstColorTextView.setTextColor(getResources().getColor(R.color.yellow));
                                 isFirstClick = false;
                             } else {
                                 secondColorTextView.setText("Жёлтый");
+                                secondColorTextView.setTextColor(getResources().getColor(R.color.yellow));
                                 secondColorImageView.setImageDrawable(b2Yellow.getDrawable());
                                 color2 = 2;
                                 if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
@@ -263,9 +267,11 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorImageView.setImageDrawable(b3Red.getDrawable());
                                 color1 = 3;
                                 firstColorTextView.setText("Красный");
+                                firstColorTextView.setTextColor(getResources().getColor(R.color.red));
                                 isFirstClick = false;
                             } else {
                                 secondColorTextView.setText("Красный");
+                                secondColorTextView.setTextColor(getResources().getColor(R.color.red));
                                 secondColorImageView.setImageDrawable(b3Red.getDrawable());
                                 color2 = 3;
                                 if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
@@ -311,9 +317,11 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorImageView.setImageDrawable(b4Blue.getDrawable());
                                 color1 = 4;
                                 firstColorTextView.setText("Синий");
+                                firstColorTextView.setTextColor(getResources().getColor(R.color.blue));
                                 isFirstClick = false;
                             } else {
                                 secondColorTextView.setText("Синий");
+                                secondColorTextView.setTextColor(getResources().getColor(R.color.blue));
                                 secondColorImageView.setImageDrawable(b4Blue.getDrawable());
                                 color2 = 4;
                                 if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
@@ -359,9 +367,11 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorImageView.setImageDrawable(b5Black.getDrawable());
                                 color1 = 5;
                                 firstColorTextView.setText("Чёрный");
+                                firstColorTextView.setTextColor(getResources().getColor(R.color.black));
                                 isFirstClick = false;
                             } else {
                                 secondColorTextView.setText("Чёрный");
+                                secondColorTextView.setTextColor(getResources().getColor(R.color.black));
                                 secondColorImageView.setImageDrawable(b5Black.getDrawable());
                                 color2 = 5;
                                 if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
