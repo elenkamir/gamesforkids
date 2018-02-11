@@ -6,10 +6,15 @@
     <color name="white">#ffffff</color>
     <color name="purple">#8b00ff</color>
     <color name="orange">#ffa500</color>
-    <color name="pink">#ffc0cb</color>
+    <color name="pink">#fc5fe2</color>
     <color name="lightblue">#42aaff</color>
     <color name="green">#008000</color>
     <color name="g2Sky">#eefcff</color>
     <color name="gray">#808080</color>
-    <color name="darkblue">#002137</color>
+    <color name="darkblue">#0f0f8e</color>
+    <color name="yellow">#ffff00</color>
+    <color name="red">#ff0000</color>
+    <color name="blue">#0000ff</color>
+    <color name="black">#000000</color>
+    <color name="silver">#e6e6e6</color>
 </resources>
