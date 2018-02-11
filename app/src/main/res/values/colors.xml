@@ -10,4 +10,6 @@
     <color name="lightblue">#42aaff</color>
     <color name="green">#008000</color>
     <color name="g2Sky">#eefcff</color>
+    <color name="gray">#808080</color>
+    <color name="darkblue">#002137</color>
 </resources>

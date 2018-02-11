@@ -112,6 +112,20 @@ public class Game1Activity extends AppCompatActivity {
         green.g1Color = ContextCompat.getColor(this, R.color.green);
         g1ResultColors.add(green);
 
+        g1ResultColor gray = new g1ResultColor();
+        gray.g1Title = getResources().getString(R.string.g1_gray);
+        gray.g1ColorOne = 1;
+        gray.g1ColorTwo = 5;
+        gray.g1Color = ContextCompat.getColor(this, R.color.gray);
+        g1ResultColors.add(gray);
+
+        g1ResultColor darkblue = new g1ResultColor();
+        darkblue.g1Title = getResources().getString(R.string.g1_darkblue);
+        darkblue.g1ColorOne = 4;
+        darkblue.g1ColorTwo = 5;
+        darkblue.g1Color = ContextCompat.getColor(this, R.color.darkblue);
+        g1ResultColors.add(darkblue);
+
         //Log.i(TAG, String.valueOf(getResources().getColor(R.color.purple)));
 
 

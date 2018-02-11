@@ -7,5 +7,7 @@
     <string name="g1_pink">Розовый</string>
     <string name="g1_lightblue">Голубой</string>
     <string name="g1_green">Зеленый</string>
+    <string name="g1_gray">Серый</string>
+    <string name="g1_darkblue">Темно-синий</string>
 
 </resources>
