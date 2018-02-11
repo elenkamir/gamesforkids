@@ -9,9 +9,14 @@
     android:background="@color/white">
     >
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        >
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="2"
         android:orientation="vertical">
 
@@ -103,6 +108,30 @@
 
         </LinearLayout>
     </LinearLayout>
+        <ImageView
+            android:id="@+id/wrong_ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:visibility="gone"
+            app:srcCompat="@drawable/wrong_ans" />
+
+        <ImageView
+            android:id="@+id/right_ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:visibility="gone"
+            app:srcCompat="@drawable/right_ans" />
+
+        <ImageView
+            android:id="@+id/good_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:visibility="gone"
+            app:srcCompat="@drawable/good_finish" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -150,4 +179,5 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/black" />
     </LinearLayout>
+
 </LinearLayout>

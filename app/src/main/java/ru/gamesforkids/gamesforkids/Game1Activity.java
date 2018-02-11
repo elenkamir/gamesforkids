@@ -1,6 +1,8 @@
 package ru.gamesforkids.gamesforkids;
 
+import android.app.Activity;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +41,10 @@ public class Game1Activity extends AppCompatActivity {
     ImageView secondColorImageView;
     TextView secondColorTextView;
 
+    ImageView WrongAns;
+    ImageView RightAns;
+    ImageView GoodFinish;
+
     Random random;
 
     Boolean isFirstClick;
@@ -66,6 +72,10 @@ public class Game1Activity extends AppCompatActivity {
         b3Red = (ImageButton) findViewById(R.id.imageButton3);
         b4Blue = (ImageButton) findViewById(R.id.imageButton4);
         b5Black = (ImageButton) findViewById(R.id.imageButton5);
+
+        WrongAns = (ImageView) findViewById(R.id.wrong_ans);
+        RightAns = (ImageView) findViewById(R.id.right_ans);
+        GoodFinish = (ImageView) findViewById(R.id.good_finish);
 
         random = new Random();
 
@@ -145,11 +155,28 @@ public class Game1Activity extends AppCompatActivity {
                     secondColorImageView.setImageDrawable(b1White.getDrawable());
                     color2 = 1;
                     if ((color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        Toast.makeText(view.getContext(), "МОЛОДЕЦ!", Toast.LENGTH_LONG).show();
                         i++;
                         setResultColor();
-                    } else
-                        Toast.makeText(view.getContext(), "НЕПРАВИЛЬНО!", Toast.LENGTH_LONG).show();
+                        RightAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RightAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1000);
+                    } else {
+                        WrongAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                WrongAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1500);
+                    }
                     // сделать сброс цветов
                     isFirstClick = true;
                 }
@@ -167,11 +194,28 @@ public class Game1Activity extends AppCompatActivity {
                     secondColorImageView.setImageDrawable(b2Yellow.getDrawable());
                     color2 = 2;
                     if ((color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        Toast.makeText(view.getContext(), "МОЛОДЕЦ!", Toast.LENGTH_LONG).show();
                         i++;
                         setResultColor();
-                    } else
-                        Toast.makeText(view.getContext(), "НЕПРАВИЛЬНО!", Toast.LENGTH_LONG).show();
+                        RightAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RightAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1000);
+                    } else {
+                        WrongAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                WrongAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1500);
+                    }
                     isFirstClick = true;
                 }
             }
@@ -188,11 +232,28 @@ public class Game1Activity extends AppCompatActivity {
                     secondColorImageView.setImageDrawable(b3Red.getDrawable());
                     color2 = 3;
                     if ((color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        Toast.makeText(view.getContext(), "МОЛОДЕЦ!", Toast.LENGTH_LONG).show();
                         i++;
                         setResultColor();
-                    } else
-                        Toast.makeText(view.getContext(), "НЕПРАВИЛЬНО!", Toast.LENGTH_LONG).show();
+                        RightAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RightAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1000);
+                    } else {
+                        WrongAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                WrongAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1500);
+                    }
                     isFirstClick = true;
                 }
             }
@@ -209,11 +270,28 @@ public class Game1Activity extends AppCompatActivity {
                     secondColorImageView.setImageDrawable(b4Blue.getDrawable());
                     color2 = 4;
                     if ((color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        Toast.makeText(view.getContext(), "МОЛОДЕЦ!", Toast.LENGTH_LONG).show();
                         i++;
                         setResultColor();
-                    } else
-                        Toast.makeText(view.getContext(), "НЕПРАВИЛЬНО!", Toast.LENGTH_LONG).show();
+                        RightAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RightAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1000);
+                    } else {
+                        WrongAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                WrongAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1500);
+                    }
                     isFirstClick = true;
                 }
             }
@@ -230,11 +308,28 @@ public class Game1Activity extends AppCompatActivity {
                     secondColorImageView.setImageDrawable(b5Black.getDrawable());
                     color2 = 5;
                     if ((color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        Toast.makeText(view.getContext(), "МОЛОДЕЦ!", Toast.LENGTH_LONG).show();
                         i++;
                         setResultColor();
-                    } else
-                        Toast.makeText(view.getContext(), "НЕПРАВИЛЬНО!", Toast.LENGTH_LONG).show();
+                        RightAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RightAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1000);
+                    } else {
+                        WrongAns.setVisibility(View.VISIBLE);
+                        setButtonsUnclickable();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                WrongAns.setVisibility(View.GONE);
+                                setButtonsClickable();
+                            }
+                        }, 1500);
+                    }
                     isFirstClick = true;
                 }
             }
@@ -248,12 +343,38 @@ public class Game1Activity extends AppCompatActivity {
             color = g1ResultColors.get(i);
             resultColorTextView.setTextColor(color.g1Color);
             resultColorTextView.setText(color.g1Title);
-        }
-        else {
-            Toast.makeText(this, "ТЫ ПОЛУЧИЛ ВСЕ ЦВЕТА!", Toast.LENGTH_LONG).show();
-            // игра пройдена, фанфары!
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    GoodFinish.setVisibility(View.VISIBLE);
+                }
+            },1200);
+            new Handler().postDelayed(new Runnable() {
+                                          @Override
+                                          public void run() {
+                                              finish();
+                                          }
+                                      },4000);
             i = 0;
             Collections.shuffle(g1ResultColors);
         }
     }
+
+    public  void setButtonsUnclickable(){
+        b1White.setClickable(false);
+        b2Yellow.setClickable(false);
+        b3Red.setClickable(false);
+        b4Blue.setClickable(false);
+        b5Black.setClickable(false);
+    }
+
+    public  void setButtonsClickable(){
+        b1White.setClickable(true);
+        b2Yellow.setClickable(true);
+        b3Red.setClickable(true);
+        b4Blue.setClickable(true);
+        b5Black.setClickable(true);
+    }
+
 }
