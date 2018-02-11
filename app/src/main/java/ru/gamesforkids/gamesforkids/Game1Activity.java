@@ -183,6 +183,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setResultColor();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1000);
                                 } else {
@@ -195,6 +197,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setButtonsClickable();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1500);
                                 }
@@ -228,6 +232,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setResultColor();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1000);
                                 } else {
@@ -240,6 +246,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setButtonsClickable();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1500);
                                 }
@@ -272,6 +280,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setResultColor();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1000);
                                 } else {
@@ -284,6 +294,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setButtonsClickable();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1500);
                                 }
@@ -316,6 +328,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setResultColor();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1000);
                                 } else {
@@ -328,6 +342,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setButtonsClickable();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1500);
                                 }
@@ -360,6 +376,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setResultColor();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1000);
                                 } else {
@@ -372,6 +390,8 @@ public class Game1Activity extends AppCompatActivity {
                                             setButtonsClickable();
                                             firstColorImageView.setImageResource(R.drawable.question);
                                             secondColorImageView.setImageResource(R.drawable.question);
+                                            firstColorTextView.setText("");
+                                            secondColorTextView.setText("");
                                         }
                                     }, 1500);
                                 }
