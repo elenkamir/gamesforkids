@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GamesForKids.iml" filepath="$PROJECT_DIR$/GamesForKids.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\user\gamesforkids\app\app.iml" filepath="C:\Users\user\gamesforkids\app\app.iml" />
-      <module fileurl="file://C:\Users\user\gamesforkids\gamesforkids.iml" filepath="C:\Users\user\gamesforkids\gamesforkids.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamesforkids.iml" filepath="$PROJECT_DIR$/gamesforkids.iml" />
     </modules>
   </component>
 </project>

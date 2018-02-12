@@ -1,15 +1,19 @@
 package ru.gamesforkids.gamesforkids;
 
 import android.graphics.Color;
-import android.graphics.ColorFilter;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 
@@ -23,50 +27,116 @@ public class Game2Activity extends AppCompatActivity {
     ImageView ivArc4;
     ImageView ivArc5;
 
+    int k = 0;
+    ArrayList<ImageView> arcs;
+    ArrayList<Integer> btColors;
+    ArrayList<Integer> playerComb;
+    ArrayList<Integer> rightComb;
+    ArrayList<Integer> setOfColors;
+    List<Integer> mix;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        ibColor1 = (ImageButton) findViewById(R.id.color1ib);
-        ibColor2 = (ImageButton) findViewById(R.id.color2ib);
-        ibColor3 = (ImageButton) findViewById(R.id.color3ib);
+        ibColor1 = findViewById(R.id.color1ib);
+        ibColor2 = findViewById(R.id.color2ib);
+        ibColor3 = findViewById(R.id.color3ib);
 
-        ivArc1 = (ImageView) findViewById(R.id.arc1iv);
-        ivArc2 = (ImageView) findViewById(R.id.arc2iv);
-        ivArc3 = (ImageView) findViewById(R.id.arc3iv);
-        ivArc4 = (ImageView) findViewById(R.id.arc4iv);
-        ivArc5 = (ImageView) findViewById(R.id.arc5iv);
+        ivArc1 = findViewById(R.id.arc1iv);
+        ivArc2 = findViewById(R.id.arc2iv);
+        ivArc3 = findViewById(R.id.arc3iv);
+        ivArc4 = findViewById(R.id.arc4iv);
+        ivArc5 = findViewById(R.id.arc5iv);
 
+        arcs = new ArrayList<>();
+        arcs.add(ivArc2);
+        arcs.add(ivArc3);
+        arcs.add(ivArc4);
+
+        rightComb = new ArrayList<>();
+        rightComb.add(1);
+        rightComb.add(2);
+        rightComb.add(3);
+        newGame();
+
+        ibColor1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                arcs.get(k).setColorFilter(btColors.get(0));
+                ibColor1.setColorFilter(null);
+                ibColor1.setClickable(false);
+                playerComb.add(mix.get(0));
+                if (k < 2)
+                    k++;
+                else
+                    check(view);
+            }
+        });
+        ibColor2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                arcs.get(k).setColorFilter(btColors.get(1));
+                ibColor2.setColorFilter(null);
+                ibColor2.setClickable(false);
+                playerComb.add(mix.get(1));
+                if (k < 2)
+                    k++;
+                else
+                    check(view);
+            }
+        });
+        ibColor3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                arcs.get(k).setColorFilter(btColors.get(2));
+                ibColor3.setColorFilter(null);
+                ibColor3.setClickable(false);
+                playerComb.add(mix.get(2));
+                if (k < 2)
+                    k++;
+                else
+                    check(view);
+            }
+        });
+    }
+    private void newGame() {
         Random r = new Random();
         int inVar = r.nextInt(3);           // число, которое не будет изменяться
         int f = r.nextInt(3);               // число, которое начнет изменяться первым
         if (f == inVar)
             f = (inVar + 1) % 3;                   // взять просто следующее число...
-        int c = r.nextInt(50) + 150;             // color[inVar] = c
-        int d = (r.nextInt(4) + 6) * 10;    // на сколько будут изменяться значения r/g/b
-        int tmp = r.nextInt(1000);
+        int c = r.nextInt(200) + 25;        // color[inVar] = c
+        int d = (r.nextInt(5) + 5) * 10;    // на сколько будут изменяться значения r/g/b
         boolean redir = false;                     // color[f]:  false => 0 -> 255;  true => 255 -> 0
-        if (tmp % 2 == 1) redir = true;
+        boolean from0 = false;
+        if (r.nextInt(1000) % 2 == 1)
+            redir = true;
+        if (r.nextInt(1000) % 2 == 0)
+            from0 = true;
 
-        ArrayList<g2Color> setOfColors = genColors(redir, inVar, f, c, d);
+        setOfColors = genColors(redir, from0, inVar, f, c, d);
+        mix = Arrays.asList(1,2,3);
+        Collections.shuffle(mix);
 
-        // Todo: убрать заливку радуги и поработать с кнопками
-        ivArc1.setColorFilter(Color.rgb(setOfColors.get(0).r,setOfColors.get(0).g,setOfColors.get(0).b));
-        ivArc2.setColorFilter(Color.rgb(setOfColors.get(1).r,setOfColors.get(1).g,setOfColors.get(1).b));
-        ivArc3.setColorFilter(Color.rgb(setOfColors.get(2).r,setOfColors.get(2).g,setOfColors.get(2).b));
-        ivArc4.setColorFilter(Color.rgb(setOfColors.get(3).r,setOfColors.get(3).g,setOfColors.get(3).b));
-        ivArc5.setColorFilter(Color.rgb(setOfColors.get(4).r,setOfColors.get(4).g,setOfColors.get(4).b));
+        btColors = new ArrayList<>();
+        btColors.add(setOfColors.get(mix.get(0)));
+        btColors.add(setOfColors.get(mix.get(1)));
+        btColors.add(setOfColors.get(mix.get(2)));
+
+        ivArc1.setColorFilter(setOfColors.get(0));
+        ivArc5.setColorFilter(setOfColors.get(4));
+
+        redraw();
+        k = 0;
+        playerComb = new ArrayList<>();
     }
-    private g2Color compColor(int[] color) {
-        g2Color g2C = new g2Color();
-        g2C.r = color[0];
-        g2C.g = color[1];
-        g2C.b = color[2];
-        return g2C;
+    private int compColor(int[] color) {
+        return Color.rgb(color[0],color[1],color[2]);
     }
-    private ArrayList<g2Color> genColors(boolean redir, int inVar, int f, int c, int d) {
+    private ArrayList<Integer> genColors(boolean redir, boolean from0, int inVar, int f, int c, int d) {
         /*
         color[0] = r;
         color[1] = g;
@@ -74,23 +144,62 @@ public class Game2Activity extends AppCompatActivity {
          */
         int[] color = new int[3];
         color[inVar] = c;
-        ArrayList<g2Color> setOfColors = new ArrayList<>();
+        ArrayList<Integer> setOfGenColors = new ArrayList<>();
         int k = 0;
         if (redir)
             f = 3 - f - inVar;
 
-        color[f] = 0;
-        color[3 - f - inVar] = 255;            // т.к. 0+1+2 = 3
-        setOfColors.add(compColor(color));
+        if (from0) {
+            color[f] = 0;
+            color[3 - f - inVar] = 255;            // т.к. 0+1+2 = 3
+        } else {
+            color[f] = 255 - 5 * d / 2;
+            color[3 - f - inVar] = 5 * d / 2;
+        }
+        setOfGenColors.add(compColor(color));
         while (k < 5) {
             if (color[f] + d < 256)
                 color[f] += d;
-            else
-                color[3 - f - inVar] -= d;
-
-            setOfColors.add(compColor(color));
+            else {
+                color[3 - f - inVar] -= d - 255 + color[f];
+                color[f] = 255;
+            }
+            setOfGenColors.add(compColor(color));
             k++;
         }
-        return setOfColors;
+        return setOfGenColors;
+    }
+    private void check(View view) {
+        int delay = 3500;
+        if (playerComb.equals(rightComb)) {
+            Toast.makeText(view.getContext(), "Как красиво! :)", Toast.LENGTH_LONG).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    newGame();
+                }
+            }, delay);
+        } else {
+            Toast.makeText(view.getContext(), ":c Давай еще раз!", Toast.LENGTH_LONG).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    k = 0;
+                    redraw();
+                    playerComb = new ArrayList<>();
+                }
+            }, delay);
+        }
+    }
+    private void redraw() {
+        ibColor1.setColorFilter(btColors.get(0));
+        ibColor2.setColorFilter(btColors.get(1));
+        ibColor3.setColorFilter(btColors.get(2));
+        ibColor1.setClickable(true);
+        ibColor2.setClickable(true);
+        ibColor3.setClickable(true);
+        ivArc2.setColorFilter(null);
+        ivArc3.setColorFilter(null);
+        ivArc4.setColorFilter(null);
     }
 }
