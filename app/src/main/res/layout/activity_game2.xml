@@ -50,10 +50,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/arc5" />
+
+            <ImageView
+                android:id="@+id/rainbowContour"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/rainbow_contour" />
         </FrameLayout>
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-90dp"
@@ -70,38 +75,92 @@
         android:layout_weight="4"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/color1ib"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="4dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:elevation="5dp"
-            android:scaleType="fitCenter"
-            android:translationZ="4dp"
-            app:srcCompat="@drawable/circle" />
+            android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/color2ib"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/flower" />
+
+            <ImageButton
+                android:id="@+id/color1ib"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/g2_bt" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                app:srcCompat="@drawable/g2_bt_contour" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/circle" />
+            android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/color3ib"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/flower" />
+
+            <ImageButton
+                android:id="@+id/color2ib"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/g2_bt" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                app:srcCompat="@drawable/g2_bt_contour" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/circle" />
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/flower" />
+
+            <ImageButton
+                android:id="@+id/color3ib"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/g2_bt" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="30dp"
+                app:srcCompat="@drawable/g2_bt_contour" />
+        </FrameLayout>
 
     </LinearLayout>
 
