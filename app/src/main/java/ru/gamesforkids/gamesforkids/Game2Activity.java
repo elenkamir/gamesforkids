@@ -6,9 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +30,9 @@ public class Game2Activity extends AppCompatActivity {
     ImageView ivArc3;
     ImageView ivArc4;
     ImageView ivArc5;
+    ImageView goodEnd;
+    ImageView badEnd;
+    FrameLayout End;
 
     int k = 0;
     ArrayList<ImageView> arcs;
@@ -41,6 +48,13 @@ public class Game2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_game2);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        End = findViewById(R.id.End);
+        goodEnd = findViewById(R.id.happySun);
+        Glide.with(getApplicationContext()).load(R.drawable.happy_sun).asGif().
+                fitCenter().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(goodEnd);
+        badEnd = findViewById(R.id.sadCloud);
+        Glide.with(getApplicationContext()).load(R.drawable.sad_cloud).asGif().
+                fitCenter().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(badEnd);
         ibColor1 = findViewById(R.id.color1ib);
         ibColor2 = findViewById(R.id.color2ib);
         ibColor3 = findViewById(R.id.color3ib);
@@ -172,7 +186,9 @@ public class Game2Activity extends AppCompatActivity {
     private void check(View view) {
         int delay = 3500;
         if (playerComb.equals(rightComb)) {
-            Toast.makeText(view.getContext(), "Как красиво! :)", Toast.LENGTH_LONG).show();
+            //Toast.makeText(view.getContext(), "Как красиво! :)", Toast.LENGTH_LONG).show();
+            End.setVisibility(View.VISIBLE);
+            goodEnd.setVisibility(View.VISIBLE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -180,7 +196,9 @@ public class Game2Activity extends AppCompatActivity {
                 }
             }, delay);
         } else {
-            Toast.makeText(view.getContext(), ":c Давай еще раз!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(view.getContext(), ":c Давай еще раз!", Toast.LENGTH_LONG).show();
+            End.setVisibility(View.VISIBLE);
+            badEnd.setVisibility(View.VISIBLE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -201,5 +219,8 @@ public class Game2Activity extends AppCompatActivity {
         ivArc2.setColorFilter(null);
         ivArc3.setColorFilter(null);
         ivArc4.setColorFilter(null);
+        End.setVisibility(View.GONE);
+        goodEnd.setVisibility(View.GONE);
+        badEnd.setVisibility(View.GONE);
     }
 }
