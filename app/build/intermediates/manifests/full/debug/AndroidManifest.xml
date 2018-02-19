@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.gamesforkids.gamesforkinds"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="26" />
+
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/logo_flavor"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_flavor"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="ru.gamesforkids.gamesforkids.MainActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ru.gamesforkids.gamesforkids.Game1Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="ru.gamesforkids.gamesforkids.Game2Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="ru.gamesforkids.gamesforkids.Game4Activity"
+            android:screenOrientation="landscape" />
+        <activity android:name="ru.gamesforkids.gamesforkids.Game3_1Activity" />
+        <activity android:name="ru.gamesforkids.gamesforkids.Game3Activity" />
+
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.1.0" />
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
+    </application>
+
+</manifest>
