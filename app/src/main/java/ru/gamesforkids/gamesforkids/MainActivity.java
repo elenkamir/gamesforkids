@@ -41,10 +41,17 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                 Intent intent2 = new Intent(this, Game2Activity.class);
                 startActivity(intent2);
                 break;
+<<<<<<< HEAD
             case R.id.btnGame3:
                 Intent intent3 = new Intent(this, Game3Activity.class);
                 startActivity(intent3);
                 break;
+=======
+         /*   case R.id.btnGame3:
+                Intent intent3 = new Intent(this, Game3Activity.class);
+                startActivity(intent3);
+                break;*/
+>>>>>>> 48d11b926295a86ade4133512bbac681775bcea0
             case R.id.btnGame4:
                 Intent intent4 = new Intent(this, Game4Activity.class);
                 startActivity(intent4);
