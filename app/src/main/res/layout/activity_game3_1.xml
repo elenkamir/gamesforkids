@@ -133,6 +133,14 @@
                     app:srcCompat="@drawable/head"
                     tools:layout_editor_absoluteX="53dp"
                     tools:layout_editor_absoluteY="30dp" />
+
+                <Button
+                    android:id="@+id/bRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="470dp"
+                    android:layout_marginTop="11dp"
+                    android:text="красный" />
             </FrameLayout>
 
         </RelativeLayout>
