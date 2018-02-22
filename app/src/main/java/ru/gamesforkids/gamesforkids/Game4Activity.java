@@ -1,6 +1,7 @@
 package ru.gamesforkids.gamesforkids;
 
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -28,6 +29,8 @@ public class Game4Activity extends AppCompatActivity {
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 
     String TAG = "tag";
+
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,7 @@ public class Game4Activity extends AppCompatActivity {
                 & ((greenValue > green - acc) & (greenValue < green + acc))
                 & ((blueValue > blue - acc) & (blueValue < blue + acc))) {
             Toast.makeText(getApplicationContext(), "УРА", Toast.LENGTH_LONG).show();
+            managerOfSound(true);
             imgResult.setColorFilter(RGBtask);
             redSeekBar.setEnabled(false);
             greenSeekBar.setEnabled(false);
@@ -132,5 +136,19 @@ public class Game4Activity extends AppCompatActivity {
 
         }
 
+    }
+
+
+
+    protected void managerOfSound(boolean correct) {
+        if (mp != null) {
+            mp.reset();
+            mp.release();
+        }
+        if (correct)
+            mp = MediaPlayer.create(this, R.raw.g1correct);
+        else
+            mp = MediaPlayer.create(this, R.raw.g1incorrect);
+        mp.start();
     }
 }

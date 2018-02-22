@@ -3,6 +3,7 @@ package ru.gamesforkids.gamesforkids;
 import android.app.Activity;
 import android.graphics.Color;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -56,6 +57,8 @@ public class Game1Activity extends AppCompatActivity {
     int color1, color2, i;
     g1ResultColor color;
     ArrayList<g1ResultColor> g1ResultColors;
+
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,6 +183,7 @@ public class Game1Activity extends AppCompatActivity {
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
                         RightAns.setVisibility(View.VISIBLE);
+                        managerOfSound(true);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -195,6 +199,7 @@ public class Game1Activity extends AppCompatActivity {
                         }, 1000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
+                        managerOfSound(false);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -231,6 +236,7 @@ public class Game1Activity extends AppCompatActivity {
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
                         RightAns.setVisibility(View.VISIBLE);
+                        managerOfSound(true);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -246,6 +252,7 @@ public class Game1Activity extends AppCompatActivity {
                         }, 1000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
+                        managerOfSound(false);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -282,6 +289,7 @@ public class Game1Activity extends AppCompatActivity {
                         i++;
                         RightAns.setVisibility(View.VISIBLE);
                         setButtonsUnclickable();
+                        managerOfSound(true);
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -296,6 +304,7 @@ public class Game1Activity extends AppCompatActivity {
                         }, 1000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
+                        managerOfSound(false);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -331,6 +340,7 @@ public class Game1Activity extends AppCompatActivity {
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
                         RightAns.setVisibility(View.VISIBLE);
+                        managerOfSound(true);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -346,6 +356,7 @@ public class Game1Activity extends AppCompatActivity {
                         }, 1000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
+                        managerOfSound(false);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -381,6 +392,7 @@ public class Game1Activity extends AppCompatActivity {
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
                         RightAns.setVisibility(View.VISIBLE);
+                        managerOfSound(true);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -396,6 +408,7 @@ public class Game1Activity extends AppCompatActivity {
                         }, 1000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
+                        managerOfSound(false);
                         setButtonsUnclickable();
                         new Handler().postDelayed(new Runnable() {
                             @Override
@@ -464,4 +477,15 @@ public class Game1Activity extends AppCompatActivity {
         b5Black.setClickable(true);
     }
 
+    protected void managerOfSound(boolean correct) {
+        if (mp != null) {
+            mp.reset();
+            mp.release();
+        }
+        if (correct)
+            mp = MediaPlayer.create(this, R.raw.g1correct);
+        else
+            mp = MediaPlayer.create(this, R.raw.g1incorrect);
+        mp.start();
+    }
 }
