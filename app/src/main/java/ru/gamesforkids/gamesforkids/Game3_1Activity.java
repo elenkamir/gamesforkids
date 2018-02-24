@@ -28,6 +28,7 @@ public class Game3_1Activity extends AppCompatActivity{
     String sMove;
     String sUp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class Game3_1Activity extends AppCompatActivity{
                 }
 
                 TextView Text = findViewById(R.id.textView);
-                Text.setText(sDown + "\n" + sMove + "\n" + sUp);
+                //Text.setText(sDown + "\n" + sMove + "\n" + sUp);
                 return true;
             }
         });
