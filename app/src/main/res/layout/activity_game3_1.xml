@@ -6,135 +6,23 @@
     android:layout_height="match_parent"
     tools:context="ru.gamesforkids.gamesforkids.Game3_1Activity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/lay1"
+        android:layout_width="400dp"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/colors"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+        <ImageView
+            android:id="@+id/cat"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/pic1" />
+    </FrameLayout>
 
-        <RelativeLayout
-            android:id="@+id/picture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="400dp"
+        android:text="TextView" />
 
-            <ImageView
-                android:id="@+id/cat1"
-                android:layout_width="550dp"
-                android:layout_height="320dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/contur"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
-
-            <FrameLayout
-                android:id="@+id/frameLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="237dp">
-
-                <ImageView
-                    android:id="@+id/catTail"
-                    android:layout_width="81dp"
-                    android:layout_height="103dp"
-                    android:layout_marginLeft="138dp"
-                    android:layout_marginTop="185dp"
-                    app:srcCompat="@drawable/tail" />
-
-                <ImageView
-                    android:id="@+id/catRightbow"
-                    android:layout_width="30dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="340dp"
-                    android:layout_marginTop="149dp"
-                    app:srcCompat="@drawable/rightbow" />
-
-                <ImageView
-                    android:id="@+id/catNeck"
-                    android:layout_width="65dp"
-                    android:layout_height="28dp"
-                    android:layout_marginLeft="251dp"
-                    android:layout_marginTop="166dp"
-                    app:srcCompat="@drawable/neck" />
-
-                <ImageView
-                    android:id="@+id/catMiddlebow"
-                    android:layout_width="14dp"
-                    android:layout_height="53dp"
-                    android:layout_marginLeft="333dp"
-                    android:layout_marginTop="149dp"
-                    app:srcCompat="@drawable/middlebow" />
-
-                <ImageView
-                    android:id="@+id/catLeftpad"
-                    android:layout_width="73dp"
-                    android:layout_height="50dp"
-                    android:layout_alignEnd="@+id/cat1"
-                    android:layout_alignTop="@+id/cat1"
-                    android:layout_marginLeft="329dp"
-                    android:layout_marginTop="264dp"
-                    app:srcCompat="@drawable/leftpad" />
-
-                <ImageView
-                    android:id="@+id/catEye"
-                    android:layout_width="35dp"
-                    android:layout_height="34dp"
-                    android:layout_marginLeft="323dp"
-                    android:layout_marginTop="63dp"
-                    app:srcCompat="@drawable/eye" />
-
-                <ImageView
-                    android:id="@+id/catFrontear"
-                    android:layout_width="65dp"
-                    android:layout_height="72dp"
-                    android:layout_marginLeft="245dp"
-                    android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/frontear" />
-
-                <ImageView
-                    android:id="@+id/catLeftbow"
-                    android:layout_width="45dp"
-                    android:layout_height="58dp"
-                    android:layout_marginLeft="292dp"
-                    android:layout_marginTop="153dp"
-                    app:srcCompat="@drawable/leftbow" />
-
-                <ImageView
-                    android:id="@+id/catBackear"
-                    android:layout_width="22dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="233dp"
-                    android:layout_marginTop="26dp"
-                    app:srcCompat="@drawable/backear" />
-
-                <ImageView
-                    android:id="@+id/catBody"
-                    android:layout_width="179dp"
-                    android:layout_height="178dp"
-                    android:layout_marginLeft="189dp"
-                    android:layout_marginTop="168dp"
-                    app:srcCompat="@drawable/body" />
-
-                <ImageView
-                    android:id="@+id/catHead"
-                    android:layout_width="174dp"
-                    android:layout_height="181dp"
-                    android:layout_alignTop="@+id/cat1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="215dp"
-                    android:layout_marginTop="11dp"
-                    app:srcCompat="@drawable/head"
-                    tools:layout_editor_absoluteX="53dp"
-                    tools:layout_editor_absoluteY="30dp" />
-            </FrameLayout>
-
-        </RelativeLayout>
-    </LinearLayout>
 </FrameLayout>

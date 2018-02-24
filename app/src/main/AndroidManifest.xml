@@ -9,23 +9,30 @@
         android:roundIcon="@drawable/logo_flavor"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ru.gamesforkids.gamesforkids.MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name="ru.gamesforkids.gamesforkids.Game1Activity"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name="ru.gamesforkids.gamesforkids.Game2Activity"
-            android:screenOrientation="landscape"></activity>
-
-
-        <activity android:name="ru.gamesforkids.gamesforkids.Game4Activity"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Game1Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game2Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game4Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game3Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game3_1Activity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

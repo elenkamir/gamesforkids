@@ -35,8 +35,12 @@
         <activity
             android:name="ru.gamesforkids.gamesforkids.Game4Activity"
             android:screenOrientation="landscape" />
-        <activity android:name="ru.gamesforkids.gamesforkids.Game3_1Activity" />
-        <activity android:name="ru.gamesforkids.gamesforkids.Game3Activity" />
+        <activity
+            android:name="ru.gamesforkids.gamesforkids.Game3Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="ru.gamesforkids.gamesforkids.Game3_1Activity"
+            android:screenOrientation="landscape" />
 
         <meta-data
             android:name="android.support.VERSION"
