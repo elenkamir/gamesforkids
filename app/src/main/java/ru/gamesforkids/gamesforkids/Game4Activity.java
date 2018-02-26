@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class Game4Activity extends AppCompatActivity {
 
-    ImageView imgResult, imgTask;
+    ImageView imgResult, imgTask, rightAns;
     TextView txRed, txBlue, txGreen;
     int red, green, blue, acc, RGBtask;
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
@@ -43,6 +43,7 @@ public class Game4Activity extends AppCompatActivity {
 
         imgResult = (ImageView) findViewById(R.id.imgResult);
         imgTask = (ImageView) findViewById(R.id.imgTask);
+        rightAns = (ImageView) findViewById(R.id.right_ans_g4);
 
         txRed = (TextView) findViewById(R.id.txRed);
         txGreen = (TextView) findViewById(R.id.txGreen);
@@ -117,7 +118,7 @@ public class Game4Activity extends AppCompatActivity {
         if (((redValue > red - acc) & (redValue < red + acc))
                 & ((greenValue > green - acc) & (greenValue < green + acc))
                 & ((blueValue > blue - acc) & (blueValue < blue + acc))) {
-            Toast.makeText(getApplicationContext(), "УРА", Toast.LENGTH_LONG).show();
+            rightAns.setVisibility(View.VISIBLE);
             managerOfSound(true);
             imgResult.setColorFilter(RGBtask);
             redSeekBar.setEnabled(false);
@@ -126,10 +127,12 @@ public class Game4Activity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    rightAns.setVisibility(View.GONE);
                     newGame();
                     redSeekBar.setEnabled(true);
                     greenSeekBar.setEnabled(true);
                     blueSeekBar.setEnabled(true);
+
                 }
             }, 3000);
 

@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     tools:context="ru.gamesforkids.gamesforkids.Game4Activity">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -16,45 +16,27 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="7"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"></LinearLayout>
 
                 <TextView
                     android:id="@+id/txRed"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.9"
                     android:text="150"
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"></LinearLayout>
-            </LinearLayout>
 
             <SeekBar
                 android:id="@+id/seekBarRed"
                 style="@android:style/Widget.SeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:max="255"
                 android:progress="150"
                 android:progressTint="@color/red"
@@ -64,98 +46,71 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="7"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"></LinearLayout>
 
                 <TextView
                     android:id="@+id/txGreen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.9"
                     android:text="150"
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"></LinearLayout>
-            </LinearLayout>
 
             <SeekBar
                 android:id="@+id/seekBarGreen"
                 style="@android:style/Widget.SeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:max="255"
                 android:progress="150"
                 android:progressTint="@color/green"
                 android:thumbTint="@color/green" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="50dp"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="7"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"></LinearLayout>
 
                 <TextView
                     android:id="@+id/txBlue"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.9"
                     android:text="150"
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"></LinearLayout>
-            </LinearLayout>
 
             <SeekBar
                 android:id="@+id/seekBarBlue"
                 style="@android:style/Widget.SeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.1"
                 android:max="255"
                 android:progress="150"
                 android:progressTint="@color/blue"
                 android:thumbTint="@color/blue" />
         </LinearLayout>
-    </LinearLayout>
+
+        <ImageView
+            app:srcCompat = "@drawable/right_ans"
+            android:id="@+id/right_ans_g4"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -167,14 +122,14 @@
             android:id="@+id/imgResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             app:srcCompat="@drawable/kraska" />
 
         <ImageView
             android:id="@+id/imgTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             app:srcCompat="@drawable/kraska" />
     </LinearLayout>
 
