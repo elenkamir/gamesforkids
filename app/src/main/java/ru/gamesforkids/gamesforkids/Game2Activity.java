@@ -32,6 +32,9 @@ public class Game2Activity extends AppCompatActivity {
     ImageView ivArc3;
     ImageView ivArc4;
     ImageView ivArc5;
+    // todo обводка
+    ImageView rightAns;
+    ImageView wrongAns;
     ImageView goodEnd;
     ImageView badEnd;
     FrameLayout End;
@@ -60,6 +63,8 @@ public class Game2Activity extends AppCompatActivity {
         badEnd = findViewById(R.id.sadCloud);
         Glide.with(getApplicationContext()).load(R.drawable.sad_cloud).asGif().
                 fitCenter().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(badEnd);
+        rightAns = findViewById(R.id.rightAnsIV);
+        wrongAns = findViewById(R.id.wrongAnsIV);
         ibColor1 = findViewById(R.id.color1ib);
         ibColor2 = findViewById(R.id.color2ib);
         ibColor3 = findViewById(R.id.color3ib);
@@ -69,6 +74,7 @@ public class Game2Activity extends AppCompatActivity {
         ivArc3 = findViewById(R.id.arc3iv);
         ivArc4 = findViewById(R.id.arc4iv);
         ivArc5 = findViewById(R.id.arc5iv);
+        // todo обводка
 
         arcs = new ArrayList<>();
         arcs.add(ivArc2);
@@ -137,13 +143,6 @@ public class Game2Activity extends AppCompatActivity {
             from0 = true;
 
         setOfColors = genColors(redir, from0, inVar, f, c, d);
-        mix = Arrays.asList(1,2,3);
-        Collections.shuffle(mix);
-
-        btColors = new ArrayList<>();
-        btColors.add(setOfColors.get(mix.get(0)));
-        btColors.add(setOfColors.get(mix.get(1)));
-        btColors.add(setOfColors.get(mix.get(2)));
 
         ivArc1.setColorFilter(setOfColors.get(0));
         ivArc5.setColorFilter(setOfColors.get(4));
@@ -189,11 +188,23 @@ public class Game2Activity extends AppCompatActivity {
         return setOfGenColors;
     }
     private void check(View view) {
-        int delay = 3500;
+        int delay = 4000;
         if (playerComb.equals(rightComb)) {
             //Toast.makeText(view.getContext(), "Как красиво! :)", Toast.LENGTH_LONG).show();
-            End.setVisibility(View.VISIBLE);
-            goodEnd.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // todo убирать обводку
+                    rightAns.setVisibility(View.VISIBLE);
+                }
+            }, delay / 10);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    End.setVisibility(View.VISIBLE);
+                    goodEnd.setVisibility(View.VISIBLE);
+                }
+            }, delay / 4);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -202,8 +213,20 @@ public class Game2Activity extends AppCompatActivity {
             }, delay);
         } else {
             //Toast.makeText(view.getContext(), ":c Давай еще раз!", Toast.LENGTH_LONG).show();
-            End.setVisibility(View.VISIBLE);
-            badEnd.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // todo убирать обводку
+                    wrongAns.setVisibility(View.VISIBLE);
+                }
+            }, delay / 10);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    End.setVisibility(View.VISIBLE);
+                    badEnd.setVisibility(View.VISIBLE);
+                }
+            }, delay / 4);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -215,15 +238,28 @@ public class Game2Activity extends AppCompatActivity {
         }
     }
     private void redraw() {
+        mix = Arrays.asList(1,2,3);
+        Collections.shuffle(mix);
+
+        btColors = new ArrayList<>();
+        btColors.add(setOfColors.get(mix.get(0)));
+        btColors.add(setOfColors.get(mix.get(1)));
+        btColors.add(setOfColors.get(mix.get(2)));
+
         ibColor1.setColorFilter(btColors.get(0));
         ibColor2.setColorFilter(btColors.get(1));
         ibColor3.setColorFilter(btColors.get(2));
         ibColor1.setClickable(true);
         ibColor2.setClickable(true);
         ibColor3.setClickable(true);
+
         ivArc2.setColorFilter(null);
         ivArc3.setColorFilter(null);
         ivArc4.setColorFilter(null);
+        // todo показать обводку
+
+        rightAns.setVisibility(View.GONE);
+        wrongAns.setVisibility(View.GONE);
         End.setVisibility(View.GONE);
         goodEnd.setVisibility(View.GONE);
         badEnd.setVisibility(View.GONE);

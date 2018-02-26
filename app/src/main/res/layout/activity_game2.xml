@@ -11,64 +11,158 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/rainbow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="7dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1">
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="-60dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/arc2iv"
+                <Space
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/arc2" />
+                    android:layout_weight="12"/>
 
-                <ImageView
-                    android:id="@+id/arc1iv"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/arc1" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/arc4iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/arc4" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9" />
 
-                <ImageView
-                    android:id="@+id/arc3iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/arc3" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/arc5iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/arc5" />
+                        <ImageView
+                            android:id="@+id/arc1iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/arc1" />
 
-                <ImageView
-                    android:id="@+id/rainbowContour"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/rainbow_contour" />
-            </FrameLayout>
+                        <ImageView
+                            android:id="@+id/arc2iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/arc2" />
 
-            <ImageView
+                        <ImageView
+                            android:id="@+id/arc3iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/arc3" />
+
+                        <ImageView
+                            android:id="@+id/arc4iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/arc4" />
+
+                        <ImageView
+                            android:id="@+id/arc5iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/arc5" />
+
+                        <ImageView
+                            android:id="@+id/rainbowContour"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitStart"
+                            app:srcCompat="@drawable/rainbow_contour" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-90dp"
-                app:srcCompat="@drawable/cloud" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitEnd"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/cloud" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="30"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/rightAnsIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/right_ans" />
+
+                        <ImageView
+                            android:id="@+id/wrongAnsIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/wrong_ans" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -92,21 +186,41 @@
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/flower" />
 
-                <ImageButton
-                    android:id="@+id/color1ib"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="30dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/g2_bt" />
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="30dp"
-                    app:srcCompat="@drawable/g2_bt_contour" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4">
+
+                        <ImageButton
+                            android:id="@+id/color1ib"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/g2_bt" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/g2_bt_contour" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5" />
+                </LinearLayout>
+
             </FrameLayout>
 
             <FrameLayout
@@ -117,26 +231,44 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/flower" />
 
-                <ImageButton
-                    android:id="@+id/color2ib"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="30dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/g2_bt" />
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="30dp"
-                    app:srcCompat="@drawable/g2_bt_contour" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4">
+
+                        <ImageButton
+                            android:id="@+id/color2ib"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/g2_bt" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/g2_bt_contour" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5" />
+                </LinearLayout>
             </FrameLayout>
 
             <FrameLayout
@@ -146,26 +278,44 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/flower" />
 
-                <ImageButton
-                    android:id="@+id/color3ib"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="30dp"
-                    android:background="@null"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/g2_bt" />
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="30dp"
-                    app:srcCompat="@drawable/g2_bt_contour" />
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4">
+
+                        <ImageButton
+                            android:id="@+id/color3ib"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/g2_bt" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/g2_bt_contour" />
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5" />
+                </LinearLayout>
             </FrameLayout>
 
         </LinearLayout>
