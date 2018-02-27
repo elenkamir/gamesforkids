@@ -1,6 +1,7 @@
 package ru.gamesforkids.gamesforkids;
 
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -32,9 +32,7 @@ public class Game2Activity extends AppCompatActivity {
     ImageView ivArc3;
     ImageView ivArc4;
     ImageView ivArc5;
-    // todo обводка
-    ImageView rightAns;
-    ImageView wrongAns;
+    ImageView rainbowContour;
     ImageView goodEnd;
     ImageView badEnd;
     FrameLayout End;
@@ -46,6 +44,8 @@ public class Game2Activity extends AppCompatActivity {
     ArrayList<Integer> rightComb;
     ArrayList<Integer> setOfColors;
     List<Integer> mix;
+    MediaPlayer clickMP;
+    MediaPlayer endMP = null;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class Game2Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        clickMP = MediaPlayer.create(this, R.raw.g2click);
         End = findViewById(R.id.End);
         goodEnd = findViewById(R.id.happySun);
         Glide.with(getApplicationContext()).load(R.drawable.happy_sun).asGif().
@@ -63,8 +64,6 @@ public class Game2Activity extends AppCompatActivity {
         badEnd = findViewById(R.id.sadCloud);
         Glide.with(getApplicationContext()).load(R.drawable.sad_cloud).asGif().
                 fitCenter().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(badEnd);
-        rightAns = findViewById(R.id.rightAnsIV);
-        wrongAns = findViewById(R.id.wrongAnsIV);
         ibColor1 = findViewById(R.id.color1ib);
         ibColor2 = findViewById(R.id.color2ib);
         ibColor3 = findViewById(R.id.color3ib);
@@ -74,7 +73,7 @@ public class Game2Activity extends AppCompatActivity {
         ivArc3 = findViewById(R.id.arc3iv);
         ivArc4 = findViewById(R.id.arc4iv);
         ivArc5 = findViewById(R.id.arc5iv);
-        // todo обводка
+        rainbowContour = findViewById(R.id.rainbowContour);
 
         arcs = new ArrayList<>();
         arcs.add(ivArc2);
@@ -90,6 +89,7 @@ public class Game2Activity extends AppCompatActivity {
         ibColor1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clickMP.start();
                 arcs.get(k).setColorFilter(btColors.get(0));
                 ibColor1.setColorFilter(null);
                 ibColor1.setClickable(false);
@@ -103,6 +103,7 @@ public class Game2Activity extends AppCompatActivity {
         ibColor2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clickMP.start();
                 arcs.get(k).setColorFilter(btColors.get(1));
                 ibColor2.setColorFilter(null);
                 ibColor2.setClickable(false);
@@ -116,6 +117,7 @@ public class Game2Activity extends AppCompatActivity {
         ibColor3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clickMP.start();
                 arcs.get(k).setColorFilter(btColors.get(2));
                 ibColor3.setColorFilter(null);
                 ibColor3.setClickable(false);
@@ -189,13 +191,18 @@ public class Game2Activity extends AppCompatActivity {
     }
     private void check(View view) {
         int delay = 4000;
+        if (endMP != null) {
+            endMP.reset();
+            endMP.release();
+        }
         if (playerComb.equals(rightComb)) {
             //Toast.makeText(view.getContext(), "Как красиво! :)", Toast.LENGTH_LONG).show();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // todo убирать обводку
-                    rightAns.setVisibility(View.VISIBLE);
+                    rainbowContour.setVisibility(View.GONE);
+                    endMP = MediaPlayer.create(getApplicationContext(), R.raw.g2right);
+                    endMP.start();
                 }
             }, delay / 10);
             new Handler().postDelayed(new Runnable() {
@@ -216,8 +223,9 @@ public class Game2Activity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // todo убирать обводку
-                    wrongAns.setVisibility(View.VISIBLE);
+                    rainbowContour.setVisibility(View.GONE);
+                    endMP = MediaPlayer.create(getApplicationContext(), R.raw.g2wrong);
+                    endMP.start();
                 }
             }, delay / 10);
             new Handler().postDelayed(new Runnable() {
@@ -256,10 +264,8 @@ public class Game2Activity extends AppCompatActivity {
         ivArc2.setColorFilter(null);
         ivArc3.setColorFilter(null);
         ivArc4.setColorFilter(null);
-        // todo показать обводку
+        rainbowContour.setVisibility(View.VISIBLE);
 
-        rightAns.setVisibility(View.GONE);
-        wrongAns.setVisibility(View.GONE);
         End.setVisibility(View.GONE);
         goodEnd.setVisibility(View.GONE);
         badEnd.setVisibility(View.GONE);

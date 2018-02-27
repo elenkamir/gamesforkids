@@ -59,6 +59,7 @@ public class Game1Activity extends AppCompatActivity {
     ArrayList<g1ResultColor> g1ResultColors;
 
     MediaPlayer mp = null;
+    MediaPlayer click;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,8 @@ public class Game1Activity extends AppCompatActivity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        click = MediaPlayer.create(this, R.raw.g2click);
 
         resultColorImageView = (ImageView) findViewById(R.id.imgResult);
         resultColorTextView = (TextView) findViewById(R.id.tvColorResult);
@@ -169,6 +172,7 @@ public class Game1Activity extends AppCompatActivity {
         b1White.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                click.start();
                 if (isFirstClick) {
                     firstColorImageView.setImageDrawable(b1White.getDrawable());
                     color1 = 1;
@@ -196,7 +200,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1000);
+                        }, 3000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
                         managerOfSound(false);
@@ -211,7 +215,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1500);
+                        }, 3000);
                     }
                     // сделать сброс цветов
                     isFirstClick = true;
@@ -222,6 +226,7 @@ public class Game1Activity extends AppCompatActivity {
         b2Yellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                click.start();
                 if (isFirstClick) {
                     firstColorImageView.setImageDrawable(b2Yellow.getDrawable());
                     color1 = 2;
@@ -249,7 +254,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1000);
+                        }, 3000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
                         managerOfSound(false);
@@ -264,7 +269,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1500);
+                        }, 3000);
                     }
                     isFirstClick = true;
                 }
@@ -274,6 +279,7 @@ public class Game1Activity extends AppCompatActivity {
         b3Red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                click.start();
                 if (isFirstClick) {
                     firstColorImageView.setImageDrawable(b3Red.getDrawable());
                     color1 = 3;
@@ -301,7 +307,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1000);
+                        }, 3000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
                         managerOfSound(false);
@@ -316,7 +322,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1500);
+                        }, 3000);
                     }
                     isFirstClick = true;
                 }
@@ -326,6 +332,7 @@ public class Game1Activity extends AppCompatActivity {
         b4Blue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                click.start();
                 if (isFirstClick) {
                     firstColorImageView.setImageDrawable(b4Blue.getDrawable());
                     color1 = 4;
@@ -353,7 +360,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1000);
+                        }, 3000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
                         managerOfSound(false);
@@ -368,7 +375,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1500);
+                        }, 3000);
                     }
                     isFirstClick = true;
                 }
@@ -378,6 +385,7 @@ public class Game1Activity extends AppCompatActivity {
         b5Black.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                click.start();
                 if (isFirstClick) {
                     firstColorImageView.setImageDrawable(b5Black.getDrawable());
                     color1 = 5;
@@ -405,7 +413,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1000);
+                        }, 3000);
                     } else {
                         WrongAns.setVisibility(View.VISIBLE);
                         managerOfSound(false);
@@ -420,7 +428,7 @@ public class Game1Activity extends AppCompatActivity {
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
-                        }, 1500);
+                        }, 3000);
                     }
                     isFirstClick = true;
                 }
@@ -483,9 +491,9 @@ public class Game1Activity extends AppCompatActivity {
             mp.release();
         }
         if (correct)
-            mp = MediaPlayer.create(this, R.raw.g1correct);
+            mp = MediaPlayer.create(this, R.raw.g2right);
         else
-            mp = MediaPlayer.create(this, R.raw.g1incorrect);
+            mp = MediaPlayer.create(this, R.raw.g2wrong);
         mp.start();
     }
 }

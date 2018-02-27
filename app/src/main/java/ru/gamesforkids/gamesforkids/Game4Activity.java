@@ -29,7 +29,6 @@ public class Game4Activity extends AppCompatActivity {
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 
     String TAG = "tag";
-
     MediaPlayer mp = null;
 
     @Override
@@ -40,6 +39,8 @@ public class Game4Activity extends AppCompatActivity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        mp = MediaPlayer.create(this, R.raw.g2right);
 
         imgResult = (ImageView) findViewById(R.id.imgResult);
         imgTask = (ImageView) findViewById(R.id.imgTask);
@@ -119,7 +120,7 @@ public class Game4Activity extends AppCompatActivity {
                 & ((greenValue > green - acc) & (greenValue < green + acc))
                 & ((blueValue > blue - acc) & (blueValue < blue + acc))) {
             rightAns.setVisibility(View.VISIBLE);
-            managerOfSound(true);
+            mp.start();
             imgResult.setColorFilter(RGBtask);
             redSeekBar.setEnabled(false);
             greenSeekBar.setEnabled(false);
@@ -135,23 +136,8 @@ public class Game4Activity extends AppCompatActivity {
 
                 }
             }, 3000);
-
-
+            
         }
 
-    }
-
-
-
-    protected void managerOfSound(boolean correct) {
-        if (mp != null) {
-            mp.reset();
-            mp.release();
-        }
-        if (correct)
-            mp = MediaPlayer.create(this, R.raw.g1correct);
-        else
-            mp = MediaPlayer.create(this, R.raw.g1incorrect);
-        mp.start();
     }
 }
