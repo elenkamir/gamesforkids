@@ -4,26 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context="ru.gamesforkids.gamesforkids.Game3_1Activity">
+
+    <FrameLayout
+        android:id="@+id/colors"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="500dp"
+        android:background="@drawable/backwhite"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/lightblue"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/g2Sky"
+            android:onClick="lightBlueOnClick" />
+
+        <Button
+            android:id="@+id/purple"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/purple"
+            android:onClick="purpleOnClick" />
+
+        <Button
+            android:id="@+id/blue"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/blue"
+            android:onClick="blueOnClick" />
+
+        <Button
+            android:id="@+id/green"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/green"
+            android:onClick="greenOnClick" />
+
+        <Button
+            android:id="@+id/lightgreen"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="110dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/lightgreen"
+            android:onClick="lightGreenOnClick" />
+
+        <Button
+            android:id="@+id/yellow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="110dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/yellow"
+            android:onClick="yellowOnClick" />
+
+        <Button
+            android:id="@+id/orange"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/orange"
+            android:onClick="orangeOnClick" />
+
+        <Button
+            android:id="@+id/red"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/red"
+            android:onClick="redOnClick" />
+
+        <Button
+            android:id="@+id/pink"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="210dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/colorAccent"
+            android:onClick="pinkOnClick" />
+
+        <Button
+            android:id="@+id/lilo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="210dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/pink"
+            android:onClick="liloOnClick" />
+
+        <Button
+            android:id="@+id/brown"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="260dp"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/brown"
+            android:onClick="brownOnClick" />
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/lay1"
         android:layout_width="400dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/colorBackgroundFloating">
 
         <ImageView
             android:id="@+id/cat"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/pic1" />
-    </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="400dp"
-        android:text="TextView" />
+    </FrameLayout>
 
 
 </FrameLayout>
