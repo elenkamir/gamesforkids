@@ -52,6 +52,14 @@
             android:layout_weight="1"
             android:text="GAME 4"
             android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btnGame5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="GAME 5"
+            android:textSize="22sp" />
     </LinearLayout>
 
 </LinearLayout>

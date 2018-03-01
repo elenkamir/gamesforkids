@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="ru.gamesforkids.gamesforkids.Game5Activity">
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <ImageButton
+        android:id="@+id/imageBtnPianoRed"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/piano_red"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/imageBtnPianoOrange"
+        android:layout_toEndOf="@id/imageBtnPianoRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:srcCompat="@drawable/piano_orange" />
+
+    <ImageButton
+        android:id="@+id/imageBtnPianoYellow"
+        android:layout_toEndOf="@id/imageBtnPianoOrange"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/piano_yellow" />
+
+    <ImageButton
+        android:id="@+id/imageBtnPianoGreen"
+        android:layout_toEndOf="@id/imageBtnPianoYellow"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/piano_green" />
+
+    <ImageButton
+        android:id="@+id/imageBtnPianoCyan"
+        android:layout_toEndOf="@id/imageBtnPianoGreen"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/piano_cyan" />
+
+    <ImageButton
+        android:id="@+id/imageBtnPianoBlue"
+        android:layout_toEndOf="@id/imageBtnPianoCyan"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/piano_blue" />
+
+    <ImageButton
+        android:id="@+id/imageBtnPianoViolet"
+        android:layout_toEndOf="@id/imageBtnPianoBlue"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/piano_violet" />
+</RelativeLayout>
+
+</FrameLayout>
