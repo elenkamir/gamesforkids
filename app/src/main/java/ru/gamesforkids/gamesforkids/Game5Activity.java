@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 
@@ -20,6 +22,9 @@ public class Game5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game5);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         btR = (ImageButton) findViewById(R.id.imageBtnPianoRed);
         btO = (ImageButton) findViewById(R.id.imageBtnPianoOrange);
@@ -32,7 +37,7 @@ public class Game5Activity extends AppCompatActivity {
         listeners();
     }
 
-    public void listeners(){
+    public void listeners() {
         // красный
         btR.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,9 +136,6 @@ public class Game5Activity extends AppCompatActivity {
             }
         });
 
-
     }
 
-
 }
-

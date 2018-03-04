@@ -9,18 +9,16 @@ import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class Game2Activity extends AppCompatActivity {
@@ -33,9 +31,8 @@ public class Game2Activity extends AppCompatActivity {
     ImageView ivArc4;
     ImageView ivArc5;
     ImageView rainbowContour;
-    ImageView goodEnd;
-    ImageView badEnd;
-    FrameLayout End;
+    GifImageView goodEnd;
+    GifImageView badEnd;
 
     int k = 0;
     ArrayList<ImageView> arcs;
@@ -57,13 +54,8 @@ public class Game2Activity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         clickMP = MediaPlayer.create(this, R.raw.g2click);
-        End = findViewById(R.id.End);
         goodEnd = findViewById(R.id.happySun);
-        Glide.with(getApplicationContext()).load(R.drawable.happy_sun).asGif().
-                fitCenter().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(goodEnd);
         badEnd = findViewById(R.id.sadCloud);
-        Glide.with(getApplicationContext()).load(R.drawable.sad_cloud).asGif().
-                fitCenter().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(badEnd);
         ibColor1 = findViewById(R.id.color1ib);
         ibColor2 = findViewById(R.id.color2ib);
         ibColor3 = findViewById(R.id.color3ib);
@@ -129,6 +121,7 @@ public class Game2Activity extends AppCompatActivity {
             }
         });
     }
+
     private void newGame() {
         Random r = new Random();
         int inVar = r.nextInt(3);           // число, которое не будет изменяться
@@ -153,9 +146,11 @@ public class Game2Activity extends AppCompatActivity {
         k = 0;
         playerComb = new ArrayList<>();
     }
+
     private int compColor(int[] color) {
-        return Color.rgb(color[0],color[1],color[2]);
+        return Color.rgb(color[0], color[1], color[2]);
     }
+
     private ArrayList<Integer> genColors(boolean redir, boolean from0, int inVar, int f, int c, int d) {
         /*
         color[0] = r;
@@ -189,6 +184,7 @@ public class Game2Activity extends AppCompatActivity {
         }
         return setOfGenColors;
     }
+
     private void check(View view) {
         int delay = 4000;
         if (endMP != null) {
@@ -208,7 +204,6 @@ public class Game2Activity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    End.setVisibility(View.VISIBLE);
                     goodEnd.setVisibility(View.VISIBLE);
                 }
             }, delay / 4);
@@ -231,7 +226,6 @@ public class Game2Activity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    End.setVisibility(View.VISIBLE);
                     badEnd.setVisibility(View.VISIBLE);
                 }
             }, delay / 4);
@@ -245,8 +239,9 @@ public class Game2Activity extends AppCompatActivity {
             }, delay);
         }
     }
+
     private void redraw() {
-        mix = Arrays.asList(1,2,3);
+        mix = Arrays.asList(1, 2, 3);
         Collections.shuffle(mix);
 
         btColors = new ArrayList<>();
@@ -266,7 +261,6 @@ public class Game2Activity extends AppCompatActivity {
         ivArc4.setColorFilter(null);
         rainbowContour.setVisibility(View.VISIBLE);
 
-        End.setVisibility(View.GONE);
         goodEnd.setVisibility(View.GONE);
         badEnd.setVisibility(View.GONE);
     }
