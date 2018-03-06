@@ -1,16 +1,21 @@
 package ru.gamesforkids.gamesforkids;
 
 import android.graphics.Color;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +48,9 @@ public class Game2Activity extends AppCompatActivity {
     List<Integer> mix;
     MediaPlayer clickMP;
     MediaPlayer endMP = null;
+    Space spacer;
+    ImageButton info;
+    TextView infoText;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -52,6 +60,16 @@ public class Game2Activity extends AppCompatActivity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        info = findViewById(R.id.info);
+        infoText = findViewById(R.id.infoText);
+        spacer = findViewById(R.id.spacer);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        if ((double) size.y / (double) size.x >= 0.58)
+            spacer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT, 6));
 
         clickMP = MediaPlayer.create(this, R.raw.g2click);
         goodEnd = findViewById(R.id.happySun);
@@ -78,6 +96,13 @@ public class Game2Activity extends AppCompatActivity {
         rightComb.add(3);
         newGame();
 
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickMP.start();
+                infoText.setVisibility(View.VISIBLE);
+            }
+        });
         ibColor1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

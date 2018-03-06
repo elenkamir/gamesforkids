@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -27,6 +28,7 @@
                 android:orientation="vertical">
 
                 <Space
+                    android:id="@+id/spacer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="12"/>
@@ -285,5 +287,25 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
         android:src="@drawable/sad_cloud" />
+
+    <ImageButton
+        android:id="@+id/info"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/info" />
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/g2Sky"
+        android:gravity="center"
+        android:text="@string/g2_text"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </FrameLayout>
