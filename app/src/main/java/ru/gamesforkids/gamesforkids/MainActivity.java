@@ -14,7 +14,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity implements  View.OnClickListener {
     ImageButton Game1, Game2;
-    Button Game3, Game4, Game5;
+    Button Game3, Game4, Game5, Game6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         Game3 = findViewById(R.id.btnGame3);
         Game4 = findViewById(R.id.btnGame4);
         Game5 = findViewById(R.id.btnGame5);
+        Game6 = findViewById(R.id.btnGame6);
         Game1.setOnClickListener(this);
         Game2.setOnClickListener(this);
         Game3.setOnClickListener(this);
         Game4.setOnClickListener(this);
         Game5.setOnClickListener(this);
+        Game6.setOnClickListener(this);
     }
 
     @Override
@@ -45,10 +47,12 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                 Intent intent1 = new Intent(this, Game1Activity.class);
                 startActivity(intent1);
                 break;
+
             case R.id.btnGame2:
                 Intent intent2 = new Intent(this, Game2Activity.class);
                 startActivity(intent2);
                 break;
+
             case R.id.btnGame3:
                 Intent intent3 = new Intent(this, Game3Activity.class);
                 startActivity(intent3);
@@ -63,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                 Intent intent5 = new Intent(this, Game5Activity.class);
                 startActivity(intent5);
                 break;
+
+            case R.id.btnGame6:
+                Intent intent6 = new Intent(this, Game6Activity.class);
+                startActivity(intent6);
+                break;
+
             default:
                 break;
         }
