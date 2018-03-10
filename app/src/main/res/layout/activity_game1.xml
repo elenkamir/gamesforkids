@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     tools:context="ru.gamesforkids.gamesforkids.Game1Activity"
     android:orientation="vertical"
-    android:background="@color/silver">
-    >
+    android:background="@color/g2Sky">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         >
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,6 +24,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/info_g1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/info" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -124,21 +131,22 @@
             android:visibility="gone"
             app:srcCompat="@drawable/good_finish" />
 
-        <ImageView
+        <pl.droidsonroids.gif.GifImageView
             android:id="@+id/right_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             android:visibility="gone"
-            app:srcCompat="@drawable/right_ans" />
+            android:src="@drawable/happy_sun" />
 
-        <ImageView
+        <pl.droidsonroids.gif.GifImageView
             android:id="@+id/wrong_ans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
             android:visibility="gone"
-            app:srcCompat="@drawable/wrong_ans" />
+            android:src="@drawable/sad_cloud" />
+
 
     </FrameLayout>
 
@@ -189,5 +197,6 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/klyaksa" />
     </LinearLayout>
+
 
 </LinearLayout>

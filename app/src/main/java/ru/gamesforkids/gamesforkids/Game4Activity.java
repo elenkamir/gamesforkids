@@ -1,5 +1,6 @@
 package ru.gamesforkids.gamesforkids;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,12 +21,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import pl.droidsonroids.gif.GifImageView;
+
 
 public class Game4Activity extends AppCompatActivity {
 
-    ImageView imgResult, imgTask, rightAns;
+    ImageView imgResult, imgTask;
+    GifImageView rightAns;
     TextView txRed, txBlue, txGreen;
-    int red, green, blue, acc, RGBtask;
+    int red, green, blue, RGBtask;
+    static int acc, levelCur;
+    ImageButton info;
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 
     String TAG = "tag";
@@ -33,6 +39,7 @@ public class Game4Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game4);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -40,11 +47,15 @@ public class Game4Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        Intent intent = getIntent();
+
         mp = MediaPlayer.create(this, R.raw.g2right);
+
+        info = (ImageButton) findViewById(R.id.info_g4);
 
         imgResult = (ImageView) findViewById(R.id.imgResult);
         imgTask = (ImageView) findViewById(R.id.imgTask);
-        rightAns = (ImageView) findViewById(R.id.right_ans_g4);
+        rightAns = (GifImageView) findViewById(R.id.right_ans_g4);
 
         txRed = (TextView) findViewById(R.id.txRed);
         txGreen = (TextView) findViewById(R.id.txGreen);
@@ -59,7 +70,20 @@ public class Game4Activity extends AppCompatActivity {
         greenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
 
-        acc = 30; // точность
+       // acc = l1; // точность
+
+        levelCur = 1;
+        acc = 40;
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Game4InfoActivity.class);
+                intent.putExtra("level", levelCur);
+                startActivity(intent);
+            }
+        });
+
         newGame();
 
     }
@@ -98,6 +122,26 @@ public class Game4Activity extends AppCompatActivity {
         RGBtask = android.graphics.Color.rgb(red, green, blue);
         imgTask.setColorFilter(RGBtask);
         imgResult.setColorFilter(android.graphics.Color.rgb(150, 150, 150));
+
+        Log.i("LEVEL",String.valueOf(acc));
+    }
+
+    public static void setLevel(int level){
+        int l1, l2, l3;
+        levelCur = level;
+        l1 = level * 40;  // 40
+        l2 = level * 15;  // 30
+        l3 = level * 6;  // 18
+
+        if (level == 1) {
+            acc = l1;
+        }
+        if (level == 2) {
+            acc = l2;
+        }
+        if (level == 3) {
+            acc = l3;
+        }
     }
 
     //изменение значений бегунков

@@ -1,6 +1,7 @@
 package ru.gamesforkids.gamesforkids;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.media.MediaPlayer;
@@ -27,6 +28,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
+import pl.droidsonroids.gif.GifImageButton;
+import pl.droidsonroids.gif.GifImageView;
+
 
 public class Game1Activity extends AppCompatActivity {
     String TAG = "TAG";
@@ -35,6 +39,8 @@ public class Game1Activity extends AppCompatActivity {
     ImageButton b3Red;
     ImageButton b4Blue;
     ImageButton b5Black;
+
+    ImageButton info;
 
     ImageView resultColorImageView;
     TextView resultColorTextView;
@@ -47,8 +53,8 @@ public class Game1Activity extends AppCompatActivity {
 
     ImageView PlusImageView, EquationImageView;
 
-    ImageView WrongAns;
-    ImageView RightAns;
+    GifImageView WrongAns;
+    GifImageView RightAns;
     ImageView GoodFinish;
 
     Random random;
@@ -71,6 +77,8 @@ public class Game1Activity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         click = MediaPlayer.create(this, R.raw.g2click);
+
+        info = (ImageButton) findViewById(R.id.info_g1);
 
         resultColorImageView = (ImageView) findViewById(R.id.imgResult);
         resultColorTextView = (TextView) findViewById(R.id.tvColorResult);
@@ -97,9 +105,18 @@ public class Game1Activity extends AppCompatActivity {
         b4Blue.setColorFilter(getResources().getColor(R.color.blue));
         b5Black.setColorFilter(getResources().getColor(R.color.black));
 
-        WrongAns = (ImageView) findViewById(R.id.wrong_ans);
-        RightAns = (ImageView) findViewById(R.id.right_ans);
+        WrongAns = (GifImageView) findViewById(R.id.wrong_ans);
+        RightAns = (GifImageView) findViewById(R.id.right_ans);
         GoodFinish = (ImageView) findViewById(R.id.good_finish);
+
+        // вызов справки
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Game1InfoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         random = new Random();
 
@@ -443,9 +460,6 @@ public class Game1Activity extends AppCompatActivity {
             resultColorTextView.setText(color.g1Title);
             resultColorImageView.setColorFilter(color.g1Color);
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
                     setButtonsUnclickable();
                     resultColorTextView.setText("");
                     firstColorTextView.setText("");
@@ -456,14 +470,12 @@ public class Game1Activity extends AppCompatActivity {
                     PlusImageView.setImageDrawable(null);
                     EquationImageView.setImageDrawable(null);
                     GoodFinish.setVisibility(View.VISIBLE);
-                }
-            }, 1200);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     finish();
                 }
-            }, 4000);
+            }, 5000);
             i = 0;
             Collections.shuffle(g1ResultColors);
         }

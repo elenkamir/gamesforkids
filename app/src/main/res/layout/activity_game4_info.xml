@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/g2Sky"
+    tools:context="ru.gamesforkids.gamesforkids.Game4InfoActivity">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/g4_text"
+        android:layout_margin="10dp"
+        android:paddingTop="50dp"
+        android:textColor="@color/pink"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+   <RelativeLayout
+       android:layout_below="@id/textView6"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <TextView
+           android:id="@+id/textView8"
+           android:layout_margin="10dp"
+           android:gravity="center"
+           android:textSize="16sp"
+           android:textStyle="bold"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/g4_text2" />
+
+       <RadioGroup
+           android:layout_width="wrap_content"
+           android:layout_below="@id/textView8"
+           android:layout_height="match_parent"
+           android:id="@+id/radioGroup"
+           android:paddingLeft="50dp"
+           android:orientation="horizontal">
+       <RadioButton
+           android:id="@+id/radioButton1"
+           android:textStyle="bold"
+           android:layout_below="@id/textView8"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:paddingEnd="100dp"
+           android:text="1" />
+
+       <RadioButton
+           android:layout_toEndOf="@id/radioButton1"
+           android:layout_below="@id/textView8"
+           android:id="@+id/radioButton2"
+           android:paddingEnd="100dp"
+           android:textStyle="bold"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="2" />
+
+       <RadioButton
+           android:id="@+id/radioButton3"
+           android:layout_below="@id/textView8"
+           android:layout_toEndOf="@id/radioButton2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textStyle="bold"
+           android:text="3" />
+       </RadioGroup>
+
+       <Button
+           android:layout_below="@id/textView8"
+           android:layout_alignParentEnd="true"
+           android:id="@+id/button"
+           android:textStyle="bold"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Сохранить" />
+
+   </RelativeLayout>
+
+
+
+</RelativeLayout>

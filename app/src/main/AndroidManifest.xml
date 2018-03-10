@@ -35,10 +35,12 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".Game5Activity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Game6Activity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
+        <activity android:name=".Game1InfoActivity" />
+        <activity android:name=".Game4InfoActivity"></activity>
     </application>
 
 </manifest>

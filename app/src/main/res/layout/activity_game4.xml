@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/silver"
+    android:background="@color/g2Sky"
     android:orientation="horizontal"
     tools:context="ru.gamesforkids.gamesforkids.Game4Activity">
 
@@ -13,6 +13,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/info_g4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/info" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,8 +111,8 @@
                 android:thumbTint="@color/blue" />
         </LinearLayout>
 
-        <ImageView
-            app:srcCompat = "@drawable/right_ans"
+        <pl.droidsonroids.gif.GifImageView
+            android:src = "@drawable/happy_sun"
             android:id="@+id/right_ans_g4"
             android:layout_gravity="center"
             android:visibility="gone"
