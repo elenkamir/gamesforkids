@@ -1,14 +1,11 @@
 package ru.gamesforkids.gamesforkids;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
+import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,15 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.ByteBuffer;
+
 import static ru.gamesforkids.gamesforkids.R.id.lay1;
 
 public class Game3_1Activity extends AppCompatActivity{
-    float x;
-    float y;
-    String sDown;
-    String sMove;
-    String sUp;
     int colorP = Color.parseColor("#fc5fe2");
+    Paint mPaint = new Paint();
 
     public void blueOnClick (View view){
         colorP = Color.parseColor("#2a2add");
@@ -92,61 +87,99 @@ public class Game3_1Activity extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setColor(Color.RED);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setXfermode(null);
+        mPaint.setAlpha(0xff);
+
+
         final ImageView cat = findViewById(R.id.cat);
-        final Paint p = new Paint();
-        Rect rect = new Rect();
-        p.setColor(Color.RED);
-        // толщина линии = 10
-        p.setStrokeWidth(10);
         cat.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
 
 
                 final ImageView img = (ImageView) v;
+
                 final Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
 
                 int x = (int) (event.getX()*bitmap.getWidth()/img.getWidth());
                 int y = (int) (event.getY()*bitmap.getHeight()/img.getHeight());
                 int color = bitmap.getPixel(x,y);
-                if (color != 0){
-                    //Toast.makeText(Game3_1Activity.this, x + "x", Toast.LENGTH_SHORT).show();
-                    ImageView firstImageView = findViewById(R.id.cat);
-                    //bitmap.setPixel(x, y, Color.WHITE);
-                    firstImageView.setImageBitmap(paint(bitmap,colorP, x,y));
-                }
+//if (color != 0){
 
-                //Text.setText(sDown + "\n" + sMove + "\n" + sUp);
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        touch_start(x, y);
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        touch_move(x, y, bitmap, colorP);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        touch_up();
+                        break;
+                }
                 return true;
+// }
+//return true;
             }
         });
-        //Canvas Canvas = new Canvas();
-        //onDraw(Canvas);
-    }
-    protected void onDraw(Canvas canvas) {
-        Paint p = new Paint();
-        Rect rect = new Rect();
-
-        p.setColor(Color.RED);
-        // толщина линии = 10
-        p.setStrokeWidth(10);
-        //canvas.drawBitmap(bitmap, 0, 5, paint);
-
-        // рисуем точку (50,50)
-        canvas.drawPoint(50, 50, p);
     }
 
-    public static Bitmap paint(Bitmap bitmap, int color, int x, int y) {
-        Paint p = new Paint();
-        p.setColor(color);
-        // толщина линии = 10
-        p.setStrokeWidth(30);
-        Bitmap bitmapResult = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmapResult);
-        canvas.drawBitmap(bitmap, 0, 0, p);
-        canvas.drawPoint(x, y, p);
-        return bitmapResult;
+
+    private float mX, mY;
+    private static final float TOUCH_TOLERANCE = 5;
+    private Path mPath= new Path();
+
+
+
+    private void touch_start(float x, float y) {
+        mPath.reset();
+        mPath.moveTo(x, y);
+        mX = x;
+        mY = y;
     }
 
+    private void touch_move(float x, float y, Bitmap bitmap, int color) {
+
+        float dx = Math.abs(x - mX);
+        float dy = Math.abs(y - mY);
+        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+            closeOptionsMenu();
+            mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+            mX = x;
+            mY = y;
+        }
+        mPath.lineTo(mX, mY);
+
+
+//mPath.reset();
+
+        if (bitmap.getPixel((int)x,(int)y)== Color.BLACK) {
+            Toast.makeText(Game3_1Activity.this, "border", Toast.LENGTH_SHORT).show();
+        }
+        Bitmap bitmapResult = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas mCanvas = new Canvas(bitmapResult);
+        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.contur);
+        mPaint.setColor(color);
+        mPaint.setStrokeWidth(20);
+        mCanvas.drawBitmap(bitmap, 0, 0, mPaint);
+        mCanvas.drawPath(mPath, mPaint);
+        mCanvas.drawBitmap(bm, 0, 0, mPaint);
+
+
+        ImageView firstImageView = findViewById(R.id.cat);
+        firstImageView.setImageBitmap(bitmapResult);
+
+    }
+
+    private void touch_up() {
+        mPath.reset();
+    }
     public void setBorder(String Button){
         switch (Button){
             case "blue":
