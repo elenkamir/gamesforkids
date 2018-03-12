@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/g6Background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,9 @@
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/pelmeshka_cyrillic"
             android:text="Меню" />
 
         <LinearLayout
@@ -35,19 +38,19 @@
                 android:layout_weight="0.9">
 
                 <ImageView
-                    android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/down" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/down_point"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="30dp"
-                    android:text="20" />
+                    android:fontFamily="@font/pelmeshka_cyrillic"
+                    android:text="20"
+                    android:textSize="30dp" />
             </FrameLayout>
 
             <FrameLayout
@@ -56,19 +59,19 @@
                 android:layout_weight="0.9">
 
                 <ImageView
-                    android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/up" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/up_point"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="30dp"
-                    android:text="29" />
+                    android:fontFamily="@font/pelmeshka_cyrillic"
+                    android:text="29"
+                    android:textSize="30dp" />
             </FrameLayout>
 
             <Space
@@ -78,14 +81,14 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:layout_marginTop="-30dp"
-            android:textSize="200dp"
             android:gravity="center"
-            android:text="9" />
+            android:fontFamily="@font/pelmeshka_cyrillic"
+            android:text="9"
+            android:textSize="180dp" />
 
     </LinearLayout>
 
@@ -98,31 +101,33 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.9" />
+            android:layout_weight="0.8" />
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
             android:gravity="center"
-            android:textSize="30dp"
-            android:text="Рекорд" />
+            android:fontFamily="@font/pelmeshka_cyrillic"
+            android:text="Рекорд"
+            android:textSize="30dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/record"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
             android:gravity="center"
-            android:textSize="80dp"
-            android:text="21" />
+            android:fontFamily="@font/pelmeshka_cyrillic"
+            android:text="21"
+            android:textSize="80dp" />
 
         <Button
             android:id="@+id/retry"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
+            android:fontFamily="@font/pelmeshka_cyrillic"
             android:text="Заново" />
     </LinearLayout>
 

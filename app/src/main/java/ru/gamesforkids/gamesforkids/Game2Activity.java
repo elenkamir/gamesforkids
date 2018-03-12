@@ -1,5 +1,6 @@
 package ru.gamesforkids.gamesforkids;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.media.MediaPlayer;
@@ -15,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +50,6 @@ public class Game2Activity extends AppCompatActivity {
     MediaPlayer endMP = null;
     Space spacer;
     ImageButton info;
-    TextView infoText;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -62,7 +61,6 @@ public class Game2Activity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         info = findViewById(R.id.info);
-        infoText = findViewById(R.id.infoText);
         spacer = findViewById(R.id.spacer);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -94,13 +92,14 @@ public class Game2Activity extends AppCompatActivity {
         rightComb.add(1);
         rightComb.add(2);
         rightComb.add(3);
+
         newGame();
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickMP.start();
-                infoText.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(getApplicationContext(), Game2InfoActivity.class);
+                startActivity(intent);
             }
         });
         ibColor1.setOnClickListener(new View.OnClickListener() {

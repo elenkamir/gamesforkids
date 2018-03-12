@@ -39,8 +39,21 @@
         <activity
             android:name=".Game6Activity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Game1InfoActivity" />
-        <activity android:name=".Game4InfoActivity"></activity>
+        <activity
+            android:name=".Game1InfoActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game2InfoActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game4InfoActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game6InfoActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game6FinishActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
