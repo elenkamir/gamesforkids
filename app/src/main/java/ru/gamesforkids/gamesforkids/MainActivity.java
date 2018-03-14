@@ -1,6 +1,7 @@
 package ru.gamesforkids.gamesforkids;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +14,10 @@ import android.widget.ImageButton;
 
 
 public class MainActivity extends AppCompatActivity implements  View.OnClickListener {
-    ImageButton Game1, Game2;
-    Button Game3, Game4, Game5, Game6;
+    ImageButton Game1, Game2, Game3, Game4;
+    Button  Game5, Game6;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

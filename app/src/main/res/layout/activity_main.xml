@@ -30,13 +30,13 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game2" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnGame3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="GAME 3"
-            android:textSize="22sp" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/game3" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,13 +45,13 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnGame4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="GAME 4"
-            android:textSize="22sp" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/game4" />
 
         <Button
             android:id="@+id/btnGame5"
