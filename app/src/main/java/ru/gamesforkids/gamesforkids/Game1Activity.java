@@ -98,7 +98,6 @@ public class Game1Activity extends AppCompatActivity {
         b4Blue = (ImageButton) findViewById(R.id.imageButton4);
         b5Black = (ImageButton) findViewById(R.id.imageButton5);
 
-
         b1White.setColorFilter(getResources().getColor(R.color.white));
         b2Yellow.setColorFilter(getResources().getColor(R.color.yellow));
         b3Red.setColorFilter(getResources().getColor(R.color.red));

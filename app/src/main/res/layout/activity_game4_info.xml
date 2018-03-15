@@ -17,13 +17,15 @@
         android:paddingTop="50dp"
         android:textColor="@color/pink"
         android:gravity="center"
+        android:fontFamily="@font/pelmeshka_cyrillic"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
    <RelativeLayout
        android:layout_below="@id/textView6"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="wrap_content"
+       android:gravity="bottom">
 
        <TextView
            android:id="@+id/textView8"
@@ -33,6 +35,7 @@
            android:textStyle="bold"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
+           android:fontFamily="@font/pelmeshka_cyrillic"
            android:text="@string/g4_text2" />
 
        <RadioGroup
@@ -72,13 +75,13 @@
        </RadioGroup>
 
        <Button
-           android:layout_below="@id/textView8"
-           android:layout_alignParentEnd="true"
            android:id="@+id/button"
-           android:textStyle="bold"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Сохранить" />
+           android:layout_alignEnd="@+id/textView8"
+           android:layout_alignTop="@+id/radioGroup"
+           android:text="Сохранить"
+           android:textStyle="bold" />
 
    </RelativeLayout>
 

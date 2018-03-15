@@ -1,11 +1,14 @@
 package ru.gamesforkids.gamesforkids;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import java.util.Random;
@@ -14,16 +17,20 @@ public class Game5Activity extends AppCompatActivity {
 
 
     ImageButton arrOfImageButton[] = new ImageButton[7];
+    ImageButton info;
     Integer level, m;
     int[] numbers = {0, 1, 2, 3, 4, 5, 6};
     int[] user_numbers;
     int ui;
+    MediaPlayer mp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game5);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         arrOfImageButton[0] = (ImageButton) findViewById(R.id.imageBtnPianoRed);
         arrOfImageButton[1] = (ImageButton) findViewById(R.id.imageBtnPianoOrange);
@@ -46,7 +53,38 @@ public class Game5Activity extends AppCompatActivity {
         listeners();
         newGame();
 
+        info = (ImageButton) findViewById(R.id.info_g5);
+        // вызов справки
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Game5InfoActivity.class);
+                startActivity(intent);
+            }
+        });
 
+
+    }
+
+    // ОН ДОЛЖЕН ОСТАНАВЛИВАТЬ МУЗЫКУ ПРИ НАЖАТИИ НА "НАЗАД!!!
+    // НО ЭТОГО НЕ ПРОИСХОДИТ! ВТФ
+    @Override
+    public void onBackPressed ()
+    {
+        if (mp != null)
+            mp.stop();
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onPause ()
+    {
+        if (mp != null)
+        {
+            mp.pause();
+            mp.stop();
+        }
+        super.onPause();
     }
 
 
@@ -281,13 +319,11 @@ public class Game5Activity extends AppCompatActivity {
     }
 
 
-
-
-
     public void clickColor(int m) {
         switch (m){
             case 0:
                 arrOfImageButton[0].setColorFilter(Color.rgb(255, 150, 150));  // более светлый цвет
+                managerOfSound(0);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -299,6 +335,7 @@ public class Game5Activity extends AppCompatActivity {
             // оранжевый
             case 1:
                 arrOfImageButton[1].setColorFilter(Color.rgb(255, 194, 133));
+                managerOfSound(1);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -310,6 +347,7 @@ public class Game5Activity extends AppCompatActivity {
             // желтый
             case 2:
                 arrOfImageButton[2].setColorFilter(Color.rgb(255, 255, 150));
+                managerOfSound(2);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -321,6 +359,7 @@ public class Game5Activity extends AppCompatActivity {
             // зеленый
             case 3:
                 arrOfImageButton[3].setColorFilter(Color.rgb(200, 255, 200));
+                managerOfSound(3);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -332,6 +371,7 @@ public class Game5Activity extends AppCompatActivity {
             // голубой
             case 4:
                 arrOfImageButton[4].setColorFilter(Color.rgb(200, 255, 255));
+                managerOfSound(4);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -343,6 +383,7 @@ public class Game5Activity extends AppCompatActivity {
             // синий
             case  5:
                 arrOfImageButton[5].setColorFilter(Color.rgb(150, 150, 255));
+                managerOfSound(5);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -354,6 +395,7 @@ public class Game5Activity extends AppCompatActivity {
             // фиолетовый
             case 6:
                 arrOfImageButton[6].setColorFilter(Color.rgb(220, 120, 255));
+                managerOfSound(6);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -434,7 +476,7 @@ public class Game5Activity extends AppCompatActivity {
             public void onClick(View view) {
                 clickColor(5);
                 user_numbers[ui++]=5;
-                if (ui==level+1){
+                if (ui == level+1){
                     check();
                 }
             }
@@ -446,7 +488,7 @@ public class Game5Activity extends AppCompatActivity {
             public void onClick(View view) {
                 clickColor(6);
                 user_numbers[ui++]=6;
-                if (ui==level+1){
+                if (ui == level+1){
                     check();
                 }
             }
@@ -460,6 +502,37 @@ public class Game5Activity extends AppCompatActivity {
     private void ImageButtonsUnEnable() {
         for (int i = 0; i < 7; i++)
             arrOfImageButton[i].setEnabled(false);
+    }
+
+    protected void managerOfSound(int key) {
+        if (mp != null) {
+            mp.reset();
+            mp.release();
+        }
+        switch (key){
+            case 0:
+                mp = MediaPlayer.create(this, R.raw.piano_a);
+                break;
+            case 1:
+                mp = MediaPlayer.create(this, R.raw.piano_b);
+                break;
+            case 2:
+                mp = MediaPlayer.create(this, R.raw.piano_c);
+                break;
+            case 3:
+                mp = MediaPlayer.create(this, R.raw.piano_d);
+                break;
+            case 4:
+                mp = MediaPlayer.create(this, R.raw.piano_e);
+                break;
+            case 5:
+                mp = MediaPlayer.create(this, R.raw.piano_f);
+                break;
+            case 6:
+                mp = MediaPlayer.create(this, R.raw.piano_g);
+                break;
+        }
+        mp.start();
     }
 }
 

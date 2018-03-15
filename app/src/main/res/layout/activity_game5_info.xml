@@ -6,19 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="ru.gamesforkids.gamesforkids.Game1InfoActivity"
-    android:background="@color/g2Sky">
+    android:background="@color/g6Background">
 
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pelmeshka_cyrillic"
-        android:text="@string/g1_text"
+        android:text="@string/g5_text"
         android:layout_margin="10dp"
         android:paddingTop="50dp"
-        android:textColor="@color/pink"
+        android:textColor="@color/white"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"/>
 </LinearLayout>
