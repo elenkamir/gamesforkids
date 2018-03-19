@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.ankushgrover.hourglass.Hourglass;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,8 +44,8 @@ public class Game6Activity extends AppCompatActivity {
     int ansColor;
     List<Integer> btColors;
     List<String> colorsI;
-    static CountDownTimer timer;
-    int duration, interval, curTime;
+    static Hourglass timer;
+    int duration;
     MediaPlayer clickMP;
 
     @Override
@@ -69,24 +70,20 @@ public class Game6Activity extends AppCompatActivity {
         colorsI = Arrays.asList("Белый", "Зелёный", "Красный", "Желтый", "Синий");
         clickMP = MediaPlayer.create(this, R.raw.g2click);
 
-        duration = 15000;
+        duration = 10000;
         time.setMax(duration);
-        interval = 30;
-        time.incrementProgressBy(interval);
-        curTime = duration;
-        time.setProgress(curTime);
+        time.incrementProgressBy(50);
+        time.setProgress(duration);
 
-        timer = new CountDownTimer(duration, interval) {
+        timer = new Hourglass(duration,50) {
             @Override
-            public void onTick(long l) {
-                curTime -= interval;
-                time.setProgress(curTime);
+            public void onTimerTick(long timeRemaining) {
+                time.setProgress((int)timeRemaining);
             }
 
             @Override
-            public void onFinish() {
-                curTime -= interval;
-                time.setProgress(curTime);
+            public void onTimerFinish() {
+                time.setProgress(0);
                 color1.setClickable(false);
                 color2.setClickable(false);
                 color3.setClickable(false);
@@ -105,8 +102,7 @@ public class Game6Activity extends AppCompatActivity {
                 }, 1000);
             }
         };
-        timer.start();
-
+        timer.startTimer();
         up = 0;
         down = 0;
         upPoint.setText(String.valueOf(up));
@@ -117,8 +113,7 @@ public class Game6Activity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pause = true;
-                timer.cancel();
+                timer.pauseTimer();
                 Intent intent = new Intent(getApplicationContext(), Game6InfoActivity.class);
                 startActivity(intent);
             }
@@ -233,6 +228,12 @@ public class Game6Activity extends AppCompatActivity {
     }
 
     public static void resume() {
-        timer.start();
+        timer.resumeTimer();
+    }
+
+    @Override
+    public void onBackPressed() {
+        timer.pauseTimer();
+        finish();
     }
 }

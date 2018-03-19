@@ -26,4 +26,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.0'
+    compile 'com.ankushgrover:Hourglass:2.0.0'
 }
