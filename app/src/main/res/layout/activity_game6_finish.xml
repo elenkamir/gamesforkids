@@ -16,8 +16,9 @@
             android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:layout_margin="10dp"
+            android:layout_weight="0.85"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/pelmeshka_cyrillic"
             android:text="Меню" />
 
@@ -82,13 +83,24 @@
 
         <TextView
             android:id="@+id/result"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:gravity="center"
+            android:layout_weight="0.5"
+            android:layout_marginTop="-10dp"
+            android:layout_gravity="center"
             android:fontFamily="@font/pelmeshka_cyrillic"
             android:text="9"
             android:textSize="180dp" />
+
+        <TextView
+            android:id="@+id/new_record"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pelmeshka_cyrillic"
+            android:textSize="30dp"
+            android:text="Новый рекорд!" />
 
     </LinearLayout>
 

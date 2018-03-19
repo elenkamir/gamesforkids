@@ -15,6 +15,7 @@ public class Game6FinishActivity extends AppCompatActivity {
     TextView record;
     TextView upPoint;
     TextView downPoint;
+    TextView newRecord;
     Button menu;
     Button retry;
 
@@ -31,13 +32,23 @@ public class Game6FinishActivity extends AppCompatActivity {
         downPoint = findViewById(R.id.down_point);
         result = findViewById(R.id.result);
         record = findViewById(R.id.record);
+        newRecord = findViewById(R.id.new_record);
         menu = findViewById(R.id.menu);
         retry = findViewById(R.id.retry);
 
         Intent intent = getIntent();
-        upPoint.setText(intent.getStringExtra("up"));
-        downPoint.setText(intent.getStringExtra("down"));
-        result.setText(intent.getStringExtra("result"));
+        int up = intent.getIntExtra("up", 0);
+        upPoint.setText(String.valueOf(up));
+        int down = intent.getIntExtra("down", 0);
+        downPoint.setText(String.valueOf(down));
+        result.setText(String.valueOf(up - down));
+        int rec = intent.getIntExtra("record", 0);
+        if (up - down > rec) {
+            record.setText(String.valueOf(up - down));
+        } else {
+            newRecord.setVisibility(View.INVISIBLE);
+            record.setText(String.valueOf(rec));
+        }
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override

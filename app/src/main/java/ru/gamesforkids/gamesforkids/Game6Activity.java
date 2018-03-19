@@ -1,6 +1,7 @@
 package ru.gamesforkids.gamesforkids;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -47,6 +48,8 @@ public class Game6Activity extends AppCompatActivity {
     static Hourglass timer;
     int duration;
     MediaPlayer clickMP;
+    SharedPreferences rec;
+    final String RECORD = "record";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class Game6Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //resetRec(); // сбросить рекорд
         info = findViewById(R.id.info);
         time = findViewById(R.id.timer);
         textColor = findViewById(R.id.r_color);
@@ -75,10 +79,10 @@ public class Game6Activity extends AppCompatActivity {
         time.incrementProgressBy(50);
         time.setProgress(duration);
 
-        timer = new Hourglass(duration,50) {
+        timer = new Hourglass(duration, 50) {
             @Override
             public void onTimerTick(long timeRemaining) {
-                time.setProgress((int)timeRemaining);
+                time.setProgress((int) timeRemaining);
             }
 
             @Override
@@ -93,10 +97,12 @@ public class Game6Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), Game6FinishActivity.class);
-                        intent.putExtra("up", String.valueOf(up));
-                        intent.putExtra("down", String.valueOf(down));
-                        intent.putExtra("result", String.valueOf(up - down));
+                        intent.putExtra("up", up);
+                        intent.putExtra("down", down);
+                        intent.putExtra("record", getRec());
                         startActivity(intent);
+                        if (up - down > getRec())
+                            saveRec(up - down);
                         finish();
                     }
                 }, 1000);
@@ -235,5 +241,25 @@ public class Game6Activity extends AppCompatActivity {
     public void onBackPressed() {
         timer.pauseTimer();
         finish();
+    }
+
+    public void resetRec() {
+        rec = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = rec.edit();
+        ed.clear();
+        ed.apply();
+    }
+
+    public int getRec() {
+        rec = getPreferences(MODE_PRIVATE);
+        String record = rec.getString(RECORD, "0");
+        return Integer.valueOf(record);
+    }
+
+    void saveRec(int res) {
+        rec = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = rec.edit();
+        ed.putString(RECORD, String.valueOf(res));
+        ed.apply();
     }
 }
