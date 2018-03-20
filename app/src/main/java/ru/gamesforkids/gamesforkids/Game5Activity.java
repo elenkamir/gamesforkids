@@ -1,5 +1,6 @@
 package ru.gamesforkids.gamesforkids;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -9,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Random;
 
@@ -23,6 +26,7 @@ public class Game5Activity extends AppCompatActivity {
     int[] user_numbers;
     int ui;
     MediaPlayer mp = null;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,11 @@ public class Game5Activity extends AppCompatActivity {
         level = 0;
 
         listeners();
-        newGame();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                newGame();             }
+        }, 1000);
 
         info = (ImageButton) findViewById(R.id.info_g5);
         // вызов справки
@@ -64,6 +72,36 @@ public class Game5Activity extends AppCompatActivity {
         });
 
 
+
+        dialog = new Dialog(this);
+
+      dialog.setTitle("Молодец! Отгадал!  Сыграем ещё?");
+        dialog.setContentView(R.layout.activity_game5_dialog);
+
+        Button btnOK = (Button) dialog.findViewById(R.id.button_OK_dialog);
+
+        Button btnCancel = (Button) dialog.findViewById(R.id.button_Cancel_dialog);
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        level = 0;
+                        newGame();             }
+                }, 500);
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                finish();
+            }
+        });
     }
 
     // ОН ДОЛЖЕН ОСТАНАВЛИВАТЬ МУЗЫКУ ПРИ НАЖАТИИ НА "НАЗАД!!!
@@ -89,7 +127,7 @@ public class Game5Activity extends AppCompatActivity {
 
 
     private void newGame() {
-
+        ImageButtonsUnEnable();
         if (level < 7) {
             ui = 0;
             ImageButtonsUnEnable();
@@ -97,17 +135,7 @@ public class Game5Activity extends AppCompatActivity {
             shuffle();
             ImageButtonsEnable();
         }
-        if (level==7) {
-            level = 0;
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Maybe once again?!", Toast.LENGTH_LONG);
-            toast.show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    newGame();             }
-            }, 1500);
-        }
+        ImageButtonsEnable();
     }
 
     public void shuffle() {
@@ -120,6 +148,12 @@ public class Game5Activity extends AppCompatActivity {
             numbers[j] = numbers[i];
             numbers[i] = temp;
         }
+        playit();
+
+    }
+
+    public void playit(){
+        ImageButtonsUnEnable();
         switch (level) {
             case 0:
                 new Handler().postDelayed(new Runnable() {
@@ -278,8 +312,8 @@ public class Game5Activity extends AppCompatActivity {
             default:
                 break;
         }
+        ImageButtonsEnable();
     }
-
     public void check() {
         int count = 0;
         ImageButtonsUnEnable();
@@ -287,35 +321,49 @@ public class Game5Activity extends AppCompatActivity {
             if (user_numbers[i] == numbers[i]) count++;
         }
 
-        if (count == level + 1) {
+        if (count == level + 1 & level<6) {
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "Well done!", Toast.LENGTH_SHORT);
+                    "Правильно!", Toast.LENGTH_SHORT);
             toast.show();
             level++;
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Level "+ (level+1), Toast.LENGTH_SHORT);
+                            "Уровень "+ (level+1), Toast.LENGTH_SHORT);
+                    ImageButtonsEnable();
                     toast.show();          }
-            }, 1000);
+            }, 800);
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    newGame();             }
-            }, 2000);
+                    newGame();           }
+            }, 3500);
 
-        } else {
+        } else if (count == level + 1 & level==6)       dialog.show();
+        else {
+            ImageButtonsUnEnable();
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "Let's try again!", Toast.LENGTH_SHORT);
+                    "Неправильно!", Toast.LENGTH_SHORT);
             toast.show();
+            ui = 0;
+
+            user_numbers =new int[0];
+            user_numbers =new int[level+1];
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    newGame();             }
-            }, 1500);
+
+                    playit();
+                    ImageButtonsEnable();
+                }
+            }, 1400);
+
+
         }
+
     }
 
 
