@@ -14,8 +14,7 @@ import android.widget.ImageButton;
 
 
 public class MainActivity extends AppCompatActivity implements  View.OnClickListener {
-    ImageButton Game1, Game2, Game3, Game4;
-    Button  Game5, Game6;
+    ImageButton Game1, Game2, Game3, Game4, Game5, Game6;
 
     @SuppressLint("WrongViewCast")
     @Override

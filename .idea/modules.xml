@@ -3,11 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\1\AndroidStudioProjects\GamesForKids\app\app.iml" filepath="C:\Users\1\AndroidStudioProjects\GamesForKids\app\app.iml" />
-      <module fileurl="file://C:\Users\Kate\Desktop\andr\gfk2003\app\app.iml" filepath="C:\Users\Kate\Desktop\andr\gfk2003\app\app.iml" />
-      <module fileurl="file://C:\Users\Kate\Desktop\andr\gfk2003\gamesforkids.iml" filepath="C:\Users\Kate\Desktop\andr\gfk2003\gamesforkids.iml" />
-      <module fileurl="file://C:\Users\1\AndroidStudioProjects\GamesForKids\gamesforkids.iml" filepath="C:\Users\1\AndroidStudioProjects\GamesForKids\gamesforkids.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gfk2003.iml" filepath="$PROJECT_DIR$/gfk2003.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamesforkids.iml" filepath="$PROJECT_DIR$/gamesforkids.iml" />
     </modules>
   </component>
 </project>

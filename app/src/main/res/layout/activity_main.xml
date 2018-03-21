@@ -53,21 +53,22 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game4" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnGame5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="GAME 5"
-            android:textSize="22sp" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/game5" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnGame6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="GAME 6"
-            android:textSize="22sp" />
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/game6" />
+
     </LinearLayout>
 
 </LinearLayout>
