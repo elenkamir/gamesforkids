@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/purple"
+            android:backgroundTint="@color/main1Bt"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game1" />
 
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/pink"
+            android:backgroundTint="@color/main3Bt"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game3" />
     </LinearLayout>
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/main4Bt"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game4" />
 
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/main5Bt"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game5" />
 
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="@color/main6Bt"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/game6" />
 
