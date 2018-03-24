@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gamesforkids.iml" filepath="$PROJECT_DIR$/gamesforkids.iml" />
+      <module fileurl="file://C:\Users\Kate\Desktop\andr\gfk2403\app\app.iml" filepath="C:\Users\Kate\Desktop\andr\gfk2403\app\app.iml" />
+      <module fileurl="file://C:\Users\Kate\Desktop\andr\gfk2403\gamesforkids.iml" filepath="C:\Users\Kate\Desktop\andr\gfk2403\gamesforkids.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gfk2403.iml" filepath="$PROJECT_DIR$/gfk2403.iml" />
     </modules>
   </component>
 </project>

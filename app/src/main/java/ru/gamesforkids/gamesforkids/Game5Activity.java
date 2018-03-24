@@ -20,13 +20,15 @@ public class Game5Activity extends AppCompatActivity {
 
 
     ImageButton arrOfImageButton[] = new ImageButton[7];
-    ImageButton info;
-    Integer level, m;
+    ImageButton info, resetButton;
+    Integer level;
     int[] numbers = {0, 1, 2, 3, 4, 5, 6};
     int[] user_numbers;
     int ui;
     MediaPlayer mp = null;
     Dialog dialog;
+    Toast toast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,9 @@ public class Game5Activity extends AppCompatActivity {
         arrOfImageButton[5].setColorFilter(Color.rgb(0, 0, 254));
         arrOfImageButton[6].setColorFilter(Color.rgb(189, 2, 255));
 
-        level = 0;
 
+        level = 0;
+        ImageButtonsUnEnable();
         listeners();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -71,11 +74,29 @@ public class Game5Activity extends AppCompatActivity {
             }
         });
 
+        resetButton = (ImageButton) findViewById(R.id.imgButtonReset);
+        resetButton.setEnabled(false);
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetButton.setEnabled(false);
+                if (toast == null || toast.getView().getWindowVisibility() != View.VISIBLE) {
+                    toast = Toast.makeText(getApplicationContext(),
+                            "Хорошо, давай снова. Уровень 1.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                ImageButtonsUnEnable();
+                level=0;
+
+                newGame();
+            }
+        });
 
 
         dialog = new Dialog(this);
 
-      dialog.setTitle("Молодец! Отгадал!  Сыграем ещё?");
+        dialog.setTitle(" Молодец! Отгадал! Сыграем ещё?");
         dialog.setContentView(R.layout.activity_game5_dialog);
 
         Button btnOK = (Button) dialog.findViewById(R.id.button_OK_dialog);
@@ -111,8 +132,10 @@ public class Game5Activity extends AppCompatActivity {
     {
         if (mp != null)
             mp.stop();
+        onDestroy();
         super.onBackPressed();
     }
+
 
     @Override
     public void onPause ()
@@ -127,18 +150,16 @@ public class Game5Activity extends AppCompatActivity {
 
 
     private void newGame() {
-        ImageButtonsUnEnable();
+        resetButton.setEnabled(false);
         if (level < 7) {
             ui = 0;
-            ImageButtonsUnEnable();
             user_numbers = new int[level + 1];
             shuffle();
-            ImageButtonsEnable();
         }
-        ImageButtonsEnable();
     }
 
     public void shuffle() {
+        resetButton.setEnabled(false);
         Random random = new Random();
 
         for (int i = 6; i >= 1; i--) {
@@ -148,19 +169,34 @@ public class Game5Activity extends AppCompatActivity {
             numbers[j] = numbers[i];
             numbers[i] = temp;
         }
+
+
         playit();
 
     }
 
     public void playit(){
+        resetButton.setEnabled(false);
+        toast = Toast.makeText(getApplicationContext(),
+                "Твоя очередь", Toast.LENGTH_SHORT);
         ImageButtonsUnEnable();
         switch (level) {
             case 0:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);            }
                 }, 1000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();        toast.show();          }
+                }, 1500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                       resetButton.setEnabled(true);           }
+                }, 1500);
                 break;
             case 1:
                 new Handler().postDelayed(new Runnable() {
@@ -171,14 +207,24 @@ public class Game5Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);                  }
+                        clickColor(numbers[1]);                 }
                 }, 2000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();            toast.show();      }
+                }, 2500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetButton.setEnabled(true);           }
+                }, 2500);
                 break;
             case 2:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);            }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -188,19 +234,29 @@ public class Game5Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[2]);              }
+                        clickColor(numbers[2]);            }
                 }, 3000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();           toast.show();       }
+                }, 3500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetButton.setEnabled(true);           }
+                }, 3500);
                 break;
             case 3:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);             }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);            }
+                        clickColor(numbers[1]);              }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -212,17 +268,27 @@ public class Game5Activity extends AppCompatActivity {
                     public void run() {
                         clickColor(numbers[3]);              }
                 }, 4000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();            toast.show();      }
+                }, 4500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetButton.setEnabled(true);           }
+                }, 4500);
                 break;
             case 4:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);              }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);            }
+                        clickColor(numbers[1]);             }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -237,19 +303,29 @@ public class Game5Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[4]);              }
+                        clickColor(numbers[4]);               }
                 }, 5000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();            toast.show();      }
+                }, 5500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetButton.setEnabled(true);           }
+                }, 5500);
                 break;
             case 5:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);              }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);            }
+                        clickColor(numbers[1]);             }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -269,19 +345,29 @@ public class Game5Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[5]);              }
+                        clickColor(numbers[5]);               }
                 }, 6000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();            toast.show();      }
+                }, 6500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetButton.setEnabled(true);           }
+                }, 6500);
                 break;
             case 6:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);              }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);            }
+                        clickColor(numbers[1]);              }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -306,32 +392,42 @@ public class Game5Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[6]);              }
+                        clickColor(numbers[6]);               }
                 }, 7000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ImageButtonsEnable();            toast.show();      }
+                }, 7500);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetButton.setEnabled(true);           }
+                }, 7500);
                 break;
             default:
                 break;
         }
-        ImageButtonsEnable();
     }
     public void check() {
-        int count = 0;
         ImageButtonsUnEnable();
+
+        int count = 0;
         for (int i = 0; i <= level; i++) {
             if (user_numbers[i] == numbers[i]) count++;
         }
 
         if (count == level + 1 & level<6) {
-            Toast toast = Toast.makeText(getApplicationContext(),
+            ImageButtonsUnEnable();
+            toast = Toast.makeText(getApplicationContext(),
                     "Правильно!", Toast.LENGTH_SHORT);
             toast.show();
             level++;
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Toast toast = Toast.makeText(getApplicationContext(),
+                    toast = Toast.makeText(getApplicationContext(),
                             "Уровень "+ (level+1), Toast.LENGTH_SHORT);
-                    ImageButtonsEnable();
                     toast.show();          }
             }, 800);
 
@@ -341,10 +437,14 @@ public class Game5Activity extends AppCompatActivity {
                     newGame();           }
             }, 3500);
 
-        } else if (count == level + 1 & level==6)       dialog.show();
+        } else if (count == level + 1 & level==6) {
+            dialog.show();
+            ImageButtonsUnEnable();
+        }
         else {
             ImageButtonsUnEnable();
-            Toast toast = Toast.makeText(getApplicationContext(),
+
+            toast = Toast.makeText(getApplicationContext(),
                     "Неправильно!", Toast.LENGTH_SHORT);
             toast.show();
             ui = 0;
@@ -357,7 +457,6 @@ public class Game5Activity extends AppCompatActivity {
                 public void run() {
 
                     playit();
-                    ImageButtonsEnable();
                 }
             }, 1400);
 
@@ -368,6 +467,7 @@ public class Game5Activity extends AppCompatActivity {
 
 
     public void clickColor(int m) {
+        resetButton.setEnabled(false);
         switch (m){
             case 0:
                 arrOfImageButton[0].setColorFilter(Color.rgb(255, 150, 150));  // более светлый цвет
