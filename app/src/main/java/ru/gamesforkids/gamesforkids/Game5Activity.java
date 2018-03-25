@@ -10,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Random;
 
 public class Game5Activity extends AppCompatActivity {
@@ -61,7 +63,8 @@ public class Game5Activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                newGame();             }
+                newGame();
+            }
         }, 1000);
 
         info = (ImageButton) findViewById(R.id.info_g5);
@@ -69,7 +72,7 @@ public class Game5Activity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Game5InfoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Game5InfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +90,7 @@ public class Game5Activity extends AppCompatActivity {
                     toast.show();
                 }
                 ImageButtonsUnEnable();
-                level=0;
+                level = 0;
 
                 newGame();
             }
@@ -111,7 +114,8 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         level = 0;
-                        newGame();             }
+                        newGame();
+                    }
                 }, 500);
             }
         });
@@ -127,23 +131,22 @@ public class Game5Activity extends AppCompatActivity {
 
     // ОН ДОЛЖЕН ОСТАНАВЛИВАТЬ МУЗЫКУ ПРИ НАЖАТИИ НА "НАЗАД!!!
     // НО ЭТОГО НЕ ПРОИСХОДИТ! ВТФ
-    @Override
-    public void onBackPressed ()
-    {
-        if (mp != null)
+/*    @Override
+    public void onBackPressed() {
+        if (this.isFinishing() & mp != null) {
             mp.stop();
-        onDestroy();
+        }
         super.onBackPressed();
-    }
+    }*/
 
 
     @Override
-    public void onPause ()
-    {
-        if (mp != null)
-        {
-            mp.pause();
+    public void onPause() {
+ /*       if (this.isFinishing() & mp != null){
             mp.stop();
+        }*/
+        if (this.isFinishing()) {
+            level = -1;
         }
         super.onPause();
     }
@@ -175,7 +178,7 @@ public class Game5Activity extends AppCompatActivity {
 
     }
 
-    public void playit(){
+    public void playit() {
         resetButton.setEnabled(false);
         toast = Toast.makeText(getApplicationContext(),
                 "Твоя очередь", Toast.LENGTH_SHORT);
@@ -185,230 +188,282 @@ public class Game5Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);            }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();        toast.show();          }
+                        ImageButtonsEnable();
+                        toast.show();
+                    }
                 }, 1500);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                       resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 1500);
                 break;
             case 1:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);                }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);                 }
+                        clickColor(numbers[1]);
+                    }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();            toast.show();      }
+                        ImageButtonsEnable();
+                        toast.show();
+                    }
                 }, 2500);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 2500);
                 break;
             case 2:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);            }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);            }
+                        clickColor(numbers[1]);
+                    }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[2]);            }
+                        clickColor(numbers[2]);
+                    }
                 }, 3000);
+                if (level != -1) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ImageButtonsEnable();
+                            toast.show();
+                        }
+                    }, 3500);
+                }
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();           toast.show();       }
-                }, 3500);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 3500);
                 break;
             case 3:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);             }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);              }
+                        clickColor(numbers[1]);
+                    }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[2]);              }
+                        clickColor(numbers[2]);
+                    }
                 }, 3000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[3]);              }
+                        clickColor(numbers[3]);
+                    }
                 }, 4000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();            toast.show();      }
+                        ImageButtonsEnable();
+                        toast.show();
+                    }
                 }, 4500);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 4500);
                 break;
             case 4:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);              }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);             }
+                        clickColor(numbers[1]);
+                    }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[2]);              }
+                        clickColor(numbers[2]);
+                    }
                 }, 3000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[3]);              }
+                        clickColor(numbers[3]);
+                    }
                 }, 4000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[4]);               }
+                        clickColor(numbers[4]);
+                    }
                 }, 5000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();            toast.show();      }
+                        ImageButtonsEnable();
+                        toast.show();
+                    }
                 }, 5500);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 5500);
                 break;
             case 5:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);              }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);             }
+                        clickColor(numbers[1]);
+                    }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[2]);              }
+                        clickColor(numbers[2]);
+                    }
                 }, 3000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[3]);              }
+                        clickColor(numbers[3]);
+                    }
                 }, 4000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[4]);              }
+                        clickColor(numbers[4]);
+                    }
                 }, 5000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[5]);               }
+                        clickColor(numbers[5]);
+                    }
                 }, 6000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();            toast.show();      }
+                        ImageButtonsEnable();
+                        toast.show();
+                    }
                 }, 6500);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 6500);
                 break;
             case 6:
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[0]);              }
+                        clickColor(numbers[0]);
+                    }
                 }, 1000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[1]);              }
+                        clickColor(numbers[1]);
+                    }
                 }, 2000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[2]);              }
+                        clickColor(numbers[2]);
+                    }
                 }, 3000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[3]);              }
+                        clickColor(numbers[3]);
+                    }
                 }, 4000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[4]);              }
+                        clickColor(numbers[4]);
+                    }
                 }, 5000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[5]);              }
+                        clickColor(numbers[5]);
+                    }
                 }, 6000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        clickColor(numbers[6]);               }
+                        clickColor(numbers[6]);
+                    }
                 }, 7000);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImageButtonsEnable();            toast.show();      }
+                        ImageButtonsEnable();
+                        toast.show();
+                    }
                 }, 7500);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        resetButton.setEnabled(true);           }
+                        resetButton.setEnabled(true);
+                    }
                 }, 7500);
                 break;
             default:
                 break;
         }
     }
+
     public void check() {
         ImageButtonsUnEnable();
 
@@ -417,7 +472,7 @@ public class Game5Activity extends AppCompatActivity {
             if (user_numbers[i] == numbers[i]) count++;
         }
 
-        if (count == level + 1 & level<6) {
+        if (count == level + 1 & level < 6) {
             ImageButtonsUnEnable();
             toast = Toast.makeText(getApplicationContext(),
                     "Правильно!", Toast.LENGTH_SHORT);
@@ -427,21 +482,22 @@ public class Game5Activity extends AppCompatActivity {
                 @Override
                 public void run() {
                     toast = Toast.makeText(getApplicationContext(),
-                            "Уровень "+ (level+1), Toast.LENGTH_SHORT);
-                    toast.show();          }
+                            "Уровень " + (level + 1), Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }, 800);
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    newGame();           }
+                    newGame();
+                }
             }, 3500);
 
-        } else if (count == level + 1 & level==6) {
+        } else if (count == level + 1 & level == 6) {
             dialog.show();
             ImageButtonsUnEnable();
-        }
-        else {
+        } else {
             ImageButtonsUnEnable();
 
             toast = Toast.makeText(getApplicationContext(),
@@ -449,8 +505,8 @@ public class Game5Activity extends AppCompatActivity {
             toast.show();
             ui = 0;
 
-            user_numbers =new int[0];
-            user_numbers =new int[level+1];
+            user_numbers = new int[0];
+            user_numbers = new int[level + 1];
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -468,7 +524,7 @@ public class Game5Activity extends AppCompatActivity {
 
     public void clickColor(int m) {
         resetButton.setEnabled(false);
-        switch (m){
+        switch (m) {
             case 0:
                 arrOfImageButton[0].setColorFilter(Color.rgb(255, 150, 150));  // более светлый цвет
                 managerOfSound(0);
@@ -529,7 +585,7 @@ public class Game5Activity extends AppCompatActivity {
                 break;
 
             // синий
-            case  5:
+            case 5:
                 arrOfImageButton[5].setColorFilter(Color.rgb(150, 150, 255));
                 managerOfSound(5);
                 new Handler().postDelayed(new Runnable() {
@@ -551,21 +607,21 @@ public class Game5Activity extends AppCompatActivity {
                     }
                 }, 1000);
                 break;
-            default:break;
+            default:
+                break;
         }
 
     }
 
 
-
-    public void listeners(){
+    public void listeners() {
         // красный
         arrOfImageButton[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickColor(0);
-                user_numbers[ui++]=0;
-                if (ui==level+1){
+                user_numbers[ui++] = 0;
+                if (ui == level + 1) {
                     check();
                 }
             }
@@ -576,8 +632,8 @@ public class Game5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickColor(1);
-                user_numbers[ui++]=1;
-                if (ui==level+1){
+                user_numbers[ui++] = 1;
+                if (ui == level + 1) {
                     check();
                 }
             }
@@ -588,8 +644,8 @@ public class Game5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickColor(2);
-                user_numbers[ui++]=2;
-                if (ui==level+1){
+                user_numbers[ui++] = 2;
+                if (ui == level + 1) {
                     check();
                 }
             }
@@ -600,8 +656,8 @@ public class Game5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickColor(3);
-                user_numbers[ui++]=3;
-                if (ui==level+1){
+                user_numbers[ui++] = 3;
+                if (ui == level + 1) {
                     check();
                 }
             }
@@ -612,8 +668,8 @@ public class Game5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickColor(4);
-                user_numbers[ui++]=4;
-                if (ui==level+1){
+                user_numbers[ui++] = 4;
+                if (ui == level + 1) {
                     check();
                 }
             }
@@ -623,8 +679,8 @@ public class Game5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickColor(5);
-                user_numbers[ui++]=5;
-                if (ui == level+1){
+                user_numbers[ui++] = 5;
+                if (ui == level + 1) {
                     check();
                 }
             }
@@ -635,52 +691,56 @@ public class Game5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickColor(6);
-                user_numbers[ui++]=6;
-                if (ui == level+1){
+                user_numbers[ui++] = 6;
+                if (ui == level + 1) {
                     check();
                 }
             }
         });
 
     }
+
     private void ImageButtonsEnable() {
         for (int i = 0; i < 7; i++)
             arrOfImageButton[i].setEnabled(true);
     }
+
     private void ImageButtonsUnEnable() {
         for (int i = 0; i < 7; i++)
             arrOfImageButton[i].setEnabled(false);
     }
 
     protected void managerOfSound(int key) {
-        if (mp != null) {
-            mp.reset();
-            mp.release();
+        if (level != -1) {
+            if (mp != null) {
+                mp.reset();
+                mp.release();
+            }
+            switch (key) {
+                case 0:
+                    mp = MediaPlayer.create(this, R.raw.piano_a);
+                    break;
+                case 1:
+                    mp = MediaPlayer.create(this, R.raw.piano_b);
+                    break;
+                case 2:
+                    mp = MediaPlayer.create(this, R.raw.piano_c);
+                    break;
+                case 3:
+                    mp = MediaPlayer.create(this, R.raw.piano_d);
+                    break;
+                case 4:
+                    mp = MediaPlayer.create(this, R.raw.piano_e);
+                    break;
+                case 5:
+                    mp = MediaPlayer.create(this, R.raw.piano_f);
+                    break;
+                case 6:
+                    mp = MediaPlayer.create(this, R.raw.piano_g);
+                    break;
+            }
+            mp.start();
         }
-        switch (key){
-            case 0:
-                mp = MediaPlayer.create(this, R.raw.piano_a);
-                break;
-            case 1:
-                mp = MediaPlayer.create(this, R.raw.piano_b);
-                break;
-            case 2:
-                mp = MediaPlayer.create(this, R.raw.piano_c);
-                break;
-            case 3:
-                mp = MediaPlayer.create(this, R.raw.piano_d);
-                break;
-            case 4:
-                mp = MediaPlayer.create(this, R.raw.piano_e);
-                break;
-            case 5:
-                mp = MediaPlayer.create(this, R.raw.piano_f);
-                break;
-            case 6:
-                mp = MediaPlayer.create(this, R.raw.piano_g);
-                break;
-        }
-        mp.start();
     }
 }
 

@@ -452,6 +452,35 @@ public class Game1Activity extends AppCompatActivity {
         });
     }
 
+    public void onBackPressed ()
+    {
+        if (this.isFinishing() & mp != null){
+            mp.stop();
+        }
+
+/*        if (mp != null)
+            mp.stop();
+        onDestroy();*/
+        super.onBackPressed();
+    }
+
+
+    @Override
+    public void onPause ()
+    {
+        if (this.isFinishing() & mp != null){
+            mp.stop();
+        }
+
+    /*    if (mp != null)
+        {
+            mp.pause();
+            mp.stop();
+        }
+        onDestroy();*/
+        super.onPause();
+    }
+
     public void setResultColor() {
         if (i < g1ResultColors.size()) {
             color = g1ResultColors.get(i);

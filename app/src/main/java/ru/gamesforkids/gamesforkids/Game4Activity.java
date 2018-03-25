@@ -184,4 +184,23 @@ public class Game4Activity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onBackPressed ()
+    {
+        if (this.isFinishing() & mp != null){
+            mp.stop();
+        }
+        super.onBackPressed();
+    }
+
+
+    @Override
+    public void onPause ()
+    {
+        if (this.isFinishing() & mp != null){
+            mp.stop();
+        }
+        super.onPause();
+    }
 }

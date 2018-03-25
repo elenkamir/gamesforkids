@@ -288,4 +288,23 @@ public class Game2Activity extends AppCompatActivity {
         goodEnd.setVisibility(View.GONE);
         badEnd.setVisibility(View.GONE);
     }
+
+    @Override
+    public void onBackPressed ()
+    {
+        if (this.isFinishing() & endMP != null){
+            endMP.stop();
+        }
+        super.onBackPressed();
+    }
+
+
+    @Override
+    public void onPause ()
+    {
+        if (this.isFinishing() & endMP != null){
+            endMP.stop();
+        }
+        super.onPause();
+    }
 }
