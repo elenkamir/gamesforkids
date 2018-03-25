@@ -147,6 +147,7 @@ public class Game5Activity extends AppCompatActivity {
         }*/
         if (this.isFinishing()) {
             level = -1;
+            toast = null;
         }
         super.onPause();
     }
@@ -195,7 +196,7 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ImageButtonsEnable();
-                        toast.show();
+                        if (toast != null) toast.show();
                     }
                 }, 1500);
                 new Handler().postDelayed(new Runnable() {
@@ -222,7 +223,7 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ImageButtonsEnable();
-                        toast.show();
+                        if (toast != null) toast.show();
                     }
                 }, 2500);
                 new Handler().postDelayed(new Runnable() {
@@ -256,7 +257,7 @@ public class Game5Activity extends AppCompatActivity {
                         @Override
                         public void run() {
                             ImageButtonsEnable();
-                            toast.show();
+                            if (toast != null) toast.show();
                         }
                     }, 3500);
                 }
@@ -296,7 +297,7 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ImageButtonsEnable();
-                        toast.show();
+                        if (toast != null) toast.show();
                     }
                 }, 4500);
                 new Handler().postDelayed(new Runnable() {
@@ -341,7 +342,7 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ImageButtonsEnable();
-                        toast.show();
+                        if (toast != null) toast.show();
                     }
                 }, 5500);
                 new Handler().postDelayed(new Runnable() {
@@ -392,7 +393,7 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ImageButtonsEnable();
-                        toast.show();
+                        if (toast != null) toast.show();
                     }
                 }, 6500);
                 new Handler().postDelayed(new Runnable() {
@@ -449,7 +450,7 @@ public class Game5Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         ImageButtonsEnable();
-                        toast.show();
+                        if (toast != null) toast.show();
                     }
                 }, 7500);
                 new Handler().postDelayed(new Runnable() {
