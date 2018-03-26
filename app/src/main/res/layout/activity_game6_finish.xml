@@ -20,6 +20,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/pelmeshka_cyrillic"
+            android:shadowColor="@color/lightCont"
+            android:elevation="10dp"
+            android:backgroundTint="#e5d1be"
             android:text="Меню" />
 
         <LinearLayout
@@ -41,8 +44,9 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/down" />
+                    android:rotation="180"
+                    android:tint="@color/wine"
+                    app:srcCompat="@drawable/thumb" />
 
                 <TextView
                     android:id="@+id/down_point"
@@ -62,8 +66,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/up" />
+                    app:srcCompat="@drawable/thumb" />
 
                 <TextView
                     android:id="@+id/up_point"
@@ -140,6 +143,9 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:fontFamily="@font/pelmeshka_cyrillic"
+            android:shadowColor="@color/lightCont"
+            android:elevation="10dp"
+            android:backgroundTint="#e5d1be"
             android:text="Заново" />
     </LinearLayout>
 

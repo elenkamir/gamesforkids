@@ -25,4 +25,7 @@
     <color name="lightgreen">#a8f28d</color>
     <color name="brown">#ba6320</color>
     <color name="g6Background">#d8b38c</color>
+    <color name="lightCont">#a0a0a0</color>
+    <color name="wine">#c40f0f</color>
+    <color name="g6Bt">#dbb58e</color>
 </resources>

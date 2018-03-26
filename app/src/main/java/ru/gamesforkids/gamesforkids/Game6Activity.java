@@ -1,13 +1,16 @@
 package ru.gamesforkids.gamesforkids;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 
 import com.ankushgrover.hourglass.Hourglass;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -31,14 +35,20 @@ public class Game6Activity extends AppCompatActivity {
     ImageButton color3;
     ImageButton color4;
     ImageButton color5;
+    ArrayList<ImageButton> colors;
     ImageButton info;
     ProgressBar time;
 
-    int white = Color.WHITE;
-    int green = Color.GREEN;
-    int red = Color.RED;
-    int yellow = Color.YELLOW;
-    int blue = Color.BLUE;
+    int white = Color.parseColor("#ffffff");
+    int green = Color.parseColor("#00ff00");
+    int red = Color.parseColor("#ff0000");
+    int yellow = Color.parseColor("#ffff00");
+    int blue = Color.parseColor("#0000ff");
+    int darkWhite = Color.parseColor("#a8a8a8");
+    int darkGreen = Color.parseColor("#00a800");
+    int darkRed = Color.parseColor("#a80000");
+    int darkYellow = Color.parseColor("#a8a800");
+    int darkBlue = Color.parseColor("#0000a8");
 
     int up;
     int down;
@@ -51,6 +61,7 @@ public class Game6Activity extends AppCompatActivity {
     SharedPreferences rec;
     final String RECORD = "record";
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +82,12 @@ public class Game6Activity extends AppCompatActivity {
         color3 = findViewById(R.id.bt_color3);
         color4 = findViewById(R.id.bt_color4);
         color5 = findViewById(R.id.bt_color5);
+        colors = new ArrayList<>();
+        colors.add(color1);
+        colors.add(color2);
+        colors.add(color3);
+        colors.add(color4);
+        colors.add(color5);
         colorsI = Arrays.asList("Белый", "Зелёный", "Красный", "Желтый", "Синий");
         clickMP = MediaPlayer.create(this, R.raw.g2click);
 
@@ -88,11 +105,8 @@ public class Game6Activity extends AppCompatActivity {
             @Override
             public void onTimerFinish() {
                 time.setProgress(0);
-                color1.setClickable(false);
-                color2.setClickable(false);
-                color3.setClickable(false);
-                color4.setClickable(false);
-                color5.setClickable(false);
+                for (ImageButton color : colors)
+                    color.setClickable(false);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -116,6 +130,25 @@ public class Game6Activity extends AppCompatActivity {
 
         newRound();
 
+        info.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                        info.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        info.clearColorFilter();
+                        info.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,76 +157,42 @@ public class Game6Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        color1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                if (btColors.get(0) == ansColor) {
-                    up++;
-                    upPoint.setText(String.valueOf(up));
-                } else {
-                    down++;
-                    downPoint.setText(String.valueOf(down));
+        for (int i = 0; i < 5; i++) {
+            final int ii = i;
+            colors.get(i).setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            colors.get(ii).setColorFilter(returnDarkColor(btColors.get(ii)));
+                            colors.get(ii).invalidate();
+                            break;
+                        }
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_CANCEL: {
+                            colors.get(ii).clearColorFilter();
+                            colors.get(ii).invalidate();
+                            break;
+                        }
+                    }
+                    return false;
                 }
-                newRound();
-            }
-        });
-        color2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                if (btColors.get(1) == ansColor) {
-                    up++;
-                    upPoint.setText(String.valueOf(up));
-                } else {
-                    down++;
-                    downPoint.setText(String.valueOf(down));
+            });
+            colors.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickMP.start();
+                    if (btColors.get(ii) == ansColor) {
+                        up++;
+                        upPoint.setText(String.valueOf(up));
+                    } else {
+                        down++;
+                        downPoint.setText(String.valueOf(down));
+                    }
+                    newRound();
                 }
-                newRound();
-            }
-        });
-        color3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                if (btColors.get(2) == ansColor) {
-                    up++;
-                    upPoint.setText(String.valueOf(up));
-                } else {
-                    down++;
-                    downPoint.setText(String.valueOf(down));
-                }
-                newRound();
-            }
-        });
-        color4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                if (btColors.get(3) == ansColor) {
-                    up++;
-                    upPoint.setText(String.valueOf(up));
-                } else {
-                    down++;
-                    downPoint.setText(String.valueOf(down));
-                }
-                newRound();
-            }
-        });
-        color5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                if (btColors.get(4) == ansColor) {
-                    up++;
-                    upPoint.setText(String.valueOf(up));
-                } else {
-                    down++;
-                    downPoint.setText(String.valueOf(down));
-                }
-                newRound();
-            }
-        });
+            });
+        }
     }
 
     private void newRound() {
@@ -204,12 +203,8 @@ public class Game6Activity extends AppCompatActivity {
     private void setBtColors() {
         btColors = Arrays.asList(1, 2, 3, 4, 5);
         Collections.shuffle(btColors);
-
-        color1.setColorFilter(returnColor(btColors.get(0)));
-        color2.setColorFilter(returnColor(btColors.get(1)));
-        color3.setColorFilter(returnColor(btColors.get(2)));
-        color4.setColorFilter(returnColor(btColors.get(3)));
-        color5.setColorFilter(returnColor(btColors.get(4)));
+        for (int i = 0; i < 5; i++)
+            colors.get(i).setColorFilter(returnColor(btColors.get(i)));
     }
 
     private void setColor() {
@@ -230,6 +225,21 @@ public class Game6Activity extends AppCompatActivity {
                 return blue;
             default:
                 return white;
+        }
+    }
+
+    private int returnDarkColor(int n) {
+        switch (n) {
+            case 2:
+                return darkGreen;
+            case 3:
+                return darkRed;
+            case 4:
+                return darkYellow;
+            case 5:
+                return darkBlue;
+            default:
+                return darkWhite;
         }
     }
 
