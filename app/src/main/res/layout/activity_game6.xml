@@ -20,7 +20,7 @@
             android:background="@null"
             android:scaleType="fitCenter"
             android:elevation="10dp"
-            app:srcCompat="@drawable/info2" />
+            app:srcCompat="@drawable/info" />
 
         <ProgressBar
             android:id="@+id/timer"

@@ -57,8 +57,9 @@ public class Game6Activity extends AppCompatActivity {
     List<String> colorsI;
     static Hourglass timer;
     int duration;
+    int curDur;
     MediaPlayer clickMP;
-    SharedPreferences rec;
+    static SharedPreferences rec;
     final String RECORD = "record";
 
     @SuppressLint("ClickableViewAccessibility")
@@ -72,6 +73,7 @@ public class Game6Activity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //resetRec(); // сбросить рекорд
+        rec = getPreferences(MODE_PRIVATE);
         info = findViewById(R.id.info);
         time = findViewById(R.id.timer);
         textColor = findViewById(R.id.r_color);
@@ -91,37 +93,13 @@ public class Game6Activity extends AppCompatActivity {
         colorsI = Arrays.asList("Белый", "Зелёный", "Красный", "Желтый", "Синий");
         clickMP = MediaPlayer.create(this, R.raw.g2click);
 
-        duration = 10000;
+        duration = 5000;
+        curDur = duration;
         time.setMax(duration);
         time.incrementProgressBy(50);
         time.setProgress(duration);
 
-        timer = new Hourglass(duration, 50) {
-            @Override
-            public void onTimerTick(long timeRemaining) {
-                time.setProgress((int) timeRemaining);
-            }
-
-            @Override
-            public void onTimerFinish() {
-                time.setProgress(0);
-                for (ImageButton color : colors)
-                    color.setClickable(false);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), Game6FinishActivity.class);
-                        intent.putExtra("up", up);
-                        intent.putExtra("down", down);
-                        intent.putExtra("record", getRec());
-                        startActivity(intent);
-                        if (up - down > getRec())
-                            saveRec(up - down);
-                        finish();
-                    }
-                }, 1000);
-            }
-        };
+        setTimer(curDur);
         timer.startTimer();
         up = 0;
         down = 0;
@@ -170,7 +148,7 @@ public class Game6Activity extends AppCompatActivity {
                         }
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_CANCEL: {
-                            colors.get(ii).clearColorFilter();
+                            colors.get(ii).setColorFilter(returnColor(btColors.get(ii)));
                             colors.get(ii).invalidate();
                             break;
                         }
@@ -185,9 +163,24 @@ public class Game6Activity extends AppCompatActivity {
                     if (btColors.get(ii) == ansColor) {
                         up++;
                         upPoint.setText(String.valueOf(up));
+                        timer.pauseTimer();
+                        timer = null;
+                        if (curDur + 500 > duration)
+                            setTimer(duration);
+                        else
+                            setTimer(curDur + 500);
+                        timer.startTimer();
                     } else {
                         down++;
                         downPoint.setText(String.valueOf(down));
+                        if (curDur - 500 <= 0)
+                            timer.stopTimer();
+                        else {
+                            timer.pauseTimer();
+                            timer = null;
+                            setTimer(curDur - 500);
+                            timer.startTimer();
+                        }
                     }
                     newRound();
                 }
@@ -198,6 +191,40 @@ public class Game6Activity extends AppCompatActivity {
     private void newRound() {
         setBtColors();
         setColor();
+    }
+
+    private void setTimer(int dur) {
+        timer = new Hourglass(dur, 50) {
+            @Override
+            public void onTimerTick(long timeRemaining) {
+                curDur = (int) timeRemaining;
+                time.setProgress(curDur);
+            }
+
+            @Override
+            public void onTimerFinish() {
+                time.setProgress(0);
+                for (ImageButton color : colors)
+                    color.setClickable(false);
+                clickMP.reset();
+                clickMP.release();
+                clickMP = MediaPlayer.create(getApplicationContext(), R.raw.g6end);
+                clickMP.start();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(), Game6FinishActivity.class);
+                        intent.putExtra("up", up);
+                        intent.putExtra("down", down);
+                        intent.putExtra("record", getRec());
+                        startActivity(intent);
+                        if (up - down > getRec())
+                            saveRec(up - down);
+                        finish();
+                    }
+                }, 1000);
+            }
+        };
     }
 
     private void setBtColors() {
@@ -253,21 +280,18 @@ public class Game6Activity extends AppCompatActivity {
         finish();
     }
 
-    public void resetRec() {
-        rec = getPreferences(MODE_PRIVATE);
+    public static void resetRec() {
         SharedPreferences.Editor ed = rec.edit();
         ed.clear();
         ed.apply();
     }
 
     public int getRec() {
-        rec = getPreferences(MODE_PRIVATE);
         String record = rec.getString(RECORD, "0");
         return Integer.valueOf(record);
     }
 
     void saveRec(int res) {
-        rec = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor ed = rec.edit();
         ed.putString(RECORD, String.valueOf(res));
         ed.apply();

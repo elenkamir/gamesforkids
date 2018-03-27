@@ -4,10 +4,12 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
@@ -76,6 +78,25 @@ public class Game5Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        info.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                        info.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        info.clearColorFilter();
+                        info.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
 
         resetButton = (ImageButton) findViewById(R.id.imgButtonReset);
         resetButton.setEnabled(false);
@@ -99,7 +120,7 @@ public class Game5Activity extends AppCompatActivity {
 
         dialog = new Dialog(this);
 
-        dialog.setTitle(" Молодец! Отгадал! Сыграем ещё?");
+        //dialog.setTitle(" Молодец! Отгадал! Сыграем ещё?");
         dialog.setContentView(R.layout.activity_game5_dialog);
 
         Button btnOK = (Button) dialog.findViewById(R.id.button_OK_dialog);

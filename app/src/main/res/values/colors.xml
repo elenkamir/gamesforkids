@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ff4081</color>
+    <color name="colorAccent">#ff7600</color>
     <color name="main1Bt">#e4cdf8</color>
     <color name="main3Bt">#ebabe0</color>
     <color name="main4Bt">#fbbfd3</color>
@@ -27,5 +27,5 @@
     <color name="g6Background">#d8b38c</color>
     <color name="lightCont">#a0a0a0</color>
     <color name="wine">#c40f0f</color>
-    <color name="g6Bt">#dbb58e</color>
+    <color name="g6Bt">#e5d1be</color>
 </resources>

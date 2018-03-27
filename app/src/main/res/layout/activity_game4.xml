@@ -38,7 +38,7 @@
                     android:text="150"
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:fontFamily="@font/pelmeshka_cyrillic" />
 
             <SeekBar
                 android:id="@+id/seekBarRed"
@@ -67,7 +67,7 @@
                     android:text="150"
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:fontFamily="@font/pelmeshka_cyrillic" />
 
             <SeekBar
                 android:id="@+id/seekBarGreen"
@@ -97,7 +97,7 @@
                     android:text="150"
                     android:textAlignment="textEnd"
                     android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:fontFamily="@font/pelmeshka_cyrillic" />
 
             <SeekBar
                 android:id="@+id/seekBarBlue"

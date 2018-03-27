@@ -2,7 +2,9 @@ package ru.gamesforkids.gamesforkids;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -10,12 +12,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class Game6FinishActivity extends AppCompatActivity {
     TextView result;
     TextView record;
     TextView upPoint;
     TextView downPoint;
     TextView newRecord;
+    GifImageView firework;
     Button menu;
     Button retry;
 
@@ -33,6 +38,7 @@ public class Game6FinishActivity extends AppCompatActivity {
         result = findViewById(R.id.result);
         record = findViewById(R.id.record);
         newRecord = findViewById(R.id.new_record);
+        firework = findViewById(R.id.firework);
         menu = findViewById(R.id.menu);
         retry = findViewById(R.id.retry);
 
@@ -44,7 +50,15 @@ public class Game6FinishActivity extends AppCompatActivity {
         result.setText(String.valueOf(up - down));
         int rec = intent.getIntExtra("record", 0);
         if (up - down > rec) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.g2right);
+                    mp.start();
+                }
+            }, 200);
             record.setText(String.valueOf(up - down));
+            firework.setVisibility(View.VISIBLE);
         } else {
             newRecord.setVisibility(View.INVISIBLE);
             record.setText(String.valueOf(rec));

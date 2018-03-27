@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/g6_text"
+        android:textColor="@color/darkblue"
         android:fontFamily="@font/adigiana_2" />
 
     <Button
@@ -17,7 +18,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
+        android:padding="15dp"
         android:background="@color/lightblue"
-        android:fontFamily="@font/pelmeshka_cyrillic"
+        android:fontFamily="@font/adigiana_2"
         android:text="Понятно!" />
+
+    <Button
+        android:id="@+id/resetRec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:background="@color/lightblue"
+        android:fontFamily="@font/adigiana_2"
+        android:text="Сбросить рекорд" />
 </FrameLayout>

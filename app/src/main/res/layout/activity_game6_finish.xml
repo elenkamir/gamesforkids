@@ -6,106 +6,119 @@
     android:layout_height="match_parent"
     android:background="@color/g6Background">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/menu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.85"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/pelmeshka_cyrillic"
-            android:shadowColor="@color/lightCont"
-            android:elevation="10dp"
-            android:backgroundTint="#e5d1be"
-            android:text="Меню" />
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Space
+            <Button
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.85"
+                android:backgroundTint="@color/g6Bt"
+                android:elevation="10dp"
+                android:fontFamily="@font/pelmeshka_cyrillic"
+                android:shadowColor="@color/lightCont"
+                android:text="Меню" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0.8"
+                android:orientation="horizontal">
 
-            <FrameLayout
-                android:layout_width="match_parent"
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:rotation="180"
+                        android:tint="@color/wine"
+                        app:srcCompat="@drawable/thumb" />
+
+                    <TextView
+                        android:id="@+id/down_point"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/pelmeshka_cyrillic"
+                        android:gravity="center"
+                        android:text="20"
+                        android:textSize="30dp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/thumb" />
+
+                    <TextView
+                        android:id="@+id/up_point"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/pelmeshka_cyrillic"
+                        android:gravity="center"
+                        android:text="29"
+                        android:textSize="30dp" />
+                </FrameLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9">
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/pelmeshka_cyrillic"
+                android:text="9"
+                android:textSize="180dp" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:rotation="180"
-                    android:tint="@color/wine"
-                    app:srcCompat="@drawable/thumb" />
-
-                <TextView
-                    android:id="@+id/down_point"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:fontFamily="@font/pelmeshka_cyrillic"
-                    android:text="20"
-                    android:textSize="30dp" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/new_record"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/thumb" />
-
-                <TextView
-                    android:id="@+id/up_point"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:fontFamily="@font/pelmeshka_cyrillic"
-                    android:text="29"
-                    android:textSize="30dp" />
-            </FrameLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_gravity="center"
+                android:layout_weight="0.9"
+                android:fontFamily="@font/pelmeshka_cyrillic"
+                android:text="Новый рекорд!"
+                android:textSize="30dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="wrap_content"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/firework"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:layout_marginTop="-10dp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/pelmeshka_cyrillic"
-            android:text="9"
-            android:textSize="180dp" />
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/firework" />
 
-        <TextView
-            android:id="@+id/new_record"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:layout_gravity="center"
-            android:fontFamily="@font/pelmeshka_cyrillic"
-            android:textSize="30dp"
-            android:text="Новый рекорд!" />
-
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -145,7 +158,7 @@
             android:fontFamily="@font/pelmeshka_cyrillic"
             android:shadowColor="@color/lightCont"
             android:elevation="10dp"
-            android:backgroundTint="#e5d1be"
+            android:backgroundTint="@color/g6Bt"
             android:text="Заново" />
     </LinearLayout>
 

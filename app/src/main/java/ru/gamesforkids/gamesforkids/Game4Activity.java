@@ -2,12 +2,14 @@ package ru.gamesforkids.gamesforkids;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -81,6 +83,25 @@ public class Game4Activity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),Game4InfoActivity.class);
                 intent.putExtra("level", levelCur);
                 startActivity(intent);
+            }
+        });
+        info.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                        info.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        info.clearColorFilter();
+                        info.invalidate();
+                        break;
+                    }
+                }
+                return false;
             }
         });
 

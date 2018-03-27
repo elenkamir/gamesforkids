@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/g6Background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/adigiana_2"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:text="Вы точно хотите сбросить рекорд?" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:fontFamily="@font/adigiana_2"
+            android:backgroundTint="@color/g6Bt"
+            android:text="Да!" />
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:fontFamily="@font/adigiana_2"
+            android:backgroundTint="@color/g6Bt"
+            android:text="Нет" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -15,27 +15,26 @@
         android:text="@string/g4_text"
         android:layout_margin="10dp"
         android:paddingTop="50dp"
+        android:paddingBottom="10dp"
         android:textColor="@color/pink"
         android:gravity="center"
-        android:fontFamily="@font/pelmeshka_cyrillic"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/adigiana_2"
+        android:textSize="24sp"/>
 
    <RelativeLayout
        android:layout_below="@id/textView6"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:gravity="bottom">
+       android:gravity="center|bottom">
 
        <TextView
            android:id="@+id/textView8"
            android:layout_margin="10dp"
            android:gravity="center"
            android:textSize="16sp"
-           android:textStyle="bold"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:fontFamily="@font/pelmeshka_cyrillic"
+           android:fontFamily="@font/adigiana_2"
            android:text="@string/g4_text2" />
 
        <RadioGroup
@@ -43,7 +42,6 @@
            android:layout_below="@id/textView8"
            android:layout_height="match_parent"
            android:id="@+id/radioGroup"
-           android:paddingLeft="50dp"
            android:orientation="horizontal">
        <RadioButton
            android:id="@+id/radioButton1"
@@ -51,14 +49,14 @@
            android:layout_below="@id/textView8"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:paddingEnd="100dp"
+           android:paddingEnd="80dp"
            android:text="1" />
 
        <RadioButton
            android:layout_toEndOf="@id/radioButton1"
            android:layout_below="@id/textView8"
            android:id="@+id/radioButton2"
-           android:paddingEnd="100dp"
+           android:paddingEnd="80dp"
            android:textStyle="bold"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -81,7 +79,7 @@
            android:layout_alignEnd="@+id/textView8"
            android:layout_alignTop="@+id/radioGroup"
            android:text="Сохранить"
-           android:textStyle="bold" />
+           android:fontFamily="@font/adigiana_2" />
 
    </RelativeLayout>
 

@@ -3,6 +3,7 @@ package ru.gamesforkids.gamesforkids;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -98,11 +100,11 @@ public class Game1Activity extends AppCompatActivity {
         b4Blue = (ImageButton) findViewById(R.id.imageButton4);
         b5Black = (ImageButton) findViewById(R.id.imageButton5);
 
-        b1White.setColorFilter(getResources().getColor(R.color.white));
-        b2Yellow.setColorFilter(getResources().getColor(R.color.yellow));
-        b3Red.setColorFilter(getResources().getColor(R.color.red));
-        b4Blue.setColorFilter(getResources().getColor(R.color.blue));
-        b5Black.setColorFilter(getResources().getColor(R.color.black));
+        b1White.setColorFilter(Color.WHITE);
+        b2Yellow.setColorFilter(Color.YELLOW);
+        b3Red.setColorFilter(Color.RED);
+        b4Blue.setColorFilter(Color.BLUE);
+        b5Black.setColorFilter(Color.BLACK);
 
         WrongAns = (GifImageView) findViewById(R.id.wrong_ans);
         RightAns = (GifImageView) findViewById(R.id.right_ans);
@@ -114,6 +116,25 @@ public class Game1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),Game1InfoActivity.class);
                 startActivity(intent);
+            }
+        });
+        info.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                        info.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        info.clearColorFilter();
+                        info.invalidate();
+                        break;
+                    }
+                }
+                return false;
             }
         });
 
@@ -190,15 +211,15 @@ public class Game1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 click.start();
                 if (isFirstClick) {
-                    firstColorImageView.setImageDrawable(b1White.getDrawable());
+                    firstColorImageView.setColorFilter(Color.WHITE);
                     color1 = 1;
                     firstColorTextView.setText("Белый");
-                    firstColorTextView.setTextColor(getResources().getColor(R.color.white));
+                    firstColorTextView.setTextColor(Color.WHITE);
                     isFirstClick = false;
                 } else {
-                    secondColorImageView.setImageDrawable(b1White.getDrawable());
+                    secondColorImageView.setColorFilter(Color.WHITE);
                     secondColorTextView.setText("Белый");
-                    secondColorTextView.setTextColor(getResources().getColor(R.color.white));
+                    secondColorTextView.setTextColor(Color.WHITE);
                     color2 = 1;
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
@@ -211,8 +232,8 @@ public class Game1Activity extends AppCompatActivity {
                                 RightAns.setVisibility(View.GONE);
                                 setButtonsClickable();
                                 setResultColor();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -226,8 +247,8 @@ public class Game1Activity extends AppCompatActivity {
                             public void run() {
                                 WrongAns.setVisibility(View.GONE);
                                 setButtonsClickable();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -244,15 +265,15 @@ public class Game1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 click.start();
                 if (isFirstClick) {
-                    firstColorImageView.setImageDrawable(b2Yellow.getDrawable());
+                    firstColorImageView.setColorFilter(Color.YELLOW);
                     color1 = 2;
                     firstColorTextView.setText("Жёлтый");
-                    firstColorTextView.setTextColor(getResources().getColor(R.color.yellow));
+                    firstColorTextView.setTextColor(Color.YELLOW);
                     isFirstClick = false;
                 } else {
                     secondColorTextView.setText("Жёлтый");
-                    secondColorTextView.setTextColor(getResources().getColor(R.color.yellow));
-                    secondColorImageView.setImageDrawable(b2Yellow.getDrawable());
+                    secondColorTextView.setTextColor(Color.YELLOW);
+                    secondColorImageView.setColorFilter(Color.YELLOW);
                     color2 = 2;
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
@@ -265,8 +286,8 @@ public class Game1Activity extends AppCompatActivity {
                                 RightAns.setVisibility(View.GONE);
                                 setButtonsClickable();
                                 setResultColor();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -280,8 +301,8 @@ public class Game1Activity extends AppCompatActivity {
                             public void run() {
                                 WrongAns.setVisibility(View.GONE);
                                 setButtonsClickable();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -297,15 +318,15 @@ public class Game1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 click.start();
                 if (isFirstClick) {
-                    firstColorImageView.setImageDrawable(b3Red.getDrawable());
+                    firstColorImageView.setColorFilter(Color.RED);
                     color1 = 3;
                     firstColorTextView.setText("Красный");
-                    firstColorTextView.setTextColor(getResources().getColor(R.color.red));
+                    firstColorTextView.setTextColor(Color.RED);
                     isFirstClick = false;
                 } else {
                     secondColorTextView.setText("Красный");
-                    secondColorTextView.setTextColor(getResources().getColor(R.color.red));
-                    secondColorImageView.setImageDrawable(b3Red.getDrawable());
+                    secondColorTextView.setTextColor(Color.RED);
+                    secondColorImageView.setColorFilter(Color.RED);
                     color2 = 3;
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
@@ -318,8 +339,8 @@ public class Game1Activity extends AppCompatActivity {
                                 RightAns.setVisibility(View.GONE);
                                 setButtonsClickable();
                                 setResultColor();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -333,8 +354,8 @@ public class Game1Activity extends AppCompatActivity {
                             public void run() {
                                 WrongAns.setVisibility(View.GONE);
                                 setButtonsClickable();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -350,15 +371,15 @@ public class Game1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 click.start();
                 if (isFirstClick) {
-                    firstColorImageView.setImageDrawable(b4Blue.getDrawable());
+                    firstColorImageView.setColorFilter(Color.BLUE);
                     color1 = 4;
                     firstColorTextView.setText("Синий");
-                    firstColorTextView.setTextColor(getResources().getColor(R.color.blue));
+                    firstColorTextView.setTextColor(Color.BLUE);
                     isFirstClick = false;
                 } else {
                     secondColorTextView.setText("Синий");
-                    secondColorTextView.setTextColor(getResources().getColor(R.color.blue));
-                    secondColorImageView.setImageDrawable(b4Blue.getDrawable());
+                    secondColorTextView.setTextColor(Color.BLUE);
+                    secondColorImageView.setColorFilter(Color.BLUE);
                     color2 = 4;
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
@@ -371,8 +392,8 @@ public class Game1Activity extends AppCompatActivity {
                                 RightAns.setVisibility(View.GONE);
                                 setButtonsClickable();
                                 setResultColor();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -386,8 +407,8 @@ public class Game1Activity extends AppCompatActivity {
                             public void run() {
                                 WrongAns.setVisibility(View.GONE);
                                 setButtonsClickable();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -403,15 +424,15 @@ public class Game1Activity extends AppCompatActivity {
             public void onClick(View view) {
                 click.start();
                 if (isFirstClick) {
-                    firstColorImageView.setImageDrawable(b5Black.getDrawable());
+                    firstColorImageView.setColorFilter(Color.BLACK);
                     color1 = 5;
                     firstColorTextView.setText("Чёрный");
-                    firstColorTextView.setTextColor(getResources().getColor(R.color.black));
+                    firstColorTextView.setTextColor(Color.BLACK);
                     isFirstClick = false;
                 } else {
                     secondColorTextView.setText("Чёрный");
-                    secondColorTextView.setTextColor(getResources().getColor(R.color.black));
-                    secondColorImageView.setImageDrawable(b5Black.getDrawable());
+                    secondColorTextView.setTextColor(Color.BLACK);
+                    secondColorImageView.setColorFilter(Color.BLACK);
                     color2 = 5;
                     if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                         i++;
@@ -424,8 +445,8 @@ public class Game1Activity extends AppCompatActivity {
                                 RightAns.setVisibility(View.GONE);
                                 setButtonsClickable();
                                 setResultColor();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }
@@ -439,8 +460,8 @@ public class Game1Activity extends AppCompatActivity {
                             public void run() {
                                 WrongAns.setVisibility(View.GONE);
                                 setButtonsClickable();
-                                firstColorImageView.setImageResource(R.drawable.question);
-                                secondColorImageView.setImageResource(R.drawable.question);
+                                firstColorImageView.clearColorFilter();
+                                secondColorImageView.clearColorFilter();
                                 firstColorTextView.setText("");
                                 secondColorTextView.setText("");
                             }

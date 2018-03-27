@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:textColor="@color/darkblue"
         android:text="@string/g2_text"
         android:fontFamily="@font/adigiana_2" />
 
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
+        android:padding="15dp"
         android:background="@color/lightblue"
-        android:fontFamily="@font/pelmeshka_cyrillic"
+        android:fontFamily="@font/adigiana_2"
         android:text="Понятно!" />
 </FrameLayout>

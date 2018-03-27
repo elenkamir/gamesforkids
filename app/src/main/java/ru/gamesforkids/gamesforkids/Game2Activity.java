@@ -3,12 +3,14 @@ package ru.gamesforkids.gamesforkids;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -100,6 +102,25 @@ public class Game2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Game2InfoActivity.class);
                 startActivity(intent);
+            }
+        });
+        info.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                        info.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        info.clearColorFilter();
+                        info.invalidate();
+                        break;
+                    }
+                }
+                return false;
             }
         });
         ibColor1.setOnClickListener(new View.OnClickListener() {
