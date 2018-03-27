@@ -135,17 +135,19 @@
             android:id="@+id/right_ans"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom"
             android:scaleType="fitCenter"
             android:visibility="gone"
-            android:src="@drawable/happy_sun" />
+            android:src="@drawable/smile" />
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/wrong_ans"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal|bottom"
             android:visibility="gone"
-            android:src="@drawable/sad_cloud" />
+            android:src="@drawable/sadsmile" />
 
 
     </FrameLayout>

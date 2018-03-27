@@ -112,7 +112,7 @@
         </LinearLayout>
 
         <pl.droidsonroids.gif.GifImageView
-            android:src = "@drawable/happy_sun"
+            android:src = "@drawable/smile"
             android:id="@+id/right_ans_g4"
             android:layout_gravity="center"
             android:visibility="gone"
