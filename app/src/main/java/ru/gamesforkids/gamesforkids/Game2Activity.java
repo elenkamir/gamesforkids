@@ -27,31 +27,30 @@ import java.util.Random;
 
 import pl.droidsonroids.gif.GifImageView;
 
-
 public class Game2Activity extends AppCompatActivity {
-    ImageButton ibColor1;
-    ImageButton ibColor2;
-    ImageButton ibColor3;
     ImageView ivArc1;
-    ImageView ivArc2;
-    ImageView ivArc3;
-    ImageView ivArc4;
     ImageView ivArc5;
     ImageView rainbowContour;
     GifImageView goodEnd;
     GifImageView badEnd;
+    Space spacer;
+    ImageButton info;
 
     int k = 0;
-    ArrayList<ImageView> arcs;
-    ArrayList<Integer> btColors;
+    ImageView[] arcs = new ImageView[3];
+    ;
+    int[] btColors = new int[3];
     ArrayList<Integer> playerComb;
     ArrayList<Integer> rightComb;
-    ArrayList<Integer> setOfColors;
+    int[] setOfColors;
+    ImageButton[] allColorBT = new ImageButton[3];
+    ;
+    ImageView[] allColorIV = new ImageView[3];
+    ImageView[] allFlowerIV = new ImageView[3];
+    ;
     List<Integer> mix;
     MediaPlayer clickMP;
     MediaPlayer endMP = null;
-    Space spacer;
-    ImageButton info;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -74,21 +73,25 @@ public class Game2Activity extends AppCompatActivity {
         clickMP = MediaPlayer.create(this, R.raw.g2click);
         goodEnd = findViewById(R.id.happySun);
         badEnd = findViewById(R.id.sadCloud);
-        ibColor1 = findViewById(R.id.color1ib);
-        ibColor2 = findViewById(R.id.color2ib);
-        ibColor3 = findViewById(R.id.color3ib);
+
+        allColorBT[0] = findViewById(R.id.color1ib);
+        allColorBT[1] = findViewById(R.id.color2ib);
+        allColorBT[2] = findViewById(R.id.color3ib);
+
+        allColorIV[0] = findViewById(R.id.color1iv);
+        allColorIV[1] = findViewById(R.id.color2iv);
+        allColorIV[2] = findViewById(R.id.color3iv);
+
+        allFlowerIV[0] = findViewById(R.id.flower1);
+        allFlowerIV[1] = findViewById(R.id.flower2);
+        allFlowerIV[2] = findViewById(R.id.flower3);
 
         ivArc1 = findViewById(R.id.arc1iv);
-        ivArc2 = findViewById(R.id.arc2iv);
-        ivArc3 = findViewById(R.id.arc3iv);
-        ivArc4 = findViewById(R.id.arc4iv);
+        arcs[0] = findViewById(R.id.arc2iv);
+        arcs[1] = findViewById(R.id.arc3iv);
+        arcs[2] = findViewById(R.id.arc4iv);
         ivArc5 = findViewById(R.id.arc5iv);
         rainbowContour = findViewById(R.id.rainbowContour);
-
-        arcs = new ArrayList<>();
-        arcs.add(ivArc2);
-        arcs.add(ivArc3);
-        arcs.add(ivArc4);
 
         rightComb = new ArrayList<>();
         rightComb.add(1);
@@ -123,48 +126,47 @@ public class Game2Activity extends AppCompatActivity {
                 return false;
             }
         });
-        ibColor1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                arcs.get(k).setColorFilter(btColors.get(0));
-                ibColor1.setColorFilter(null);
-                ibColor1.setClickable(false);
-                playerComb.add(mix.get(0));
-                if (k < 2)
-                    k++;
-                else
-                    check(view);
-            }
-        });
-        ibColor2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                arcs.get(k).setColorFilter(btColors.get(1));
-                ibColor2.setColorFilter(null);
-                ibColor2.setClickable(false);
-                playerComb.add(mix.get(1));
-                if (k < 2)
-                    k++;
-                else
-                    check(view);
-            }
-        });
-        ibColor3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickMP.start();
-                arcs.get(k).setColorFilter(btColors.get(2));
-                ibColor3.setColorFilter(null);
-                ibColor3.setClickable(false);
-                playerComb.add(mix.get(2));
-                if (k < 2)
-                    k++;
-                else
-                    check(view);
-            }
-        });
+        for (int i = 0; i < 3; i++) {
+            final int ii = i;
+            allColorBT[ii].setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            if (allColorBT[ii].isClickable()) {
+                                allFlowerIV[ii].setColorFilter(0x99d3edff, PorterDuff.Mode.SRC_ATOP);
+                                allFlowerIV[ii].invalidate();
+                                break;
+                            }
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_CANCEL:
+                            if (allColorBT[ii].isClickable()) {
+                                allFlowerIV[ii].clearColorFilter();
+                                allFlowerIV[ii].invalidate();
+                                break;
+                            }
+                    }
+                    return false;
+                }
+            });
+            allColorBT[ii].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickMP.start();
+                    arcs[k].setColorFilter(btColors[ii]);
+                    allColorBT[ii].setColorFilter(0x99d3edff, PorterDuff.Mode.SRC_ATOP);
+                    allColorBT[ii].setClickable(false);
+                    allColorIV[ii].setColorFilter(0x99d3edff, PorterDuff.Mode.SRC_ATOP);
+                    allFlowerIV[ii].setColorFilter(0x99d3edff, PorterDuff.Mode.SRC_ATOP);
+                    playerComb.add(mix.get(ii));
+                    if (k < 2) {
+                        k++;
+                        arcs[k].clearColorFilter();
+                    } else
+                        check();
+                }
+            });
+        }
     }
 
     private void newGame() {
@@ -184,8 +186,8 @@ public class Game2Activity extends AppCompatActivity {
 
         setOfColors = genColors(redir, from0, inVar, f, c, d);
 
-        ivArc1.setColorFilter(setOfColors.get(0));
-        ivArc5.setColorFilter(setOfColors.get(4));
+        ivArc1.setColorFilter(setOfColors[0]);
+        ivArc5.setColorFilter(setOfColors[4]);
 
         redraw();
         k = 0;
@@ -196,7 +198,7 @@ public class Game2Activity extends AppCompatActivity {
         return Color.rgb(color[0], color[1], color[2]);
     }
 
-    private ArrayList<Integer> genColors(boolean redir, boolean from0, int inVar, int f, int c, int d) {
+    private int[] genColors(boolean redir, boolean from0, int inVar, int f, int c, int d) {
         /*
         color[0] = r;
         color[1] = g;
@@ -204,7 +206,7 @@ public class Game2Activity extends AppCompatActivity {
          */
         int[] color = new int[3];
         color[inVar] = c;
-        ArrayList<Integer> setOfGenColors = new ArrayList<>();
+        int[] setOfGenColors = new int[5];
         int k = 0;
         if (redir)
             f = 3 - f - inVar;
@@ -216,21 +218,21 @@ public class Game2Activity extends AppCompatActivity {
             color[f] = 255 - 5 * d / 2;
             color[3 - f - inVar] = 5 * d / 2;
         }
-        setOfGenColors.add(compColor(color));
-        while (k < 5) {
+        setOfGenColors[0] = compColor(color);
+        while (k < 4) {
             if (color[f] + d < 256)
                 color[f] += d;
             else {
                 color[3 - f - inVar] -= d - 255 + color[f];
                 color[f] = 255;
             }
-            setOfGenColors.add(compColor(color));
             k++;
+            setOfGenColors[k] = compColor(color);
         }
         return setOfGenColors;
     }
 
-    private void check(View view) {
+    private void check() {
         int delay = 4000;
         if (endMP != null) {
             endMP.reset();
@@ -289,21 +291,17 @@ public class Game2Activity extends AppCompatActivity {
         mix = Arrays.asList(1, 2, 3);
         Collections.shuffle(mix);
 
-        btColors = new ArrayList<>();
-        btColors.add(setOfColors.get(mix.get(0)));
-        btColors.add(setOfColors.get(mix.get(1)));
-        btColors.add(setOfColors.get(mix.get(2)));
+        for (int i = 0; i < 3; i++) {
+            btColors[i] = setOfColors[mix.get(i)];
+            allColorBT[i].setColorFilter(btColors[i]);
+            allColorBT[i].setClickable(true);
+            allColorIV[i].clearColorFilter();
+            allFlowerIV[i].clearColorFilter();
+            arcs[i].clearColorFilter();
+        }
+        arcs[1].setColorFilter(0xffd3edff, PorterDuff.Mode.SRC_ATOP);
+        arcs[2].setColorFilter(0xffd3edff, PorterDuff.Mode.SRC_ATOP);
 
-        ibColor1.setColorFilter(btColors.get(0));
-        ibColor2.setColorFilter(btColors.get(1));
-        ibColor3.setColorFilter(btColors.get(2));
-        ibColor1.setClickable(true);
-        ibColor2.setClickable(true);
-        ibColor3.setClickable(true);
-
-        ivArc2.setColorFilter(null);
-        ivArc3.setColorFilter(null);
-        ivArc4.setColorFilter(null);
         rainbowContour.setVisibility(View.VISIBLE);
 
         goodEnd.setVisibility(View.GONE);
@@ -311,21 +309,9 @@ public class Game2Activity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed ()
-    {
-        if (this.isFinishing() & endMP != null){
+    public void onBackPressed() {
+        if (endMP != null)
             endMP.stop();
-        }
         super.onBackPressed();
-    }
-
-
-    @Override
-    public void onPause ()
-    {
-        if (this.isFinishing() & endMP != null){
-            endMP.stop();
-        }
-        super.onPause();
     }
 }

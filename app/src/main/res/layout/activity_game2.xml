@@ -134,6 +134,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/flower1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/flower" />
@@ -162,6 +163,7 @@
                             app:srcCompat="@drawable/g2_bt" />
 
                         <ImageView
+                            android:id="@+id/color1iv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:srcCompat="@drawable/g2_bt_contour" />
@@ -183,6 +185,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/flower2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/flower" />
@@ -211,6 +214,7 @@
                             app:srcCompat="@drawable/g2_bt" />
 
                         <ImageView
+                            android:id="@+id/color2iv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:srcCompat="@drawable/g2_bt_contour" />
@@ -230,6 +234,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/flower3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/flower" />
@@ -258,6 +263,7 @@
                             app:srcCompat="@drawable/g2_bt" />
 
                         <ImageView
+                            android:id="@+id/color3iv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:srcCompat="@drawable/g2_bt_contour" />

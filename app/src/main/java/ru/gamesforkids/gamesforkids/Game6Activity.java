@@ -20,41 +20,34 @@ import android.widget.TextView;
 
 import com.ankushgrover.hourglass.Hourglass;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Game6Activity extends AppCompatActivity {
-    TextView textColor;
-    TextView upPoint;
-    TextView downPoint;
-    ImageButton color1;
-    ImageButton color2;
-    ImageButton color3;
-    ImageButton color4;
-    ImageButton color5;
-    ArrayList<ImageButton> colors;
+    TextView tvColor;
+    TextView tvUpPoint;
+    TextView tvDownPoint;
+    ImageButton ibColor1;
+    ImageButton ibColor2;
+    ImageButton ibColor3;
+    ImageButton ibColor4;
+    ImageButton ibColor5;
+    static ImageButton[] ibColors;
     ImageButton info;
     ProgressBar time;
 
-    int white = Color.parseColor("#ffffff");
-    int green = Color.parseColor("#00ff00");
-    int red = Color.parseColor("#ff0000");
-    int yellow = Color.parseColor("#ffff00");
-    int blue = Color.parseColor("#0000ff");
-    int darkWhite = Color.parseColor("#a8a8a8");
-    int darkGreen = Color.parseColor("#00a800");
-    int darkRed = Color.parseColor("#a80000");
-    int darkYellow = Color.parseColor("#a8a800");
-    int darkBlue = Color.parseColor("#0000a8");
+    int[] colorsNum = {Color.parseColor("#ffffff"), Color.parseColor("#00ff00"),
+            Color.parseColor("#ff0000"), Color.parseColor("#ffff00"), Color.parseColor("#0000ff")};
+    int[] darkColorsNum = {Color.parseColor("#a8a8a8"), Color.parseColor("#00a800"),
+            Color.parseColor("#a80000"), Color.parseColor("#a8a800"), Color.parseColor("#0000a8")};
 
-    int up;
-    int down;
-    int ansColor;
-    List<Integer> btColors;
-    List<String> colorsI;
+    int upPoint;
+    int downPoint;
+    int ansColorNum;
+    List<Integer> btColorsNum;
+    String[] cTitles = {"Белый", "Зелёный", "Красный", "Желтый", "Синий"};
     static Hourglass timer;
     int duration;
     int curDur;
@@ -76,21 +69,20 @@ public class Game6Activity extends AppCompatActivity {
         rec = getPreferences(MODE_PRIVATE);
         info = findViewById(R.id.info);
         time = findViewById(R.id.timer);
-        textColor = findViewById(R.id.r_color);
-        upPoint = findViewById(R.id.up_point);
-        downPoint = findViewById(R.id.down_point);
-        color1 = findViewById(R.id.bt_color1);
-        color2 = findViewById(R.id.bt_color2);
-        color3 = findViewById(R.id.bt_color3);
-        color4 = findViewById(R.id.bt_color4);
-        color5 = findViewById(R.id.bt_color5);
-        colors = new ArrayList<>();
-        colors.add(color1);
-        colors.add(color2);
-        colors.add(color3);
-        colors.add(color4);
-        colors.add(color5);
-        colorsI = Arrays.asList("Белый", "Зелёный", "Красный", "Желтый", "Синий");
+        tvColor = findViewById(R.id.r_color);
+        tvUpPoint = findViewById(R.id.up_point);
+        tvDownPoint = findViewById(R.id.down_point);
+        ibColor1 = findViewById(R.id.bt_color1);
+        ibColor2 = findViewById(R.id.bt_color2);
+        ibColor3 = findViewById(R.id.bt_color3);
+        ibColor4 = findViewById(R.id.bt_color4);
+        ibColor5 = findViewById(R.id.bt_color5);
+        ibColors = new ImageButton[5];
+        ibColors[0] = ibColor1;
+        ibColors[1] = ibColor2;
+        ibColors[2] = ibColor3;
+        ibColors[3] = ibColor4;
+        ibColors[4] = ibColor5;
         clickMP = MediaPlayer.create(this, R.raw.g2click);
 
         duration = 5000;
@@ -101,10 +93,10 @@ public class Game6Activity extends AppCompatActivity {
 
         setTimer(curDur);
         timer.startTimer();
-        up = 0;
-        down = 0;
-        upPoint.setText(String.valueOf(up));
-        downPoint.setText(String.valueOf(down));
+        upPoint = 0;
+        downPoint = 0;
+        tvUpPoint.setText(String.valueOf(upPoint));
+        tvDownPoint.setText(String.valueOf(downPoint));
 
         newRound();
 
@@ -112,11 +104,12 @@ public class Game6Activity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
-                        info.invalidate();
-                        break;
-                    }
+                    case MotionEvent.ACTION_DOWN:
+                        if (info.isClickable()) {
+                            info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                            info.invalidate();
+                            break;
+                        }
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL: {
                         info.clearColorFilter();
@@ -137,42 +130,42 @@ public class Game6Activity extends AppCompatActivity {
         });
         for (int i = 0; i < 5; i++) {
             final int ii = i;
-            colors.get(i).setOnTouchListener(new View.OnTouchListener() {
+            ibColors[i].setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN: {
-                            colors.get(ii).setColorFilter(returnDarkColor(btColors.get(ii)));
-                            colors.get(ii).invalidate();
+                            ibColors[ii].setColorFilter(darkColorsNum[btColorsNum.get(ii) - 1]);
+                            ibColors[ii].invalidate();
                             break;
                         }
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_CANCEL: {
-                            colors.get(ii).setColorFilter(returnColor(btColors.get(ii)));
-                            colors.get(ii).invalidate();
+                            ibColors[ii].setColorFilter(colorsNum[btColorsNum.get(ii) - 1]);
+                            ibColors[ii].invalidate();
                             break;
                         }
                     }
                     return false;
                 }
             });
-            colors.get(i).setOnClickListener(new View.OnClickListener() {
+            ibColors[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     clickMP.start();
-                    if (btColors.get(ii) == ansColor) {
-                        up++;
-                        upPoint.setText(String.valueOf(up));
+                    if (btColorsNum.get(ii) == ansColorNum) {
+                        upPoint++;
+                        tvUpPoint.setText(String.valueOf(upPoint));
                         timer.pauseTimer();
                         timer = null;
-                        if (curDur + 500 > duration)
+                        if (curDur + 600 > duration)
                             setTimer(duration);
                         else
-                            setTimer(curDur + 500);
+                            setTimer(curDur + 600);
                         timer.startTimer();
                     } else {
-                        down++;
-                        downPoint.setText(String.valueOf(down));
+                        downPoint++;
+                        tvDownPoint.setText(String.valueOf(downPoint));
                         if (curDur - 500 <= 0)
                             timer.stopTimer();
                         else {
@@ -204,23 +197,26 @@ public class Game6Activity extends AppCompatActivity {
             @Override
             public void onTimerFinish() {
                 time.setProgress(0);
-                for (ImageButton color : colors)
+                for (ImageButton color : ibColors)
                     color.setClickable(false);
                 clickMP.reset();
                 clickMP.release();
                 clickMP = MediaPlayer.create(getApplicationContext(), R.raw.g6end);
                 clickMP.start();
+                info.setClickable(false);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), Game6FinishActivity.class);
-                        intent.putExtra("up", up);
-                        intent.putExtra("down", down);
-                        intent.putExtra("record", getRec());
-                        startActivity(intent);
-                        if (up - down > getRec())
-                            saveRec(up - down);
-                        finish();
+                        if (!isFinishing()) {
+                            Intent intent = new Intent(getApplicationContext(), Game6FinishActivity.class);
+                            intent.putExtra("up", upPoint);
+                            intent.putExtra("down", downPoint);
+                            intent.putExtra("record", getRec());
+                            startActivity(intent);
+                            if (upPoint - downPoint > getRec())
+                                saveRec(upPoint - downPoint);
+                            finish();
+                        }
                     }
                 }, 1000);
             }
@@ -228,55 +224,35 @@ public class Game6Activity extends AppCompatActivity {
     }
 
     private void setBtColors() {
-        btColors = Arrays.asList(1, 2, 3, 4, 5);
-        Collections.shuffle(btColors);
+        btColorsNum = Arrays.asList(1, 2, 3, 4, 5);
+        Collections.shuffle(btColorsNum);
         for (int i = 0; i < 5; i++)
-            colors.get(i).setColorFilter(returnColor(btColors.get(i)));
+            ibColors[i].setColorFilter(colorsNum[btColorsNum.get(i) - 1]);
     }
 
     private void setColor() {
-        ansColor = new Random().nextInt(5) + 1;
-        textColor.setText(colorsI.get(new Random().nextInt(5)));
-        textColor.setTextColor(returnColor(ansColor));
-    }
-
-    private int returnColor(int n) {
-        switch (n) {
-            case 2:
-                return green;
-            case 3:
-                return red;
-            case 4:
-                return yellow;
-            case 5:
-                return blue;
-            default:
-                return white;
-        }
-    }
-
-    private int returnDarkColor(int n) {
-        switch (n) {
-            case 2:
-                return darkGreen;
-            case 3:
-                return darkRed;
-            case 4:
-                return darkYellow;
-            case 5:
-                return darkBlue;
-            default:
-                return darkWhite;
-        }
+        ansColorNum = new Random().nextInt(5) + 1;
+        tvColor.setText(cTitles[new Random().nextInt(5)]);
+        tvColor.setTextColor(colorsNum[ansColorNum - 1]);
     }
 
     public static void resume() {
-        timer.resumeTimer();
+        for (ImageButton color : ibColors)
+            color.setClickable(false);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (ImageButton color : ibColors)
+                    color.setClickable(true);
+                timer.resumeTimer();
+            }
+        }, 70);
     }
 
     @Override
     public void onBackPressed() {
         timer.pauseTimer();
+        clickMP.stop();
         finish();
     }
 

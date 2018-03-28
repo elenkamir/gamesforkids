@@ -23,6 +23,7 @@ public class Game6FinishActivity extends AppCompatActivity {
     GifImageView firework;
     Button menu;
     Button retry;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class Game6FinishActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.g2right);
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.g2right);
                     mp.start();
                 }
             }, 200);
@@ -67,7 +68,7 @@ public class Game6FinishActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
         retry.setOnClickListener(new View.OnClickListener() {
@@ -78,5 +79,12 @@ public class Game6FinishActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mp != null)
+            mp.stop();
+        super.onBackPressed();
     }
 }

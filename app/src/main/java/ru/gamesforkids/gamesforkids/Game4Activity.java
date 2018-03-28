@@ -72,7 +72,7 @@ public class Game4Activity extends AppCompatActivity {
         greenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
 
-       // acc = l1; // точность
+        // acc = l1; // точность
 
         levelCur = 1;
         acc = 40;
@@ -80,7 +80,7 @@ public class Game4Activity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Game4InfoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Game4InfoActivity.class);
                 intent.putExtra("level", levelCur);
                 startActivity(intent);
             }
@@ -106,7 +106,6 @@ public class Game4Activity extends AppCompatActivity {
         });
 
         newGame();
-
     }
 
     private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -144,25 +143,22 @@ public class Game4Activity extends AppCompatActivity {
         imgTask.setColorFilter(RGBtask);
         imgResult.setColorFilter(android.graphics.Color.rgb(150, 150, 150));
 
-        Log.i("LEVEL",String.valueOf(acc));
+        Log.i("LEVEL", String.valueOf(acc));
     }
 
-    public static void setLevel(int level){
+    public static void setLevel(int level) {
         int l1, l2, l3;
         levelCur = level;
         l1 = level * 40;  // 40
         l2 = level * 15;  // 30
         l3 = level * 6;  // 18
 
-        if (level == 1) {
+        if (level == 1)
             acc = l1;
-        }
-        if (level == 2) {
+        if (level == 2)
             acc = l2;
-        }
-        if (level == 3) {
+        if (level == 3)
             acc = l3;
-        }
     }
 
     //изменение значений бегунков
@@ -175,7 +171,6 @@ public class Game4Activity extends AppCompatActivity {
         txRed.setText(Integer.toString(redValue));
         txGreen.setText(Integer.toString(greenValue));
         txBlue.setText(Integer.toString(blueValue));
-
 
         int RGB = android.graphics.Color.rgb(redValue, greenValue, blueValue);
 
@@ -201,27 +196,13 @@ public class Game4Activity extends AppCompatActivity {
 
                 }
             }, 3000);
-            
         }
-
     }
 
     @Override
-    public void onBackPressed ()
-    {
-        if (this.isFinishing() & mp != null){
+    public void onBackPressed() {
+        if (mp != null)
             mp.stop();
-        }
         super.onBackPressed();
-    }
-
-
-    @Override
-    public void onPause ()
-    {
-        if (this.isFinishing() & mp != null){
-            mp.stop();
-        }
-        super.onPause();
     }
 }

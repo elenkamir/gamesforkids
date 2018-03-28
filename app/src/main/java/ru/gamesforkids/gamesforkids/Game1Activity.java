@@ -1,46 +1,31 @@
 package ru.gamesforkids.gamesforkids;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-import pl.droidsonroids.gif.GifImageButton;
 import pl.droidsonroids.gif.GifImageView;
 
 
 public class Game1Activity extends AppCompatActivity {
     String TAG = "TAG";
-    ImageButton b1White;
-    ImageButton b2Yellow;
-    ImageButton b3Red;
-    ImageButton b4Blue;
-    ImageButton b5Black;
 
     ImageButton info;
 
@@ -65,6 +50,10 @@ public class Game1Activity extends AppCompatActivity {
     int color1, color2, i;
     g1ResultColor color;
     ArrayList<g1ResultColor> g1ResultColors;
+    String[] cTitles = new String[5];
+    int[] btColors = new int[5];
+    int[] btDarkColors = new int[5];
+    ImageButton[] buttons = new ImageButton[5];
 
     MediaPlayer mp = null;
     MediaPlayer click;
@@ -80,6 +69,24 @@ public class Game1Activity extends AppCompatActivity {
 
         click = MediaPlayer.create(this, R.raw.g2click);
 
+        cTitles[0] = "Белый";
+        cTitles[1] = "Жёлтый";
+        cTitles[2] = "Красный";
+        cTitles[3] = "Синий";
+        cTitles[4] = "Черный";
+
+        btColors[0] = Color.WHITE;
+        btColors[1] = Color.YELLOW;
+        btColors[2] = Color.RED;
+        btColors[3] = Color.BLUE;
+        btColors[4] = Color.BLACK;
+
+        btDarkColors[0] = Color.parseColor("#f4f4f4");
+        btDarkColors[1] = Color.parseColor("#f4f400");
+        btDarkColors[2] = Color.parseColor("#ce0000");
+        btDarkColors[3] = Color.parseColor("#0000ce");
+        btDarkColors[4] = Color.parseColor("#333333");
+
         info = (ImageButton) findViewById(R.id.info_g1);
 
         resultColorImageView = (ImageView) findViewById(R.id.imgResult);
@@ -94,17 +101,13 @@ public class Game1Activity extends AppCompatActivity {
         PlusImageView = (ImageView) findViewById(R.id.imgPlus);
         EquationImageView = (ImageView) findViewById(R.id.imgEquation);
 
-        b1White = (ImageButton) findViewById(R.id.imageButton1);
-        b2Yellow = (ImageButton) findViewById(R.id.imageButton2);
-        b3Red = (ImageButton) findViewById(R.id.imageButton3);
-        b4Blue = (ImageButton) findViewById(R.id.imageButton4);
-        b5Black = (ImageButton) findViewById(R.id.imageButton5);
-
-        b1White.setColorFilter(Color.WHITE);
-        b2Yellow.setColorFilter(Color.YELLOW);
-        b3Red.setColorFilter(Color.RED);
-        b4Blue.setColorFilter(Color.BLUE);
-        b5Black.setColorFilter(Color.BLACK);
+        buttons[0] = findViewById(R.id.imageButton1);
+        buttons[1] = findViewById(R.id.imageButton2);
+        buttons[2] = findViewById(R.id.imageButton3);
+        buttons[3] = findViewById(R.id.imageButton4);
+        buttons[4] = findViewById(R.id.imageButton5);
+        for (int i = 0; i < 5; i++)
+            buttons[i].setColorFilter(btColors[i]);
 
         WrongAns = (GifImageView) findViewById(R.id.wrong_ans);
         RightAns = (GifImageView) findViewById(R.id.right_ans);
@@ -114,7 +117,7 @@ public class Game1Activity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Game1InfoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Game1InfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -122,11 +125,12 @@ public class Game1Activity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
-                        info.invalidate();
-                        break;
-                    }
+                    case MotionEvent.ACTION_DOWN:
+                        if (info.isClickable()) {
+                            info.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                            info.invalidate();
+                            break;
+                        }
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL: {
                         info.clearColorFilter();
@@ -205,301 +209,88 @@ public class Game1Activity extends AppCompatActivity {
 
         isFirstClick = true;
 
-
-        b1White.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.start();
-                if (isFirstClick) {
-                    firstColorImageView.setColorFilter(Color.WHITE);
-                    color1 = 1;
-                    firstColorTextView.setText("Белый");
-                    firstColorTextView.setTextColor(Color.WHITE);
-                    isFirstClick = false;
-                } else {
-                    secondColorImageView.setColorFilter(Color.WHITE);
-                    secondColorTextView.setText("Белый");
-                    secondColorTextView.setTextColor(Color.WHITE);
-                    color2 = 1;
-                    if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        i++;
-                        RightAns.setVisibility(View.VISIBLE);
-                        managerOfSound(true);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                RightAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                setResultColor();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
+        for (int j = 0; j < 5; j++) {
+            final int jj = j;
+            buttons[j].setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            if (buttons[jj].isClickable()) {
+                                buttons[jj].setColorFilter(btDarkColors[jj]);
+                                buttons[jj].invalidate();
+                                break;
                             }
-                        }, 3000);
-                    } else {
-                        WrongAns.setVisibility(View.VISIBLE);
-                        managerOfSound(false);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                WrongAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_CANCEL: {
+                            buttons[jj].setColorFilter(btColors[jj]);
+                            buttons[jj].invalidate();
+                            break;
+                        }
                     }
-                    // сделать сброс цветов
-                    isFirstClick = true;
+                    return false;
                 }
-            }
-        });
-
-        b2Yellow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.start();
-                if (isFirstClick) {
-                    firstColorImageView.setColorFilter(Color.YELLOW);
-                    color1 = 2;
-                    firstColorTextView.setText("Жёлтый");
-                    firstColorTextView.setTextColor(Color.YELLOW);
-                    isFirstClick = false;
-                } else {
-                    secondColorTextView.setText("Жёлтый");
-                    secondColorTextView.setTextColor(Color.YELLOW);
-                    secondColorImageView.setColorFilter(Color.YELLOW);
-                    color2 = 2;
-                    if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        i++;
-                        RightAns.setVisibility(View.VISIBLE);
-                        managerOfSound(true);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                RightAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                setResultColor();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
+            });
+            buttons[j].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    click.start();
+                    if (isFirstClick) {
+                        firstColorImageView.setColorFilter(btColors[jj]);
+                        color1 = jj + 1;
+                        firstColorTextView.setText(cTitles[jj]);
+                        firstColorTextView.setTextColor(btColors[jj]);
+                        isFirstClick = false;
                     } else {
-                        WrongAns.setVisibility(View.VISIBLE);
-                        managerOfSound(false);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                WrongAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
+                        secondColorImageView.setColorFilter(btColors[jj]);
+                        secondColorTextView.setText(cTitles[jj]);
+                        secondColorTextView.setTextColor(btColors[jj]);
+                        color2 = jj + 1;
+                        if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
+                            i++;
+                            RightAns.setVisibility(View.VISIBLE);
+                            managerOfSound(true);
+                            setButtonsUnclickable();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    RightAns.setVisibility(View.GONE);
+                                    setButtonsClickable();
+                                    setResultColor();
+                                    firstColorImageView.clearColorFilter();
+                                    secondColorImageView.clearColorFilter();
+                                    firstColorTextView.setText("");
+                                    secondColorTextView.setText("");
+                                }
+                            }, 3000);
+                        } else {
+                            WrongAns.setVisibility(View.VISIBLE);
+                            managerOfSound(false);
+                            setButtonsUnclickable();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    WrongAns.setVisibility(View.GONE);
+                                    setButtonsClickable();
+                                    firstColorImageView.clearColorFilter();
+                                    secondColorImageView.clearColorFilter();
+                                    firstColorTextView.setText("");
+                                    secondColorTextView.setText("");
+                                }
+                            }, 3000);
+                        }
+                        // сделать сброс цветов
+                        isFirstClick = true;
                     }
-                    isFirstClick = true;
                 }
-            }
-        });
-
-        b3Red.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.start();
-                if (isFirstClick) {
-                    firstColorImageView.setColorFilter(Color.RED);
-                    color1 = 3;
-                    firstColorTextView.setText("Красный");
-                    firstColorTextView.setTextColor(Color.RED);
-                    isFirstClick = false;
-                } else {
-                    secondColorTextView.setText("Красный");
-                    secondColorTextView.setTextColor(Color.RED);
-                    secondColorImageView.setColorFilter(Color.RED);
-                    color2 = 3;
-                    if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        i++;
-                        RightAns.setVisibility(View.VISIBLE);
-                        setButtonsUnclickable();
-                        managerOfSound(true);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                RightAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                setResultColor();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
-                    } else {
-                        WrongAns.setVisibility(View.VISIBLE);
-                        managerOfSound(false);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                WrongAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
-                    }
-                    isFirstClick = true;
-                }
-            }
-        });
-
-        b4Blue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.start();
-                if (isFirstClick) {
-                    firstColorImageView.setColorFilter(Color.BLUE);
-                    color1 = 4;
-                    firstColorTextView.setText("Синий");
-                    firstColorTextView.setTextColor(Color.BLUE);
-                    isFirstClick = false;
-                } else {
-                    secondColorTextView.setText("Синий");
-                    secondColorTextView.setTextColor(Color.BLUE);
-                    secondColorImageView.setColorFilter(Color.BLUE);
-                    color2 = 4;
-                    if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        i++;
-                        RightAns.setVisibility(View.VISIBLE);
-                        managerOfSound(true);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                RightAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                setResultColor();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
-                    } else {
-                        WrongAns.setVisibility(View.VISIBLE);
-                        managerOfSound(false);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                WrongAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
-                    }
-                    isFirstClick = true;
-                }
-            }
-        });
-
-        b5Black.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.start();
-                if (isFirstClick) {
-                    firstColorImageView.setColorFilter(Color.BLACK);
-                    color1 = 5;
-                    firstColorTextView.setText("Чёрный");
-                    firstColorTextView.setTextColor(Color.BLACK);
-                    isFirstClick = false;
-                } else {
-                    secondColorTextView.setText("Чёрный");
-                    secondColorTextView.setTextColor(Color.BLACK);
-                    secondColorImageView.setColorFilter(Color.BLACK);
-                    color2 = 5;
-                    if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
-                        i++;
-                        RightAns.setVisibility(View.VISIBLE);
-                        managerOfSound(true);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                RightAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                setResultColor();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
-                    } else {
-                        WrongAns.setVisibility(View.VISIBLE);
-                        managerOfSound(false);
-                        setButtonsUnclickable();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                WrongAns.setVisibility(View.GONE);
-                                setButtonsClickable();
-                                firstColorImageView.clearColorFilter();
-                                secondColorImageView.clearColorFilter();
-                                firstColorTextView.setText("");
-                                secondColorTextView.setText("");
-                            }
-                        }, 3000);
-                    }
-                    isFirstClick = true;
-                }
-            }
-        });
+            });
+        }
     }
 
-    public void onBackPressed ()
-    {
-        if (this.isFinishing() & mp != null){
+    public void onBackPressed() {
+        if (mp != null)
             mp.stop();
-        }
-
-/*        if (mp != null)
-            mp.stop();
-        onDestroy();*/
         super.onBackPressed();
-    }
-
-
-    @Override
-    public void onPause ()
-    {
-        if (this.isFinishing() & mp != null){
-            mp.stop();
-        }
-
-    /*    if (mp != null)
-        {
-            mp.pause();
-            mp.stop();
-        }
-        onDestroy();*/
-        super.onPause();
     }
 
     public void setResultColor() {
@@ -509,16 +300,17 @@ public class Game1Activity extends AppCompatActivity {
             resultColorTextView.setText(color.g1Title);
             resultColorImageView.setColorFilter(color.g1Color);
         } else {
-                    setButtonsUnclickable();
-                    resultColorTextView.setText("");
-                    firstColorTextView.setText("");
-                    secondColorTextView.setText("");
-                    firstColorImageView.setImageDrawable(null);
-                    secondColorImageView.setImageDrawable(null);
-                    resultColorImageView.setImageDrawable(null);
-                    PlusImageView.setImageDrawable(null);
-                    EquationImageView.setImageDrawable(null);
-                    GoodFinish.setVisibility(View.VISIBLE);
+            setButtonsUnclickable();
+            info.setClickable(false);
+            resultColorTextView.setText("");
+            firstColorTextView.setText("");
+            secondColorTextView.setText("");
+            firstColorImageView.setImageDrawable(null);
+            secondColorImageView.setImageDrawable(null);
+            resultColorImageView.setImageDrawable(null);
+            PlusImageView.setImageDrawable(null);
+            EquationImageView.setImageDrawable(null);
+            GoodFinish.setVisibility(View.VISIBLE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -531,19 +323,13 @@ public class Game1Activity extends AppCompatActivity {
     }
 
     public void setButtonsUnclickable() {
-        b1White.setClickable(false);
-        b2Yellow.setClickable(false);
-        b3Red.setClickable(false);
-        b4Blue.setClickable(false);
-        b5Black.setClickable(false);
+        for (ImageButton bt : buttons)
+            bt.setClickable(false);
     }
 
     public void setButtonsClickable() {
-        b1White.setClickable(true);
-        b2Yellow.setClickable(true);
-        b3Red.setClickable(true);
-        b4Blue.setClickable(true);
-        b5Black.setClickable(true);
+        for (ImageButton bt : buttons)
+            bt.setClickable(true);
     }
 
     protected void managerOfSound(boolean correct) {
