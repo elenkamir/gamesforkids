@@ -3,10 +3,12 @@ package ru.gamesforkids.gamesforkids;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.pm.ActivityInfo;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,15 +25,22 @@ public class Game6InfoActivity extends AppCompatActivity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
         TextView info = findViewById(R.id.infoText);
-        info.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.text_medium));
+        info.setTextSize(size.x / 50 > size.y / 28 ? size.y / 28 : size.x / 50);
         Button reset = findViewById(R.id.resetRec);
-        Button back = findViewById(R.id.back);
+        reset.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
 
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.activity_game6_dialog);
+        TextView question = dialog.findViewById(R.id.questionT);
+        question.setTextSize(size.x / 50 > size.y / 28 ? size.y / 28 : size.x / 50);
         Button aYes = dialog.findViewById(R.id.yes);
+        aYes.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
         Button aNo = dialog.findViewById(R.id.no);
+        aNo.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
 
         aYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,12 +60,6 @@ public class Game6InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.show();
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
             }
         });
     }

@@ -4,16 +4,18 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Game5Activity extends AppCompatActivity {
 
@@ -98,7 +99,16 @@ public class Game5Activity extends AppCompatActivity {
             }
         }, 500);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
         info = (ImageButton) findViewById(R.id.info_g5);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) info.getLayoutParams();
+        params.height = size.y / 8;
+        params.width = params.height;
+        info.setLayoutParams(params);
+
         // вызов справки
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +139,10 @@ public class Game5Activity extends AppCompatActivity {
 
         resetButton = (ImageButton) findViewById(R.id.imgButtonReset);
         resetButton.setEnabled(false);
+        params = (FrameLayout.LayoutParams) resetButton.getLayoutParams();
+        params.height = size.y / 8;
+        params.width = params.height;
+        resetButton.setLayoutParams(params);
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +167,11 @@ public class Game5Activity extends AppCompatActivity {
 
         Button btnOK = (Button) dialog.findViewById(R.id.button_OK_dialog);
         Button btnCancel = (Button) dialog.findViewById(R.id.button_Cancel_dialog);
+
+        TextView question = dialog.findViewById(R.id.textView);
+        question.setTextSize(size.x / 50 > size.y / 28 ? size.y / 28 : size.x / 50);
+        btnOK.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
+        btnCancel.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="8"
         android:orientation="vertical">
 
         <LinearLayout
@@ -20,100 +20,195 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/info_g5"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="7dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/info" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
-            <ImageButton
-                android:id="@+id/imgButtonReset"
+                <ImageButton
+                    android:id="@+id/info_g5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/info" />
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:backgroundTint="@color/g6Bt"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/stat_notify_sync" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/imgButtonReset"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ret" />
+            </FrameLayout>
+
         </LinearLayout>
 
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
-
+            android:layout_weight="1" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/pianoRL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoRed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/piano_red" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoOrange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageBtnPianoRed"
-            android:background="@color/black"
-            app:srcCompat="@drawable/piano_orange" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_red" />
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoYellow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageBtnPianoOrange"
-            android:background="@color/black"
-            app:srcCompat="@drawable/piano_yellow" />
+            <ImageButton
+                android:id="@+id/imageBtnPianoRed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_red2" />
+        </FrameLayout>
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoGreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageBtnPianoYellow"
-            android:background="@color/black"
-            app:srcCompat="@drawable/piano_green" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoCyan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageBtnPianoGreen"
-            android:background="@color/black"
-            app:srcCompat="@drawable/piano_cyan" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_orange" />
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoBlue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageBtnPianoCyan"
-            android:background="@color/black"
-            app:srcCompat="@drawable/piano_blue" />
+            <ImageButton
+                android:id="@+id/imageBtnPianoOrange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_orange2" />
+        </FrameLayout>
 
-        <ImageButton
-            android:id="@+id/imageBtnPianoViolet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageBtnPianoBlue"
-            android:background="@color/black"
-            app:srcCompat="@drawable/piano_violet" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_yellow" />
+
+            <ImageButton
+                android:id="@+id/imageBtnPianoYellow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_yellow2" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_green" />
+
+            <ImageButton
+                android:id="@+id/imageBtnPianoGreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_green2" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_cyan" />
+
+            <ImageButton
+                android:id="@+id/imageBtnPianoCyan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_cyan2" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_blue" />
+
+            <ImageButton
+                android:id="@+id/imageBtnPianoBlue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_blue2" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_violet" />
+
+            <ImageButton
+                android:id="@+id/imageBtnPianoViolet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/piano_violet2" />
+        </FrameLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

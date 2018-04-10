@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -85,10 +88,26 @@ public class Game6Activity extends AppCompatActivity {
         ibColors[4] = ibColor5;
         clickMP = MediaPlayer.create(this, R.raw.g2click);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) info.getLayoutParams();
+        params.height = size.y / 12;
+        params.width = params.height;
+        info.setLayoutParams(params);
+
+        params = (FrameLayout.LayoutParams) time.getLayoutParams();
+        params.width = size.x / 3;
+        time.setLayoutParams(params);
+
+        tvUpPoint.setTextSize(size.x / 45 > size.y / 25 ? size.y / 20 : size.x / 35);
+        tvDownPoint.setTextSize(size.x / 45 > size.y / 25 ? size.y / 20 : size.x / 35);
+        tvColor.setTextSize(size.x / 45 > size.y / 25 ? size.y / 10 : size.x / 20);
+
         duration = 5000;
         curDur = duration;
         time.setMax(duration);
-        time.incrementProgressBy(50);
+        time.incrementProgressBy(30);
         time.setProgress(duration);
 
         setTimer(curDur);
@@ -187,7 +206,7 @@ public class Game6Activity extends AppCompatActivity {
     }
 
     private void setTimer(int dur) {
-        timer = new Hourglass(dur, 50) {
+        timer = new Hourglass(dur, 30) {
             @Override
             public void onTimerTick(long timeRemaining) {
                 curDur = (int) timeRemaining;

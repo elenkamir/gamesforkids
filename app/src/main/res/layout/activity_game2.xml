@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:adjustViewBounds="true"
     android:background="@color/g2Sky"
     android:orientation="horizontal"
     tools:context="ru.gamesforkids.gamesforkids.Game2Activity">
@@ -15,115 +16,59 @@
         android:baselineAligned="false"
         android:orientation="horizontal">
 
-        <RelativeLayout
-            android:id="@+id/rainbow"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
             android:layout_weight="1">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/arc1iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                app:srcCompat="@drawable/arc1" />
 
-                <Space
-                    android:id="@+id/spacer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="12"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="9" />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/arc1iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@drawable/arc1" />
-
-                        <ImageView
-                            android:id="@+id/arc2iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@drawable/arc2" />
-
-                        <ImageView
-                            android:id="@+id/arc3iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@drawable/arc3" />
-
-                        <ImageView
-                            android:id="@+id/arc4iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@drawable/arc4" />
-
-                        <ImageView
-                            android:id="@+id/arc5iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@drawable/arc5" />
-
-                        <ImageView
-                            android:id="@+id/rainbowContour"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@drawable/rainbow_contour" />
-                    </FrameLayout>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="9" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
+            <ImageView
+                android:id="@+id/arc2iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                app:srcCompat="@drawable/arc2" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitEnd"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/cloud" />
+            <ImageView
+                android:id="@+id/arc3iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc3" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="30"/>
-            </LinearLayout>
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/arc4iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc4" />
+
+            <ImageView
+                android:id="@+id/arc5iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/arc5" />
+
+            <ImageView
+                android:id="@+id/rainbowContour"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/rainbow_contour" />
+
+            <ImageView
+                android:id="@+id/cloud"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/cloud" />
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/colors"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
             android:layout_weight="4"
             android:orientation="vertical">
 
@@ -149,25 +94,42 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5" />
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="4">
+                        android:layout_weight="4"
+                        android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/color1ib"
+                        <Space
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/g2_bt" />
+                            android:layout_weight="5" />
 
-                        <ImageView
-                            android:id="@+id/color1iv"
+                        <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:srcCompat="@drawable/g2_bt_contour" />
-                    </FrameLayout>
+                            android:layout_weight="4">
+
+                            <ImageButton
+                                android:id="@+id/color1ib"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/g2_bt" />
+
+                            <ImageView
+                                android:id="@+id/color1iv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/g2_bt_contour" />
+                        </FrameLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5" />
+                    </LinearLayout>
 
                     <Space
                         android:layout_width="match_parent"
@@ -200,25 +162,42 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5" />
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="4">
+                        android:layout_weight="4"
+                        android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/color2ib"
+                        <Space
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/g2_bt" />
+                            android:layout_weight="5" />
 
-                        <ImageView
-                            android:id="@+id/color2iv"
+                        <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:srcCompat="@drawable/g2_bt_contour" />
-                    </FrameLayout>
+                            android:layout_weight="4">
+
+                            <ImageButton
+                                android:id="@+id/color2ib"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/g2_bt" />
+
+                            <ImageView
+                                android:id="@+id/color2iv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/g2_bt_contour" />
+                        </FrameLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5" />
+                    </LinearLayout>
 
                     <Space
                         android:layout_width="match_parent"
@@ -249,25 +228,42 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5" />
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="4">
+                        android:layout_weight="4"
+                        android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/color3ib"
+                        <Space
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@null"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/g2_bt" />
+                            android:layout_weight="5" />
 
-                        <ImageView
-                            android:id="@+id/color3iv"
+                        <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:srcCompat="@drawable/g2_bt_contour" />
-                    </FrameLayout>
+                            android:layout_weight="4">
+
+                            <ImageButton
+                                android:id="@+id/color3ib"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/g2_bt" />
+
+                            <ImageView
+                                android:id="@+id/color3iv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/g2_bt_contour" />
+                        </FrameLayout>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5" />
+                    </LinearLayout>
 
                     <Space
                         android:layout_width="match_parent"

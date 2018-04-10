@@ -2,6 +2,7 @@ package ru.gamesforkids.gamesforkids;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -9,10 +10,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -87,7 +90,16 @@ public class Game1Activity extends AppCompatActivity {
         btDarkColors[3] = Color.parseColor("#0000ce");
         btDarkColors[4] = Color.parseColor("#333333");
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
         info = (ImageButton) findViewById(R.id.info_g1);
+
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) info.getLayoutParams();
+        params.height = size.y / 12;
+        params.width = params.height;
+        info.setLayoutParams(params);
 
         resultColorImageView = (ImageView) findViewById(R.id.imgResult);
         resultColorTextView = (TextView) findViewById(R.id.tvColorResult);
@@ -97,6 +109,10 @@ public class Game1Activity extends AppCompatActivity {
 
         secondColorImageView = (ImageView) findViewById(R.id.imgColor2);
         secondColorTextView = (TextView) findViewById(R.id.tvColor2);
+
+        resultColorTextView.setTextSize(size.x / 30 > size.y / 53 ? size.y / 30 : size.x / 53);
+        firstColorTextView.setTextSize(size.x / 30 > size.y / 53 ? size.y / 30 : size.x / 53);
+        secondColorTextView.setTextSize(size.x / 30 > size.y / 53 ? size.y / 30 : size.x / 53);
 
         PlusImageView = (ImageView) findViewById(R.id.imgPlus);
         EquationImageView = (ImageView) findViewById(R.id.imgEquation);
@@ -112,6 +128,8 @@ public class Game1Activity extends AppCompatActivity {
         WrongAns = (GifImageView) findViewById(R.id.wrong_ans);
         RightAns = (GifImageView) findViewById(R.id.right_ans);
         GoodFinish = (ImageView) findViewById(R.id.good_finish);
+
+        WrongAns.setPadding(size.y / 10, size.y / 7, size.y / 10, size.y / 15);
 
         // вызов справки
         info.setOnClickListener(new View.OnClickListener() {
@@ -248,9 +266,14 @@ public class Game1Activity extends AppCompatActivity {
                         color2 = jj + 1;
                         if ((color1 != color2) & (color1 == color.g1ColorOne || color1 == color.g1ColorTwo) & (color2 == color.g1ColorOne || color2 == color.g1ColorTwo)) {
                             i++;
-                            RightAns.setVisibility(View.VISIBLE);
                             managerOfSound(true);
                             setButtonsUnclickable();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    RightAns.setVisibility(View.VISIBLE);
+                                }
+                            }, 500);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -264,9 +287,14 @@ public class Game1Activity extends AppCompatActivity {
                                 }
                             }, 3000);
                         } else {
-                            WrongAns.setVisibility(View.VISIBLE);
                             managerOfSound(false);
                             setButtonsUnclickable();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    WrongAns.setVisibility(View.VISIBLE);
+                                }
+                            }, 500);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {

@@ -12,15 +12,4 @@
         android:textColor="@color/darkblue"
         android:text="@string/g2_text"
         android:fontFamily="@font/adigiana_2" />
-
-    <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:padding="15dp"
-        android:background="@color/lightblue"
-        android:fontFamily="@font/adigiana_2"
-        android:text="Понятно!" />
 </FrameLayout>

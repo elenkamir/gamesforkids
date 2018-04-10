@@ -26,7 +26,6 @@
                 android:backgroundTint="@color/g6Bt"
                 android:elevation="10dp"
                 android:fontFamily="@font/pelmeshka_cyrillic"
-                android:shadowColor="@color/lightCont"
                 android:text="Меню" />
 
             <LinearLayout
@@ -132,6 +131,7 @@
             android:layout_weight="0.8" />
 
         <TextView
+            android:id="@+id/recordT"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
@@ -150,16 +150,17 @@
             android:text="21"
             android:textSize="80dp" />
 
-        <Button
+
+        <ImageButton
             android:id="@+id/retry"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:background="@null"
             android:layout_weight="0.5"
-            android:fontFamily="@font/pelmeshka_cyrillic"
-            android:shadowColor="@color/lightCont"
-            android:elevation="10dp"
-            android:backgroundTint="@color/g6Bt"
-            android:text="Заново" />
+            android:elevation="20dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/ret" />
     </LinearLayout>
 
 </LinearLayout>

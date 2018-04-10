@@ -13,24 +13,13 @@
         android:fontFamily="@font/adigiana_2" />
 
     <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:padding="15dp"
-        android:background="@color/lightblue"
-        android:fontFamily="@font/adigiana_2"
-        android:text="Понятно!" />
-
-    <Button
         android:id="@+id/resetRec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="20dp"
+        android:layout_gravity="end"
+        android:layout_margin="15dp"
         android:padding="15dp"
-        android:background="@color/lightblue"
+        android:background="@color/g6Bt"
         android:fontFamily="@font/adigiana_2"
         android:text="Сбросить рекорд" />
 </FrameLayout>

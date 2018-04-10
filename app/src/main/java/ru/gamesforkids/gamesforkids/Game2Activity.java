@@ -14,9 +14,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Space;
 
 import java.util.ArrayList;
@@ -33,21 +35,17 @@ public class Game2Activity extends AppCompatActivity {
     ImageView rainbowContour;
     GifImageView goodEnd;
     GifImageView badEnd;
-    Space spacer;
     ImageButton info;
 
     int k = 0;
     ImageView[] arcs = new ImageView[3];
-    ;
     int[] btColors = new int[3];
     ArrayList<Integer> playerComb;
     ArrayList<Integer> rightComb;
     int[] setOfColors;
     ImageButton[] allColorBT = new ImageButton[3];
-    ;
     ImageView[] allColorIV = new ImageView[3];
     ImageView[] allFlowerIV = new ImageView[3];
-    ;
     List<Integer> mix;
     MediaPlayer clickMP;
     MediaPlayer endMP = null;
@@ -62,13 +60,13 @@ public class Game2Activity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         info = findViewById(R.id.info);
-        spacer = findViewById(R.id.spacer);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        if ((double) size.y / (double) size.x >= 0.58)
-            spacer.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT, 6));
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) info.getLayoutParams();
+        params.height = size.y / 12;
+        params.width = params.height;
+        info.setLayoutParams(params);
 
         clickMP = MediaPlayer.create(this, R.raw.g2click);
         goodEnd = findViewById(R.id.happySun);

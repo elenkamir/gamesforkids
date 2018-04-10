@@ -2,6 +2,7 @@ package ru.gamesforkids.gamesforkids;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,12 +10,16 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,11 +54,19 @@ public class Game4Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Intent intent = getIntent();
-
         mp = MediaPlayer.create(this, R.raw.g2right);
 
-        info = (ImageButton) findViewById(R.id.info_g4);
+        info = findViewById(R.id.info_g4);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) info.getLayoutParams();
+        params.height = size.y / 12;
+        params.width = params.height;
+        info.setLayoutParams(params);
+
+        LinearLayout seekBarsLL = findViewById(R.id.seekBars);
+        seekBarsLL.setPadding(0, 0, 0, size.y / 10);
 
         imgResult = (ImageView) findViewById(R.id.imgResult);
         imgTask = (ImageView) findViewById(R.id.imgTask);
@@ -62,6 +75,9 @@ public class Game4Activity extends AppCompatActivity {
         txRed = (TextView) findViewById(R.id.txRed);
         txGreen = (TextView) findViewById(R.id.txGreen);
         txBlue = (TextView) findViewById(R.id.txBlue);
+        txRed.setTextSize(size.x / 50 > size.y / 30 ? size.y / 30 : size.x / 50);
+        txGreen.setTextSize(size.x / 50 > size.y / 30 ? size.y / 30 : size.x / 50);
+        txBlue.setTextSize(size.x / 50 > size.y / 30 ? size.y / 30 : size.x / 50);
 
         redSeekBar = (SeekBar) findViewById(R.id.seekBarRed);
         greenSeekBar = (SeekBar) findViewById(R.id.seekBarGreen);
@@ -182,6 +198,12 @@ public class Game4Activity extends AppCompatActivity {
             rightAns.setVisibility(View.VISIBLE);
             mp.start();
             imgResult.setColorFilter(RGBtask);
+            txRed.setText(Integer.toString(red));
+            txGreen.setText(Integer.toString(green));
+            txBlue.setText(Integer.toString(blue));
+            redSeekBar.setProgress(red);
+            greenSeekBar.setProgress(green);
+            blueSeekBar.setProgress(blue);
             redSeekBar.setEnabled(false);
             greenSeekBar.setEnabled(false);
             blueSeekBar.setEnabled(false);

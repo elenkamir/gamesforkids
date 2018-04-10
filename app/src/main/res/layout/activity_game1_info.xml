@@ -8,14 +8,12 @@
     tools:context="ru.gamesforkids.gamesforkids.Game1InfoActivity"
     android:background="@color/g2Sky">
 
-
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/infoText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/adigiana_2"
         android:text="@string/g1_text"
         android:textColor="@color/pink"
-        android:gravity="center"
-        android:textSize="30sp" />
+        android:gravity="center" />
 </LinearLayout>
