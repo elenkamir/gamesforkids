@@ -46,8 +46,8 @@ public class Game6Activity extends AppCompatActivity {
     int[] darkColorsNum = {Color.parseColor("#a8a8a8"), Color.parseColor("#00a800"),
             Color.parseColor("#a80000"), Color.parseColor("#a8a800"), Color.parseColor("#0000a8")};
 
-    int upPoint;
-    int downPoint;
+    int upPoint, downPoint;
+    int level;
     int ansColorNum;
     List<Integer> btColorsNum;
     String[] cTitles = {"Белый", "Зелёный", "Красный", "Желтый", "Синий"};
@@ -104,6 +104,7 @@ public class Game6Activity extends AppCompatActivity {
         tvDownPoint.setTextSize(size.x / 45 > size.y / 25 ? size.y / 20 : size.x / 35);
         tvColor.setTextSize(size.x / 45 > size.y / 25 ? size.y / 10 : size.x / 20);
 
+        level = 1;
         duration = 5000;
         curDur = duration;
         time.setMax(duration);
@@ -177,23 +178,24 @@ public class Game6Activity extends AppCompatActivity {
                         tvUpPoint.setText(String.valueOf(upPoint));
                         timer.pauseTimer();
                         timer = null;
-                        if (curDur + 600 > duration)
+                        if (curDur + 300 *(level+2)/level > duration)
                             setTimer(duration);
                         else
-                            setTimer(curDur + 600);
+                            setTimer(curDur + 300 *(level+2)/level);
                         timer.startTimer();
                     } else {
                         downPoint++;
                         tvDownPoint.setText(String.valueOf(downPoint));
-                        if (curDur - 500 <= 0)
+                        if (curDur - 300 * level/(level+2) <= 0)
                             timer.stopTimer();
                         else {
                             timer.pauseTimer();
                             timer = null;
-                            setTimer(curDur - 500);
+                            setTimer(curDur - 300 * level/(level+2));
                             timer.startTimer();
                         }
                     }
+                    level += (upPoint-downPoint) / 15;
                     newRound();
                 }
             });

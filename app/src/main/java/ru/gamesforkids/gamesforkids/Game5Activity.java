@@ -38,7 +38,7 @@ public class Game5Activity extends AppCompatActivity {
             Color.rgb(255, 255, 1), Color.rgb(0, 255, 1),
             Color.rgb(1, 255, 255), Color.rgb(0, 0, 254),
             Color.rgb(189, 2, 255)};
-    Dialog dialog;
+    Dialog dialog, dialog2;
     Toast toast;
 
 
@@ -137,6 +137,47 @@ public class Game5Activity extends AppCompatActivity {
             }
         });
 
+        dialog2 = new Dialog(this);
+        //dialog.setTitle(" Молодец! Отгадал! Сыграем ещё?");
+        dialog2.setContentView(R.layout.activity_game5_dialog);
+
+        Button btnOK2 = (Button) dialog2.findViewById(R.id.button_OK_dialog);
+        Button btnCancel2 = (Button) dialog2.findViewById(R.id.button_Cancel_dialog);
+
+        TextView question2 = dialog2.findViewById(R.id.textView);
+        question2.setTextSize(size.x / 50 > size.y / 28 ? size.y / 28 : size.x / 50);
+        question2.setText("Начать игру заново?");
+        btnOK2.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
+        btnOK2.setText("Да");
+        btnCancel2.setTextSize(size.x / 75 > size.y / 42 ? size.y / 42 : size.x / 75);
+        btnCancel2.setText("Нет");
+
+        btnOK2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog2.dismiss();
+                if (toast != null)
+                    toast.cancel();
+                toast = Toast.makeText(getApplicationContext(),
+                        "Хорошо, давай снова. Уровень 1.", Toast.LENGTH_SHORT);
+                toast.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        level = 1;
+                        newGame();
+                    }
+                }, 500);
+            }
+        });
+        btnCancel2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog2.dismiss();
+                ImageButtonsEnable();
+            }
+        });
+
         resetButton = (ImageButton) findViewById(R.id.imgButtonReset);
         resetButton.setEnabled(false);
         params = (FrameLayout.LayoutParams) resetButton.getLayoutParams();
@@ -144,22 +185,33 @@ public class Game5Activity extends AppCompatActivity {
         params.width = params.height;
         resetButton.setLayoutParams(params);
 
+        resetButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        resetButton.setColorFilter(0x65000000, PorterDuff.Mode.SRC_ATOP);
+                        resetButton.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        resetButton.clearColorFilter();
+                        resetButton.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 resetButton.setEnabled(false);
-                if (toast != null)
-                    toast.cancel();
-                toast = Toast.makeText(getApplicationContext(),
-                        "Хорошо, давай снова. Уровень 1.", Toast.LENGTH_SHORT);
-                toast.show();
                 ImageButtonsUnEnable();
-                level = 1;
-
-                newGame();
+                dialog2.show();
             }
         });
-
 
         dialog = new Dialog(this);
         //dialog.setTitle(" Молодец! Отгадал! Сыграем ещё?");
